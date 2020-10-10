@@ -16,16 +16,22 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart')->with([
-            'discount' =>$this->getNumbers()->get('discount'),
-            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
-            'newTotal' => $this->getNumbers()->get('newTotal'),
-        ]); 
+        if(session()->has('user')){
+            return view('cart')->with([
+                'discount' =>$this->getNumbers()->get('discount'),
+                'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
+                'newTotal' => $this->getNumbers()->get('newTotal'),
+            ]); 
+        }else{
+            return redirect()->route('user.login');
+        }
     }
 
     public function saveCart()
     {
-        return view('savecart');
+        if(session()->has('user')){
+            return view('savecart');
+        }
     }
 
     /**

@@ -15,17 +15,21 @@ class LandingPageController extends Controller
      */
     public function index()
     {
-        $products = Product::where('featured',true)->take(8)->get();
-        $categories = Category::all();
-        $recommendedItems = Product::inRandomOrder()->take(3)->get();
-        $recommendedItems2 = Product::inRandomOrder()->take(3)->get();
+        if(session()->has('user')){
+            $products = Product::where('featured',true)->take(8)->get();
+            $categories = Category::all();
+            $recommendedItems = Product::inRandomOrder()->take(3)->get();
+            $recommendedItems2 = Product::inRandomOrder()->take(3)->get();
 
-        return view('landing-page')->with([
-            'products' =>$products,
-            'recommendedItems' => $recommendedItems,
-            'recommendedItems2' => $recommendedItems2,
-            'categories' => $categories,
-        ]);
+            return view('landing-page')->with([
+                'products' =>$products,
+                'recommendedItems' => $recommendedItems,
+                'recommendedItems2' => $recommendedItems2,
+                'categories' => $categories,
+            ]);
+        }else{
+           return redirect()->route('user.login');
+        }
     }
 
 }

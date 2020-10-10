@@ -14,12 +14,13 @@ class CreateBasicUsersTable extends Migration
     public function up()
     {
         Schema::create('basic_users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->increments('id');
+            $table->string('Name');
+            $table->string('PositionDepartment');
             $table->string('CityTineState');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('PersonalNumber')->unique();
+            $table->string('NationalNumber')->unique();
+            $table->string('CurrentOffice');
             $table->timestamps();
         });
     }

@@ -15,34 +15,38 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $pagination = 16;
-        $categories = Category::all();
+        if(session()->has('user')){
+            $pagination = 16;
+            $categories = Category::all();
 
-        if(request()->category){
-            $products = Product::with('categories')->whereHas('categories',function($query){
-                $query->where('slug',request()->category);    
-            });
-            $categories;
-            $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+            if(request()->category){
+                $products = Product::with('categories')->whereHas('categories',function($query){
+                    $query->where('slug',request()->category);    
+                });
+                $categories;
+                $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+            }else{
+                $products = Product::where('featured',true);
+                $categories;
+                $categoryName = 'သင့်အတွက်';
+            }
+
+            if(request()->sort == 'low_high'){
+                $products = $products->orderBy('price')->paginate($pagination);
+            }elseif(request()->sort == 'high_low'){
+                $products = $products->orderBy('price','desc')->paginate($pagination);
+            }else{
+                $products = $products->paginate($pagination);
+            }
+
+            return view('shop')->with([
+                'products' => $products,
+                'categories' => $categories,
+                'categoryName' => $categoryName,
+            ]);
         }else{
-            $products = Product::where('featured',true);
-            $categories;
-            $categoryName = 'သင့်အတွက်';
+            return redirect()->route('user.login');
         }
-
-        if(request()->sort == 'low_high'){
-            $products = $products->orderBy('price')->paginate($pagination);
-        }elseif(request()->sort == 'high_low'){
-            $products = $products->orderBy('price','desc')->paginate($pagination);
-        }else{
-            $products = $products->paginate($pagination);
-        }
-
-        return view('shop')->with([
-            'products' => $products,
-            'categories' => $categories,
-            'categoryName' => $categoryName,
-        ]);
     }
 
    
@@ -54,17 +58,21 @@ class ShopController extends Controller
      */
     public function show($slug)
     {
-        $product = Product::where('slug',$slug)->firstOrFail();
-        $categories = Category::all();
-        $recommendedItems = Product::where('slug','!=',$slug)->inRandomOrder()->take(3)->get();
-        $recommendedItems2 = Product::where('slug','!=',$slug && $recommendedItems)->inRandomOrder()->take(3)->get();
+        if(session()->has('user')){
+            $product = Product::where('slug',$slug)->firstOrFail();
+            $categories = Category::all();
+            $recommendedItems = Product::where('slug','!=',$slug)->inRandomOrder()->take(3)->get();
+            $recommendedItems2 = Product::where('slug','!=',$slug && $recommendedItems)->inRandomOrder()->take(3)->get();
 
-        return view('product')->with([
-            'product' => $product,
-            'recommendedItems' => $recommendedItems,
-            'recommendedItems2' => $recommendedItems2,
-            'categories' => $categories,
-        ]);
+            return view('product')->with([
+                'product' => $product,
+                'recommendedItems' => $recommendedItems,
+                'recommendedItems2' => $recommendedItems2,
+                'categories' => $categories,
+            ]);
+        }else{
+            return redirect()->route('user.login');
+        }
     }
 
     

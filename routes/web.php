@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BasicUserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\LandingPageController;
@@ -19,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[LandingPageController::class,'index'])->name('landing.page');
+Route::get('/',[BasicUserController::class,'index'])->name('user.login');
+Route::post('/check',[BasicUserController::class,'check'])->name('user.check');
+Route::delete('/delete',[BasicUserController::class,'destroy'])->name('user.logout');
+
+Route::get('/home',[LandingPageController::class,'index'])->name('landing.page');
 
 Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
 
