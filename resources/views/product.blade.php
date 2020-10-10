@@ -23,50 +23,24 @@
 		<div class="product-details"><!--product-details-->
 			<div class="col-sm-5">
 				<div class="view-product">
-					<img src="{{ productImage($product->image) }}" alt="" />
-					<h3>ZOOM</h3>
+					<img src="{{ productImage($product->image) }}" alt="" class="active" id="currentImage" />
 				</div>
 
-				<div class="slide">
+				<div class="product-section-images">
 					@if ($product->images)
 						@foreach (json_decode($product->images,true) as $image)
-							<img src="{{ productImage($image) }}" alt="">
+							<div class="product-section-thumbnail selected">
+								<img src="{{ productImage($image) }}" width="95px" height="82px" alt="">
+							</div>
 						@endforeach
 					@endif
 				</div>
-
-				
-				{{-- <div id="similar-product" class="carousel slide" data-ride="carousel">
-					
-						<!-- Wrapper for slides -->
-						<div class="carousel-inner">
-							<div class="item active">
-								<a href=""><img src="{{ asset('images/product-details/similar1.jpg') }}" alt=""></a>
-								<a href=""><img src="{{ asset('images/product-details/similar2.jpg') }}" alt=""></a>
-								<a href=""><img src="{{ asset('images/product-details/similar3.jpg') }}" alt=""></a>
-							</div>
-							<div class="item">
-								<a href=""><img src="{{ asset('images/product-details/similar1.jpg') }}" alt=""></a>
-								<a href=""><img src="{{ asset('images/product-details/similar2.jpg') }}" alt=""></a>
-								<a href=""><img src="{{ asset('images/product-details/similar3.jpg') }}" alt=""></a>
-							</div>
-							<div class="item">
-								<a href=""><img src="{{ asset('images/product-details/similar1.jpg') }}" alt=""></a>
-								<a href=""><img src="{{ asset('images/product-details/similar2.jpg') }}" alt=""></a>
-								<a href=""><img src="{{ asset('images/product-details/similar3.jpg') }}" alt=""></a>
-							</div>
-							
-						</div>
-				</div> --}}
-
 			</div>
 			<div class="col-sm-7">
 				<div class="product-information"><!--/product-information-->
-					<img src="{{ asset('images/product-details/new.jpg') }}" class="newarrival" alt="" />
 					<h2>{!! $product->name !!}</h2>
 					<p>{!! $product->details !!}</p>
 					<p>{!! $product->description !!}</p>
-					<img src="images/product-details/rating.png" alt="" />
 					<span>
 						<span>{{ $product->presentPrice() }}</span>
 						<label>အရေအတွက်:</label>
@@ -229,4 +203,29 @@
 		@include('partials.recommended-items')
 		
 	</div>
+@endsection
+
+@section('extra-js')
+<script>
+    (function(){
+        const currentImage = document.querySelector('#currentImage');
+        const images = document.querySelectorAll('.product-section-thumbnail');
+
+        images.forEach((element) => element.addEventListener('click', thumbnailClick));
+
+        function thumbnailClick(e) {
+
+            currentImage.classList.remove('active');
+
+            currentImage.addEventListener('transitionend',() => {
+                currentImage.src = this.querySelector('img').src;
+                currentImage.classList.add('active');
+            })
+
+            images.forEach((element) => element.classList.remove('selected'));
+            this.classList.add('selected');
+        }
+    })();
+</script>
+
 @endsection
