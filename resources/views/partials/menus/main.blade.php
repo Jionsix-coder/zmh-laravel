@@ -8,16 +8,18 @@
                         <li><a href="{{ route('shop.index') }}"><i class="fa fa-shopping-cart"></i> ပစ္စည်းများ</a></li>
                         <li><a href="{{ route('cart.index') }}"><i class="fa fa-star"></i>  စျေးလှည်း</a></li> 
                         <li><a href=""><i class="fa fa-user"></i>  အကောင့်</a></li> 
-                        <form action="{{ route('user.logout') }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                           <button type="submit" class="btn btn-primary btn-sm">Logout</button>
-                        </form>
                     </ul>
                 @endif
             </a>
         </li>
     @endforeach
+    <li>
+        <form action="{{ route('user.logout') }}" method="POST">
+            @csrf
+            @method('DELETE')
+        <button class="" type="submit">Logout</button>
+        </form>
+    </li>
 </ul>
 
 {{-- <ul class="nav navbar-nav collapse navbar-collapse">
