@@ -19,4 +19,9 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Category');
     }
 
+    public function discountProduct($total)
+    {
+        return round(($this->discountPercent / 100 ) * $total);
+    }
+
 }

@@ -128,40 +128,44 @@
         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
             <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
             <div class="carousel-inner">
-                <div class="item active">	
+
+                @foreach ($promotionsItem as $key => $item)
+                <div class="item {{$key == 0 ? 'active' : '' }}">	
                     <div class="col-sm-12">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo rmd text-center">
                                     <img src="images/home/product1.jpg" alt="" />
-                                    <del><h2>12,000 Ks</h2></del>
-                                    <h4 style="font-size: 25px;"><b>10,560 Ks</b></h4>
-                                    <p>Easy Polo Black Edition</p>
+                                    <del><h2>{{ presentPrice($item->price) }}</h2></del>
+                                    <h4 style="font-size: 25px;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></h4>
+                                    <p>{{ $item->details }}</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">-12%</h5>
+                                    <h5 class="discount-p">- {{ $item->discountPercent }}%</h5>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
+
+                {{-- @foreach ($promotionsItem->last() as $item)
                 <div class="item">	
                     <div class="col-sm-12">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo rmd text-center">
-                                    <img src="images/home/product2.jpg" alt="" />
-                                    <del><h2>13,000 Ks</h2></del>
-                                    <h4 style="font-size: 25px;"><b>11,350 Ks</b></h4>
-                                    <p>Easy Polo Black Edition</p>
+                                    <img src="images/home/product1.jpg" alt="" />
+                                    <del><h2>{{ $item->price }}</h2></del>
+                                    <h4 style="font-size: 25px;"><b>{{ $item->price }}</b></h4>
+                                    <p>{{ $item->details }}</p>
                                     <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">-14%</h5>
+                                    <h5 class="discount-p">{{ $item->discountPercent }}</h5>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach --}}
             </div>
              <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                 <i class="fa fa-angle-left"></i>

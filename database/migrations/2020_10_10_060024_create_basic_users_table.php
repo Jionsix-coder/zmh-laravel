@@ -21,7 +21,7 @@ class CreateBasicUsersTable extends Migration
             $table->string('PersonalNumber')->unique();
             $table->string('NationalNumber')->unique();
             $table->string('CurrentOffice');
-            $table->integer('MoenyLeft');
+            $table->integer('MoneyLeft');
             $table->timestamps();
         });
     }

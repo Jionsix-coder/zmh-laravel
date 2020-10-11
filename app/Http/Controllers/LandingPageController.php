@@ -21,15 +21,13 @@ class LandingPageController extends Controller
             $categories = Category::all();
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
             $recommendedItems2 = Product::inRandomOrder()->take(3)->get();
-            $MoneyLeft = session()->get('user')['MoneyLeft'];
-            $promotionsItem = Product::where('promotions',true);
+            $promotionsItem = Product::where('promotions',true)->take(6)->get();
 
             return view('landing-page')->with([
                 'products' =>$products,
                 'recommendedItems' => $recommendedItems,
                 'recommendedItems2' => $recommendedItems2,
                 'categories' => $categories,
-                'MoenyLeft' => $MoneyLeft,
                 'promotionsItem' => $promotionsItem,
             ]);
         }else{

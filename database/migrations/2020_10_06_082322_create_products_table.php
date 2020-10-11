@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('featured')->default(false);
             $table->boolean('promotions')->default(false);
+            $table->integer('discountPercent')->nullable();
             $table->timestamps();
         });
     }
