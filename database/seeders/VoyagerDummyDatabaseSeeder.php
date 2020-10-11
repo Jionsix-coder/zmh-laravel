@@ -1,4 +1,5 @@
 <?php
+namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Traits\Seedable;
@@ -16,7 +17,7 @@ class VoyagerDummyDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->seedersPath = database_path('seeds').'/';
+        $this->seedersPath = database_path('seeds').'\\';
         $this->seed('CategoriesTableSeeder');
         $this->seed('UsersTableSeeder');
         $this->seed('PostsTableSeeder');
