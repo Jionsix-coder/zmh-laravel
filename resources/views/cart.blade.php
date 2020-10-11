@@ -130,7 +130,7 @@
 				<div class="col-sm-6">
 					<div class="total_area">
 						<ul>
-							<li style="color: red; font-size:16px;">လက်ကျန်ငွေ <span>45,000 Ks</span></li>
+							<li style="color: red; font-size:16px;">လက်ကျန်ငွေ <span>{{ session()->get('user')['MoneyLeft'] }}</span></li>
 						</ul>
 					</div>
 					@if (! session()->has('coupon'))

@@ -9,7 +9,7 @@
                         <a href="{{ route('shop.show', $item->slug) }}">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
-                                    <div class="productinfo text-center">
+                                    <div class="productinfo rmd text-center">
                                         <img src="{{ asset('images/products/'.$item->slug.'.jpg') }}" alt="Images" />
                                         <h2>{{ $item->presentPrice() }}</h2>
                                         <p>{{ $item->name }}</p>
@@ -27,7 +27,7 @@
                         <a href="{{ route('shop.show', $item2->slug) }}">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
-                                    <div class="productinfo text-center">
+                                    <div class="productinfo rmd text-center">
                                         <img src="{{ asset('images/products/'.$item2->slug.'.jpg') }}" alt="Images" g" />
                                         <h2>{{ $item2->presentPrice() }}</h2>
                                         <p>{{ $item2->name }}</p>
@@ -40,11 +40,11 @@
                 @endforeach	
             </div>
         </div>
-            <a class="left recommended-item-control" href="#recommended-item-carousel1" data-slide="prev">
-            <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="right recommended-item-control" href="#recommended-item-carousel1" data-slide="next">
-            <i class="fa fa-angle-right"></i>
-            </a>			
+        <a class="left recommended-item-control" href="#recommended-item-carousel1" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel1" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+        </a>			
     </div>
 </div><!--/recommended_items-->

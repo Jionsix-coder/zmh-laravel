@@ -3,21 +3,21 @@
         <li class="dropdown">
             <a href="{{ $menu_item->link() }}">
                 {{ $menu_item->title }}
-                @if($menu_item->title === 'စျေးဝယ်ရန်')
-                    <ul role="menu" class="sub-menu"> 
-                        <li><a href="{{ route('shop.index') }}"><i class="fa fa-shopping-cart"></i> ပစ္စည်းများ</a></li>
-                        <li><a href="{{ route('cart.index') }}"><i class="fa fa-star"></i>  စျေးလှည်း</a></li> 
-                        <li><a href=""><i class="fa fa-user"></i>  အကောင့်</a></li> 
-                    </ul>
-                @endif
             </a>
         </li>
     @endforeach
+    @if($menu_item->title === 'စျေးဝယ်ရန်')
+        <ul role="menu" class="sub-menu"> 
+            <li><a href="{{ route('shop.index') }}"><i class="fa fa-shopping-cart"></i> ပစ္စည်းများ</a></li>
+            <li><a href="{{ route('cart.index') }}"><i class="fa fa-star"></i>  စျေးလှည်း</a></li> 
+            <li><a href=""><i class="fa fa-user"></i>  အကောင့်</a></li> 
+        </ul>
+    @endif
     <li>
         <form action="{{ route('user.logout') }}" method="POST">
             @csrf
             @method('DELETE')
-        <button class="" type="submit">Logout</button>
+        <button class="btn-logout" type="submit">ထွက်ရန်</button>
         </form>
     </li>
 </ul>

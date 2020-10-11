@@ -24,6 +24,8 @@ Route::get('/',[BasicUserController::class,'index'])->name('user.login');
 Route::post('/check',[BasicUserController::class,'check'])->name('user.check');
 Route::delete('/delete',[BasicUserController::class,'destroy'])->name('user.logout');
 
+Route::get('/profile',[LandingPageController::class,'profile'])->name('profile.index');
+
 Route::get('/home',[LandingPageController::class,'index'])->name('landing.page');
 
 Route::get('/shop',[ShopController::class,'index'])->name('shop.index');

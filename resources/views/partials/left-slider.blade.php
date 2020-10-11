@@ -132,8 +132,8 @@
                     <div class="col-sm-12">
                         <div class="product-image-wrapper">
                             <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('images/home/product1.jpg') }}" alt="" class="promotion-img"/>
+                                <div class="productinfo rmd text-center">
+                                    <img src="images/home/product1.jpg" alt="" />
                                     <del><h2>12,000 Ks</h2></del>
                                     <h4 style="font-size: 25px;"><b>10,560 Ks</b></h4>
                                     <p>Easy Polo Black Edition</p>
@@ -149,8 +149,8 @@
                     <div class="col-sm-12">
                         <div class="product-image-wrapper">
                             <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('images/home/product2.jpg') }}" alt="" />
+                                <div class="productinfo rmd text-center">
+                                    <img src="images/home/product2.jpg" alt="" />
                                     <del><h2>13,000 Ks</h2></del>
                                     <h4 style="font-size: 25px;"><b>11,350 Ks</b></h4>
                                     <p>Easy Polo Black Edition</p>
@@ -162,64 +162,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="item">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('images/home/product3.jpg') }}" alt="" />
-                                    <del><h2>14,000 Ks</h2></del>
-                                    <h4 style="font-size: 25px;"><b>11,950 Ks</b></h4>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">-16%</h5>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('images/home/product4.jpg') }}" alt="" />
-                                    <del><h2>15,000 Ks</h2></del>
-                                    <h4 style="font-size: 25px;"><b>12,550 Ks</b></h4>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">-18%</h5>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo text-center">
-                                    <img src="{{ asset('images/home/product5.jpg') }}" alt="" />
-                                    <del><h2>16,000 Ks</h2></del>
-                                    <h4 style="font-size: 25px;"><b>13,450 Ks</b></h4>
-                                    <p>Easy Polo Black Edition</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">-21%</h5>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                 <i class="fa fa-angle-left"></i>
-            </a>
-            <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+              </a>
+              <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                 <i class="fa fa-angle-right"></i>
-            </a>			
+              </a>			
         </div>
     </div>
 </div>

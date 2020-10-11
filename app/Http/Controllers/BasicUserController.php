@@ -38,21 +38,15 @@ class BasicUserController extends Controller
         $number = $request->NationalNumber;
         $user = BasicUser::where('NationalNumber','LIKE','%'.$number.'%')->first();
 
-        // $dbName = $user->name;
-        // $dbPostionDepartment = $user->PositionDepartment;
-        // $dbCityTineState = $user->CityTineState;
-        // $dbPersonalNumber = $user->PersonalNumber;
-        // $dbNationalNumber = $user->NationalNumber;
-        // $dbCurrentOffice = $user->CurrentOffice;
-
         if($user->Name === $request->Name && $user->PositionDepartment === $request->PositionDepartment && $user->NationalNumber === $request->NationalNumber && $user->PersonalNumber === $request->PersonalNumber && $user->CityTineState === $request->CityTineState && $user->CurrentOffice === $request->CurrentOffice){
             session()->put('user',[
                 'NationalNumber' => $user->NationalNumber,
+                'MoneyLeft' => $user->MoneyLeft,
             ]);
-            
+
             return redirect()->route('landing.page');
         }else{
-            return redirect()->route('user.login');
+            return redirect()->route('user.login')->withErrors('errors','');
         }
     }
 

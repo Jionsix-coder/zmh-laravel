@@ -86,9 +86,9 @@ class MenuItemsTableSeederCustom extends Seeder
 
             $menuItem = MenuItem::firstOrNew([
                 'menu_id' => $menu->id,
-                'title'   => 'ထွက်ရန်',
+                'title'   => 'ဆက်သွယ်ရန်',
                 'url'     => '#',
-                'route'   => 'user.logout',
+                'route'   => 'contact.index',
             ]);
             if (!$menuItem->exists) {
                 $menuItem->fill([
@@ -99,6 +99,7 @@ class MenuItemsTableSeederCustom extends Seeder
                     'order'      => 2,
                 ])->save();
             }
+
         }
     }
 }

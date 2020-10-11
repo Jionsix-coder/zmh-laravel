@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                     <div class="pocket-money">
-                        <p>လက်ကျန်ငွေ : 45,000 Ks</p>
+                        <p>လက်ကျန်ငွေ : <b>{{ session()->get('user')['MoneyLeft'] }}</b></p>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-lg fa-user"></i> အကောင့်</a></li>
+                            <li><a href="{{ route('profile.index') }}"><i class="fa fa-lg fa-user"></i> အကောင့်</a></li>
                             <li>
                                 <a href="{{ route('cart.save') }}"><i class="fa fa-lg fa-shopping-cart"></i> စျေးလှည်း 
                                 @if (Cart::instance('saveCart')->count() > 0)

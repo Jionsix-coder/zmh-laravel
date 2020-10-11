@@ -379,6 +379,14 @@ h2.title{
 	width: 100%;
 }
 
+.mainmenu ul li:first-child {
+    padding-left: 15px;
+}
+
+.navbar-collapse{
+	margin-left:2px;
+}
+
 .mainmenu ul li{
 	background: rgba(0, 0, 0, 0.5);
     padding-top: 15px;
@@ -586,6 +594,11 @@ h2.title{
 	margin-left:20%;
 }
 
+.promotion-img{
+	width: 100%;
+	height: 250px !important;
+}
+
 .btn-seemore{
 	margin-left:25%;
 	font-size:13px;
@@ -715,7 +728,7 @@ h2.title{
 .mainmenu ul li{
 	background: rgba(0, 0, 0, 0.5);
     padding-top: 15px;
-	padding-bottom: 0;
+	padding-bottom: 10px;
 }
 
 .mainmenu ul li:last-child{
@@ -845,6 +858,19 @@ ul.sub-menu{
 #similar-product .carousel-inner .item img{
 	margin-left: 4px;
 }
+
+.rmd img{
+	width:100%;
+	height: 250px;
+}
+
+.btn-logout {
+	background:#FE980F;
+	border: 0 none;
+	width:100%;
+	height:40px;
+	border-radius: 0;
+  }
 
 .product-information{
 	margin-top: 20px;
