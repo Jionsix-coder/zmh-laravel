@@ -57,13 +57,13 @@ class CartController extends Controller
         });
         
         if($duplicates->isNotEmpty()){
-            return redirect()->route('cart.index')->with('success_message','Item is already in your cart');
+            return redirect()->route('cart.index')->with('success_message','ဈေးခြင်းထဲတွင်ရှိပြီးသားပစ္စည်းပါ');
         }
 
         Cart::add($request->id, $request->name,1,$request->price)
               ->associate('App\Models\Product');
 
-        return redirect()->route('cart.index')->with('success_message','Item was Added to your Cart');
+        return redirect()->route('cart.index')->with('success_message','ဈေးခြင်းထဲတွင်သိမ်းဆည်းပြီးပါပြီ');
     }
 
     /**
@@ -102,14 +102,14 @@ class CartController extends Controller
         ]);
 
         if($validator->fails()){
-            session()->flash('errors',collect(['Quantity must be between 1 and 5.']));
+            session()->flash('errors',collect(['အရေအတွက်(၁)ခုမှ(၅)ခုအတွင်းသာရှိရပါမည်']));
 
             return response()->json(['success' => false], 400);
         }
 
         Cart::update($id,$request->quantity);
 
-        session()->flash('success_message','Quantity was updated successfully');
+        session()->flash('success_message','အရေအတွက်တိုးပြီးပါပြီ');
 
         return response()->json(['success' => true]);
     }
@@ -124,7 +124,7 @@ class CartController extends Controller
     {
         Cart::remove($id);
 
-        return back()->with('success_message','Item has been Removed!');
+        return back()->with('success_message','ပစ္စည်းကိုဖယ်ရှားပြီးပါပြီ!!!');
     }
 
     /**
@@ -144,24 +144,24 @@ class CartController extends Controller
         });
         
         if($duplicates->isNotEmpty()){
-            return redirect()->route('cart.save')->with('success_message','Item is already in your savecart');
+            return redirect()->route('cart.save')->with('success_message','ဈေးလှည်းထဲတွင်ရှိပြီးသားပစ္စည်းပါ');
         }
 
         Cart::instance('saveCart')->add($item->id, $item->name,1,$item->price)
               ->associate('App\Models\Product');
 
-        return redirect()->route('cart.save')->with('success_message','Item has been save to saveCart');
+        return redirect()->route('cart.save')->with('success_message','ဈေးလှည်းထဲတွင်သိမ်းဆည်းပြီးပါပြီ');
     }
 
     private function getNumbers()
-{
-    $discount = session()->get('coupon')['discount'] ?? 0;
-    $newSubtotal = (Cart::subtotal() - $discount);
-    $newTotal = $newSubtotal;
-    return collect([
-        'discount' => $discount,
-        'newSubtotal' => $newSubtotal,
-        'newTotal' => $newTotal,
-    ]); 
-}
+    {
+        $discount = session()->get('coupon')['discount'] ?? 0;
+        $newSubtotal = (Cart::subtotal() - $discount);
+        $newTotal = $newSubtotal;
+        return collect([
+            'discount' => $discount,
+            'newSubtotal' => $newSubtotal,
+            'newTotal' => $newTotal,
+        ]); 
+    }
 }

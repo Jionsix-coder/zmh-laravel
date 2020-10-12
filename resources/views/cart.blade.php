@@ -147,6 +147,7 @@
 				</div>
 				<div class="col-sm-6">
 					<div class="total_area">
+						
 						<ul>
 							<li>စုစုပေါင်းခွဲ <span>{{ presentPrice(Cart::subtotal()) }}</span></li>
 							@if (session()->has('coupon'))
@@ -164,9 +165,12 @@
 							<div class="line"></div>
 							<li>အရေအတွက်စုစုပေါင်း<span>{{ Cart::count() > 0 ? Cart::count() : 0 }} </span></li>
 							<li>စုစုပေါင်း <span>{{ presentPrice($newTotal) }}</span></li>
-							<li class="code-box">Code<span><input type="text"></span></li>
+							<form action="{{ route('order.store') }}" method="POST">
+							@csrf
+							<li class="code-box">Code<span><input type="text" name="ordercode" required></span></li>
 						</ul>
-							<a class="btn btn-default update" href="">အော်ဒါတင်ရန်</a>
+						<button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
+						</form>
 					</div>
 				</div>
 			</div>

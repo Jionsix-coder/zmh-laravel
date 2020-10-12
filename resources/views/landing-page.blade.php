@@ -25,7 +25,7 @@
 						<div class="item active">
 							<div class="col-sm-6">
 								<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
-								<h4>No.(200/206), 9<sup>th</sup> Floor, Bet: 134x135 Street, Sat Yone Road, Ma-U-Gone Quarter, Tarmwe Township, Yangon, Myanmar.</h4>
+								<h4 style="line-height: 40px;font-weight:bold;">အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး.</h4>
 								<h3> +95-9-898155551,+95-9-775545655</h3>
 								<p></p>
 							</div>

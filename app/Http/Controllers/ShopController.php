@@ -18,6 +18,7 @@ class ShopController extends Controller
         if(session()->has('user')){
             $pagination = 16;
             $categories = Category::all();
+            $promotionsItem = Product::where('promotions',true)->take(6)->get();
 
             if(request()->category){
                 $products = Product::with('categories')->whereHas('categories',function($query){
@@ -26,7 +27,7 @@ class ShopController extends Controller
                 $categories;
                 $categoryName = optional($categories->where('slug', request()->category)->first())->name;
             }else{
-                $products = Product::where('featured',true);
+                $products = Product::inRandomOrder();
                 $categories;
                 $categoryName = 'သင့်အတွက်';
             }
@@ -43,6 +44,7 @@ class ShopController extends Controller
                 'products' => $products,
                 'categories' => $categories,
                 'categoryName' => $categoryName,
+                'promotionsItem' => $promotionsItem,
             ]);
         }else{
             return redirect()->route('user.login');
@@ -63,12 +65,14 @@ class ShopController extends Controller
             $categories = Category::all();
             $recommendedItems = Product::where('slug','!=',$slug)->inRandomOrder()->take(3)->get();
             $recommendedItems2 = Product::where('slug','!=',$slug && $recommendedItems)->inRandomOrder()->take(3)->get();
+            $promotionsItem = Product::where('promotions',true)->take(6)->get();
 
             return view('product')->with([
                 'product' => $product,
                 'recommendedItems' => $recommendedItems,
                 'recommendedItems2' => $recommendedItems2,
                 'categories' => $categories,
+                'promotionsItem' => $promotionsItem,
             ]);
         }else{
             return redirect()->route('user.login');

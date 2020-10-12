@@ -18,7 +18,7 @@ class SaveCartController extends Controller
     {
         Cart::instance('saveCart')->remove($id);
 
-        return back()->with('success_message','Item has been Removed!');
+        return back()->with('success_message','ပစ္စည်းကိုဖယ်ရှားပြီးပါပြီ!!!');
     }
 
     /**
@@ -38,13 +38,13 @@ class SaveCartController extends Controller
         });
         
         if($duplicates->isNotEmpty()){
-            return redirect()->route('cart.save')->with('success_message','Item is already in your savecart');
+            return redirect()->route('cart.save')->with('success_message','ဈေးခြင်းထဲတွင်ရှိပြီးသားပစ္စည်းပါ');
         }
 
         Cart::instance('default')->add($item->id, $item->name,1,$item->price)
               ->associate('App\Models\Product');
 
-        return redirect()->route('cart.index')->with('success_message','Item has been moved to cart');
+        return redirect()->route('cart.index')->with('success_message','ဈေးခြင်းထဲတွင်သိမ်းဆည်းပြီးပါပြီ');
     }
 }
 

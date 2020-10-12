@@ -36,7 +36,7 @@ class BasicUserController extends Controller
         // ]);
 
         $number = $request->NationalNumber;
-        $user = BasicUser::where('NationalNumber','LIKE','%'.$number.'%')->first();
+        $user = BasicUser::where('NationalNumber',$number)->first();
 
         if($user->Name === $request->Name && $user->PositionDepartment === $request->PositionDepartment && $user->NationalNumber === $request->NationalNumber && $user->PersonalNumber === $request->PersonalNumber && $user->CityTineState === $request->CityTineState && $user->CurrentOffice === $request->CurrentOffice){
             session()->put('user',[
@@ -46,7 +46,7 @@ class BasicUserController extends Controller
 
             return redirect()->route('landing.page');
         }else{
-            return redirect()->route('user.login')->withErrors('errors','');
+            return redirect()->route('user.login')->withErrors('Wrong Creditonal');
         }
     }
 

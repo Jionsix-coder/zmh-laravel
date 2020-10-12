@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BasicUserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaveCartController;
 use App\Http\Controllers\ShopController;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -45,10 +47,12 @@ Route::post('/saveCart/switchToCart/{product}',[SaveCartController::class,'switc
 Route::post('/coupon',[CouponsController::class,'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class,'destroy'])->name('coupon.destroy');
 
+ROute::post('/order',[OrderController::class,'store'])->name('order.store');
+
 route::get('/empty',function (){
     Cart::instance('default')->destroy();
 });
-Route::view('/thankyou','thankyou');
+Route::get('/thankyou',[ConfirmationController::class,'index'])->name('confirmation.index');
 Route::view('/login','login');
 
 

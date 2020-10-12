@@ -5,11 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BasicUser extends Model
+class OrderProduct extends Model
 {
     use HasFactory;
-    public function orders()
-    {
-        return $this->hasMany('App\Models\Order');
-    }
+    protected $table="order_product";
+
+    protected $fillable = ['order_id','product_id','quantity'];
 }
