@@ -167,10 +167,10 @@
 							<li>စုစုပေါင်း <span>{{ presentPrice($newTotal) }}</span></li>
 							<form action="{{ route('order.store') }}" method="POST">
 							@csrf
-							<li class="code-box">Code<span><input type="text" name="ordercode" required></span></li>
+							   <li class="code-box">Code<span><input type="text" name="ordercode" required></span></li>
 						</ul>
-						<button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
-						</form>
+						       <button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
+						    </form>
 					</div>
 				</div>
 			</div>

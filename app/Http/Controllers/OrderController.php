@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderPlaced;
 use App\Models\BasicUser;
 use App\Models\Order;
 use App\Models\OrderCode;
 use App\Models\OrderProduct;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -48,8 +50,65 @@ class OrderController extends Controller
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
     
-            $this->addToOrderTables($user,null);
-    
+            $order = $this->addToOrderTables($user,null);
+
+            $dborder = Order::find($order->id);
+            $totalPrice = $order->total;
+            $totalQuantity = Cart::count();
+            $products = $dborder->products->all();
+            //dd($products);
+            foreach($products as $key => $product):
+                $OrderId = $order->id;
+                $Name[$key] = $product->name;
+                $Price[$key] = $product->price;
+                $Quantity[$key] = $product->pivot->quantity;
+            endforeach;
+            $ProductName = implode(" , ",$Name);
+            $ProductPrice = implode(" , ",$Price);
+            $ProductQuantity = implode(" , ",$Quantity);
+            // dd($totalQuantity);
+
+            //sending order sms
+            //SMSPoh Authorization Token
+            $token = "6F5vmaxSvlg73g6Aq5kkn95CQBajbh3QqdnZyWg8hiyGrBr7l4vS-8Cp4M6o3bG6";
+
+            // Prepare data for POST request
+            $data = [
+                "to"      => "09969467881",
+                "message" => "Unicode(ယူနီကုဒ်): 
+သင့်အော်ဒါကိုဇေမင်းထက်ကုမ္ပဏီမှလက်ခံရရှိပါသည်။ သင်တင်လိုက်သောအော်ဒါများမှာ- 
+( အော်ဒါနံပါတ် : $OrderId , 
+ဝယ်ယူသည့်ပစ္စည်းအမည် :$ProductName , 
+ပစ္စည်းအရေအတွက် : $ProductQuantity , 
+ပစ္စည်းဈေးနူန်း : $ProductPrice , 
+စုစုပေါင်းအရေအတွက် : $totalQuantity , 
+စုစုပေါင်းကျသင့်ငွေ : $totalPrice ) 
+ဝယ်ယူသည့်အတွက်အထူးပင်ကျေးဇူးတင်ရှိပါသည်။
+Zawgyi(ေဇာ္ဂ်ီ):
+သင့္ေအာ္ဒါကိုေဇမင္းထက္ကုမၸဏီမွလက္ခံရရွိပါသည္။ သင္တင္လိုက္ေသာေအာ္ဒါမ်ားမွာ- 
+(  ေအာ္ဒါနံပါတ္ : $OrderId , 
+ဝယ္ယူသည့္ပစၥည္းအမည္ :$ProductName , 
+ပစၥည္းအေရအတြက္ : $ProductQuantity , 
+ပစၥည္းေဈးႏူန္း : $ProductPrice , 
+စုစုေပါင္းအေရအတြက္ : $totalQuantity , 
+စုစုေပါင္းက်သင့္ေငြ : $totalPrice ) 
+ဝယ္ယူသည့္အတြက္အထူးပင္ေက်းဇူးတင္ရွိပါသည္။ ",
+                "sender"  => "Zay Min Htet Co.Ltd"
+            ];
+
+
+            $ch = curl_init("https://smspoh.com/api/v2/send");
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                    'Authorization: Bearer ' . $token,
+                    'Content-Type: application/json'
+                ]);
+
+            curl_exec($ch);
+            // 
+            
             //Successful
             Cart::instance('default')->destroy();
             session()->forget('coupon');
@@ -134,6 +193,8 @@ class OrderController extends Controller
                 'quantity' => $item->qty,
             ]);
         }
+
+        return $order;
     }
 
     private function getNumbers()
