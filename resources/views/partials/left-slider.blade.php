@@ -94,7 +94,7 @@
             </div> --}}
         </div><!--/category-products-->
 
-        <div class="brands_products"><!--brands_products-->
+        {{-- <div class="brands_products"><!--brands_products-->
             <h2>Brands</h2>
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
@@ -107,7 +107,7 @@
                     <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
                 </ul>
             </div>
-        </div><!--/brands_products-->
+        </div><!--/brands_products--> --}}
         
         {{-- <div class="price-range"><!--price-range-->
             <h2>Price Range</h2>
@@ -120,8 +120,8 @@
         <div class="price-range">
             <h2>Price Range</h2>
             <div class="well text-center">
-                <a href="{{ route('shop.index',['category' => request()->category,'sort' => 'low_high']) }}">Low to High</a>
-                <a href="{{ route('shop.index',['category' => request()->category,'sort' => 'high_low']) }}">High to Low</a>
+                <a href="{{ route('shop.index',['category' => request()->category,'sort' => 'low_high']) }}">ဈေးအနိမ့်မှအမြင့်သို့</a><br>
+                <a href="{{ route('shop.index',['category' => request()->category,'sort' => 'high_low']) }}">ဈေးအမြင့်မှအနိမ့်သို့</a>
             </div>
         </div>
 

@@ -3,16 +3,16 @@
         <li class="dropdown">
             <a href="{{ $menu_item->link() }}">
                 {{ $menu_item->title }}
+                @if($menu_item->title === 'စည်းမျဉ်းစည်းကမ်း')
+                    <ul role="menu" class="sub-menu"> 
+                        <li><a href="{{ route('navbar.discipline') }}"><i class="fa fa-book"></i> စည်းမျဉ်းစည်းကမ်း</a></li> 
+                        <li><a href="{{ route('navbar.armakhan') }}"><i class="fa fa-book"></i> အာမခံ</a></li>
+                        <li><a href="{{ route('navbar.member') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်လိုအပ်ချက်</a></li> 
+                    </ul>
+                @endif
             </a>
         </li>
     @endforeach
-    @if($menu_item->title === 'စျေးဝယ်ရန်')
-        <ul role="menu" class="sub-menu"> 
-            <li><a href="{{ route('shop.index') }}"><i class="fa fa-shopping-cart"></i> ပစ္စည်းများ</a></li>
-            <li><a href="{{ route('cart.index') }}"><i class="fa fa-star"></i>  စျေးလှည်း</a></li> 
-            <li><a href=""><i class="fa fa-user"></i>  အကောင့်</a></li> 
-        </ul>
-    @endif
     <li>
         <form action="{{ route('user.logout') }}" method="POST">
             @csrf

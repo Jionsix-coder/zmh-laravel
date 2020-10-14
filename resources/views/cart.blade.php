@@ -35,7 +35,7 @@
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="/">ပင်မ</a></li>
-				  <li style="font-weight: bolder;"><i class="fa fa-lg fa-shopping-basket"></i> စျေးခြင်း</li>
+				  <li style="font-weight: bolder;"><i class="fa fa-md fa-shopping-basket"></i> စျေးခြင်း</li>
 				</ol>
 			</div>
 			@if (session()->has('success_message'))
@@ -75,7 +75,7 @@
 				@foreach (Cart::content() as $item)
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="{{ productImage($item->model->image) }}" alt=""></a>
+								<a href=""><img src="{{ productImage($item->model->image)}}" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></h4>

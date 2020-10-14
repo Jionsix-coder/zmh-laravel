@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaveCartController;
 use App\Http\Controllers\ShopController;
@@ -50,13 +51,17 @@ Route::delete('/coupon',[CouponsController::class,'destroy'])->name('coupon.dest
 Route::post('/order',[OrderController::class,'store'])->name('order.store');
 route::get('/search',[ShopController::class,'search'])->name('shop.search');
 
-route::get('/empty',function (){
-    Cart::instance('default')->destroy();
-});
+Route::get('/armakhan',[NavbarController::class,'armakhan'])->name('navbar.armakhan');
+Route::get('/discipline',[NavbarController::class,'discipline'])->name('navbar.discipline');
+Route::get('/member',[NavbarController::class,'member'])->name('navbar.member');
+Route::get('/contact',[NavbarController::class,'contact'])->name('navbar.contact');
+
 Route::get('/thankyou',[ConfirmationController::class,'index'])->name('confirmation.index');
 Route::view('/login','login');
 
-
+route::get('/empty',function (){
+    Cart::instance('default')->destroy();
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

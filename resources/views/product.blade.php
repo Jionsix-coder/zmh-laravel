@@ -45,10 +45,13 @@
 						<span>{{ $product->presentPrice() }}</span>
 						<label>အရေအတွက်:</label>
 						<input type="text" value="3" />
-						<button type="button" class="btn btn-fefault cart">
-							<i class="fa fa-lg fa-shopping-cart"></i>
-							ခြင်းထဲထည့်ရန်
-						</button>
+						<form action="{{ route('cart.store') }}" method="POST" style="display: inline">
+							@csrf
+							<input type="hidden" name="id" value="{{ $product->id }}">
+							<input type="hidden" name="name" value="{{ $product->name }}">
+							<input type="hidden" name="price" value="{{ $product->price }}">
+							<button type="submit" class="btn btn-default cart"><i class="fa fa-md fa-shopping-basket"></i> ခြင်းထဲထည့်ရန်</button>	
+						 </form>
 					</span>
 					<p><b>ရရှိနိုင်:</b> In Stock</p>
 					<p><b>အခြေအနေ:</b> New</p>
