@@ -139,7 +139,14 @@
                                     <del><h2>{{ presentPrice($item->price) }}</h2></del>
                                     <h4 style="font-size: 25px;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></h4>
                                     <p>{{ $item->details }}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
+                                    <form action="{{ route('cart.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $item->id }}">
+                                        <input type="hidden" name="name" value="{{ $item->name }}">
+                                        <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
+                                        <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
+                                        <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+                                     </form>
                                     <h5 class="discount-p">- {{ $item->discountPercent }}%</h5>
                                 </div>
                             </div>

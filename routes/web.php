@@ -47,7 +47,8 @@ Route::post('/saveCart/switchToCart/{product}',[SaveCartController::class,'switc
 Route::post('/coupon',[CouponsController::class,'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class,'destroy'])->name('coupon.destroy');
 
-ROute::post('/order',[OrderController::class,'store'])->name('order.store');
+Route::post('/order',[OrderController::class,'store'])->name('order.store');
+route::get('/search',[ShopController::class,'search'])->name('shop.search');
 
 route::get('/empty',function (){
     Cart::instance('default')->destroy();

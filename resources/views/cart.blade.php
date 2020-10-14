@@ -35,7 +35,7 @@
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
 				  <li><a href="/">ပင်မ</a></li>
-				  <li class="active"></li>
+				  <li style="font-weight: bolder;"><i class="fa fa-lg fa-shopping-basket"></i> စျေးခြင်း</li>
 				</ol>
 			</div>
 			@if (session()->has('success_message'))
@@ -99,7 +99,7 @@
 								</div>
 							</td>
 							<td class="cart_total">
-								<p class="cart_total_price">{{ presentPrice($item->subtotal()) }}</p>
+								<p class="cart_total_price">{{ presentPrice($item->subtotal()) }} ( -{{ $item->model->discountPercent > 0 ? $item->model->discountPercent : '0'  }}%)</p>
 							</td>
 							<td class="cart_delete">
 								<form action="{{ route('cart.destroy',$item->rowId) }}" method="POST">

@@ -110,9 +110,11 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="ပစ္စည်းများရှာရန်"/>
-                    </div>
+                    <form action="{{ route('shop.search') }}" method="GET">
+                        <div class="search_box pull-right">
+                            <input type="text" name="query" value="{{ request()->input('query') }}" id="query" placeholder="ပစ္စည်းများရှာရန်"/>
+                        </div>
+                    </form>
                 </div>
             </div>
                 @yield('breadcrumb')

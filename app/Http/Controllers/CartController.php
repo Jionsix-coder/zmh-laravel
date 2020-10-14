@@ -157,6 +157,9 @@ class CartController extends Controller
     {
         $discount = session()->get('coupon')['discount'] ?? 0;
         $newSubtotal = (Cart::subtotal() - $discount);
+        if($newSubtotal < 0){
+            $newSubtotal = 0;
+        }
         $newTotal = $newSubtotal;
         return collect([
             'discount' => $discount,

@@ -79,5 +79,25 @@ class ShopController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $request->validate([
+            'query' => 'required|min:3',
+        ]);
+
+        $query = $request->input('query');
+        $categories = Category::all();
+        $promotionsItem = Product::where('promotions',true)->take(6)->get();
+        $products = Product::where('name', 'like' , "%$query%")
+                             ->orWhere('details' ,'like' ,"%$query%")
+                             ->paginate(16);
+
+        return view('search-results')->with([
+            'products' => $products,
+            'categories' => $categories,
+            'promotionsItem' => $promotionsItem,
+        ]);
+    }
+
     
 }
