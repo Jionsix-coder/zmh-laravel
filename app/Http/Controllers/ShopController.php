@@ -27,7 +27,7 @@ class ShopController extends Controller
                 $categories;
                 $categoryName = optional($categories->where('slug', request()->category)->first())->name;
             }else{
-                $products = Product::inRandomOrder();
+                $products = Product::orderBy('id','desc');
                 $categories;
                 $categoryName = 'သင့်အတွက်';
             }
@@ -47,7 +47,7 @@ class ShopController extends Controller
                 'promotionsItem' => $promotionsItem,
             ]);
         }else{
-            return redirect()->route('user.login');
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 
@@ -75,28 +75,32 @@ class ShopController extends Controller
                 'promotionsItem' => $promotionsItem,
             ]);
         }else{
-            return redirect()->route('user.login');
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 
     public function search(Request $request)
     {
-        $request->validate([
-            'query' => 'required|min:3',
-        ]);
-
-        $query = $request->input('query');
-        $categories = Category::all();
-        $promotionsItem = Product::where('promotions',true)->take(6)->get();
-        $products = Product::where('name', 'like' , "%$query%")
-                             ->orWhere('details' ,'like' ,"%$query%")
-                             ->paginate(16);
-
-        return view('search-results')->with([
-            'products' => $products,
-            'categories' => $categories,
-            'promotionsItem' => $promotionsItem,
-        ]);
+        if(session()->has('user')){
+            $request->validate([
+                'query' => 'required|min:3',
+            ]);
+    
+            $query = $request->input('query');
+            $categories = Category::all();
+            $promotionsItem = Product::where('promotions',true)->take(6)->get();
+            $products = Product::where('name', 'like' , "%$query%")
+                                 ->orWhere('details' ,'like' ,"%$query%")
+                                 ->paginate(16);
+    
+            return view('search-results')->with([
+                'products' => $products,
+                'categories' => $categories,
+                'promotionsItem' => $promotionsItem,
+            ]);
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 
     

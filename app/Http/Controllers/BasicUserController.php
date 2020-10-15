@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BasicUser;
-
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -27,26 +27,42 @@ class BasicUserController extends Controller
      */
     public function check(Request $request)
     {
-        // $request->validate([
-        //     'Name' => 'required',
-        //     // 'PositionDepartment' => 'required',
-        //     // 'CityTineState' => 'required',
-        //     // 'PersonalNumber' => 'required',
-        //     // 'NationalNumber' => 'required',
-        // ]);
 
         $number = $request->NationalNumber;
         $user = BasicUser::where('NationalNumber',$number)->first();
-
-        if($user->Name === $request->Name && $user->PositionDepartment === $request->PositionDepartment && $user->NationalNumber === $request->NationalNumber && $user->PersonalNumber === $request->PersonalNumber && $user->CityTineState === $request->CityTineState && $user->CurrentOffice === $request->CurrentOffice){
-            session()->put('user',[
-                'NationalNumber' => $user->NationalNumber,
-                'MoneyLeft' => $user->MoneyLeft,
-            ]);
-
-            return redirect()->route('landing.page');
+        if($user){
+            if($user->Name === $request->Name){
+                if($user->PositionDepartment === $request->PositionDepartment){
+                    if($user->NationalNumber === $request->NationalNumber){
+                        if($user->PersonalNumber === $request->PersonalNumber){
+                            if($user->CityTineState === $request->CityTineState){
+                                if($user->CurrentOffice === $request->CurrentOffice){
+                                    session()->put('user',[
+                                        'NationalNumber' => $user->NationalNumber,
+                                        'MoneyLeft' => $user->MoneyLeft,
+                                    ]);
+                                    
+                                    return redirect()->route('landing.page');
+                                }else{
+                                    return redirect()->route('user.login')->withErrors('လက်ရှိတာဝန်ထမ်းဆောင်သောရုံးမှားယွင်းနေပါသည်။');
+                                }
+                            }else{
+                                return redirect()->route('user.login')->withErrors('မြို့ | တိုင်း | ပြည်နယ်မှားယွင်းနေပါသည်။');
+                            }
+                        }else{
+                            return redirect()->route('user.login')->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
+                        }
+                    }else{
+                        return redirect()->route('user.login')->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+                    }
+                }else{
+                    return redirect()->route('user.login')->withErrors('ရာထူး | ဋ္ဌာန မှားယွင်းနေပါသည်။');
+                }
+            }else{
+                return redirect()->route('user.login')->withErrors('အမည်မှားယွင်းနေပါသည်။');
+            }
         }else{
-            return redirect()->route('user.login')->withErrors('Wrong Creditonal');
+            return redirect()->route('user.login')->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
         }
     }
 
@@ -90,9 +106,28 @@ class BasicUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $number = session()->get('user')['NationalNumber'];
+        $user = BasicUser::where('NationalNumber',$number)->first();
+
+        $this->validate($request,[
+            'PhNumber' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'AddressLine1' => 'required',
+            'AddressLine2' => 'required',
+            'City' => 'required',
+            'State' => 'required',
+        ]);
+        $user = BasicUser::find($user->id);
+
+        $user->PhNumber = $request->PhNumber;
+        $user->AddressLine1 = $request->AddressLine1;
+        $user->AddressLine2 = $request->AddressLine2;
+        $user->City = $request->City;
+        $user->State = $request->State;
+        $user->save();
+
+        return redirect()->route('profile.index')->with('success_message','Your account has been successfully updated');
     }
 
     /**
@@ -103,7 +138,8 @@ class BasicUserController extends Controller
      */
     public function destroy()
     {
-        session()->forget('user');
+        Cart::destroy();
+        session()->forget('user','coupon');
 
         return redirect()->route('user.login');
     }

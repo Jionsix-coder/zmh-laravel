@@ -948,6 +948,28 @@ h2.title {
   z-index: -2;
 }
 
+.profile-box{
+  border: 4px inset #FE980F;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.profile-box p,.profile-box-2 p{
+  font-size:15px;
+  font-weight: bold;
+  line-height: 25px;
+  text-align: center;
+  color:red;
+  margin-top:20px;
+}
+
+.profile-box p,.profile-box-2 p::before{
+  border: 2px solid white;
+  background-color: white;
+  border-radius: 20px;
+}
+
 .product-image-wrapper{
 	border:1px solid #F7F7F5;
 	overflow: hidden;

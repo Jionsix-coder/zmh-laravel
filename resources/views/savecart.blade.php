@@ -74,7 +74,7 @@
 				@foreach (Cart::instance('saveCart')->content() as $item)
 						<tr>
 							<td class="cart_product">
-								<a href=""><img src="{{ asset('images/products/'.$item->model->slug.'.jpg') }}" alt=""></a>
+								<a href=""><img src="{{ productImage($item->model->image)}}" alt=""></a>
 							</td>
 							<td class="cart_description">
 								<h4><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></h4>

@@ -49,7 +49,9 @@ Route::post('/coupon',[CouponsController::class,'store'])->name('coupon.store');
 Route::delete('/coupon',[CouponsController::class,'destroy'])->name('coupon.destroy');
 
 Route::post('/order',[OrderController::class,'store'])->name('order.store');
-route::get('/search',[ShopController::class,'search'])->name('shop.search');
+Route::get('/search',[ShopController::class,'search'])->name('shop.search');
+
+Route::post('/basicuser',[BasicUserController::class,'update'])->name('basicuser.update');
 
 Route::get('/armakhan',[NavbarController::class,'armakhan'])->name('navbar.armakhan');
 Route::get('/discipline',[NavbarController::class,'discipline'])->name('navbar.discipline');

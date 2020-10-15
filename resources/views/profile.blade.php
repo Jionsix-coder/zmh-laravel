@@ -31,41 +31,88 @@
     @include('partials.header')
     
     <div class="container">
-        <div class="row">
+        <div class="row profile-box">
             <div class="col-md-12">
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-12 profile-box-1">
+                    <br>
                       <form>
                         <div class="form-group">
-                          <label for="Name">Name</label>
+                          <label for="Name">အမည်</label>
                           <input type="text" class="form-control" id="Name" aria-describedby="Name" value="{{ $user->Name }}" readonly>
                           <small id="Name" class="form-text text-muted">We'll never share your information with anyone else.</small>
                         </div>
                         <div class="form-group">
-                          <label for="PositionDepartment">PositionDepartment</label>
+                          <label for="PositionDepartment">ရာထူး | ဋ္ဌာန</label>
                           <input type="text" class="form-control" id="PositionDepartment" value="{{ $user->PositionDepartment }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="CityTineState">CityTineState</label>
+                            <label for="CityTineState">မြို့ | တိုင်း | ပြည်နယ်</label>
                             <input type="text" class="form-control" id="CityTineState" value="{{ $user->CityTineState }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="PersoanlNumber">PersoanlNumber</label>
+                            <label for="PersoanlNumber">ကိုယ်ပိုင်အမှတ်</label>
                             <input type="text" class="form-control" id="PersoanlNumber" value="{{ $user->PersonalNumber }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="NationalNumber">NationalNumber</label>
+                            <label for="NationalNumber">မှတ်ပုံတင်အမှတ်</label>
                             <input type="text" class="form-control" id="NationalNumber" value="{{ $user->NationalNumber }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="CurrentOffice">CurrentOffice</label>
+                            <label for="CurrentOffice">လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး</label>
                             <input type="text" class="form-control" id="CurrentOffice" value="{{ $user->CurrentOffice }}" readonly>
                         </div>
                         <div class="form-group">
-                            <label for="MoneyLeft">MoneyLeft</label>
+                            <label for="MoneyLeft">လက်ကျန်ငွေ</label>
                             <input type="text" class="form-control" id="MoneyLeft" value="{{ $user->MoneyLeft }}" readonly>
                         </div>
                       </form>
                 </div>
+                <div class="col-md-6 col-sm-12 profile-box-2">
+                    <br>
+                    @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                    @endif
+
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <p>အော်ဒါတင်ရရန်အတွက်ဤနေရာတွင်သင့်အချက်အလက်များအားဖြည့်သွင်းပါ(တစ်ကြိမ်သာဖြည့်ညွင်းရန်လိုအပ်ပါသည်။</p>
+                    <form action="{{ route('basicuser.update') }}" method="POST">
+                    @csrf
+                    <label for="Name">Phone Number</label>
+                      <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <div class="input-group-addon">+95</div>
+                            <input type="text" name="PhNumber" class="form-control" id="inlineFormInputGroup" placeholder="9253888809" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="AddressLine1">Address Line 1</label>
+                        <input type="text" name="AddressLine1" class="form-control" id="AddressLine1" placeholder="Address Line 1" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="AddressLine2">Address Line 2</label>
+                          <input type="text" name="AddressLine2" class="form-control" id="AddressLine2" placeholder="Address Line 2" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="City">City</label>
+                          <input type="text" name="City" class="form-control" id="City" placeholder="City" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="State">State</label>
+                          <input type="text" name="State" class="form-control" id="State" placeholder="State" required>
+                      </div>
+                      <button class="btn btn-default btn-primary btn-block" type="submit" {{ $user->AddressLine1 != null ? 'disabled' : ''  }}>Submit</button>
+                    </form>
+              </div>
             </div>
         </div>
     </div>

@@ -26,14 +26,22 @@
 					<p>ဆက်သွယ်ရန် : +95-9-898155551 ,<br> +95-9-775545655</p>
 				</div>
 				<div class="card-body">
+					@if(count($errors) > 0)
+						<div class="alert alert-danger" style="height:70px;">
+							<ul>
+								@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 					<form action="{{ route('user.check') }}" method="POST">
 						@csrf
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="Name" class="form-control" placeholder="အမည်">
-							
+							<input type="text" name="Name" class="form-control" placeholder="အမည်">				
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">

@@ -531,6 +531,22 @@ ul.sub-menu{
 }
 @media (min-width: 490px) and (max-width: 670px) {
 
+	.profile-box{
+		border: 0px;
+	}
+	.profile-box-1{
+		border: 4px inset #FE980F;
+		border-radius: 20px;
+		margin-bottom:15px;
+	}
+	  
+	.profile-box-2{
+		border: 4px inset #FE980F;
+		border-radius: 20px;
+		margin-bottom: 20px;
+		height: 560px;
+	}
+
 	.header_top .col-sm-6:first-child{
 		display: inline-block;
 		float: left;
@@ -575,6 +591,27 @@ ul.sub-menu{
 }
 /* XS Portrait */
 @media (max-width: 490px) {
+
+.profile-box{
+	border: 0px;
+}
+
+.profile-box-1{
+	border: 4px inset #FE980F;
+	border-radius: 20px;
+	margin-bottom:15px;
+}
+	
+.profile-box-2{
+	border: 4px inset #FE980F;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	height: 555px;
+}
+
+.profile-btn{
+	margin-top:0;
+}
 
 h2.title{
 	font-size:15px;
@@ -938,6 +975,13 @@ ul.sub-menu{
 
 @media(min-width:400px ) and (max-width:460px)
 {
+	.profile-box-2{
+		border: 4px inset #FE980F;
+		border-radius: 20px;
+		margin-bottom: 20px;
+		height: 575px;
+	}
+
 	.title-popular{
 		font-size:12px;
 	}
@@ -994,4 +1038,14 @@ ul.sub-menu{
 	height: 0;
 	z-index: -2;
 }
+}
+
+@media(min-width:340px ) and (max-width:400px)
+{
+	.profile-box-2{
+		border: 4px inset #FE980F;
+		border-radius: 20px;
+		margin-bottom: 20px;
+		height: 575px;
+	}
 }

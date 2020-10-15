@@ -31,6 +31,8 @@ class CartController extends Controller
     {
         if(session()->has('user')){
             return view('savecart');
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 

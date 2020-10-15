@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                     <div class="pocket-money">
-                        <p>လက်ကျန်ငွေ : <b>{{ session()->get('user')['MoneyLeft'] }}</b></p>
+                        <p>လက်ကျန်ငွေ : <b>{{ session()->get('user')['MoneyLeft'] }} Ks</b></p>
                     </div>
                 </div>
             </div>

@@ -8,21 +8,37 @@ class NavbarController extends Controller
 {
     public function armakhan()
     {
-        return view('armakhan');
+        if(session()->has('user')){
+            return view('armakhan');
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 
     public function discipline()
     {
-        return view('discipline');
+        if(session()->has('user')){
+            return view('discipline');
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 
     public function member()
     {
-        return view('member');
+        if(session()->has('user')){
+            return view('member');
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 
     public function contact()
     {
-        return view('contact-us');
+        if(session()->has('user')){
+            return view('contact-us');
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 }

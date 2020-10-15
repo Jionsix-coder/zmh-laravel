@@ -22,6 +22,11 @@ class CreateBasicUsersTable extends Migration
             $table->string('NationalNumber')->unique();
             $table->string('CurrentOffice');
             $table->integer('MoneyLeft');
+            $table->bigInteger('PhNumber')->nullable();
+            $table->text('AddressLine1')->nullable();
+            $table->text('AddressLine2')->nullable();
+            $table->string('City')->nullable();
+            $table->string('State')->nullable();
             $table->timestamps();
         });
     }

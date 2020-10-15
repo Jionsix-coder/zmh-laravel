@@ -31,18 +31,22 @@ class LandingPageController extends Controller
                 'promotionsItem' => $promotionsItem,
             ]);
         }else{
-           return redirect()->route('user.login');
+           return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 
     public function profile()
     {
-        $number = session()->get('user')['NationalNumber'];
-        $user = BasicUser::where('NationalNumber','LIKE','%'.$number.'%')->first();
+        if(session()->has('user')){
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
 
-        return view('profile')->with([
-            'user' => $user,
-        ]);
+            return view('profile')->with([
+                'user' => $user,
+            ]);
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 
 }

@@ -41,41 +41,45 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order_code = $request->ordercode;
-        $dbordercode = OrderCode::where('ordercode',$order_code)->first();
+        $number = session()->get('user')['NationalNumber'];
+        $user = BasicUser::where('NationalNumber',$number)->first();
+        if($user->AddressLine1 !== null){
+            $order_code = $request->ordercode;
+            $dbordercode = OrderCode::where('ordercode',$order_code)->first();
+            
+            if($dbordercode === null ){
+                return redirect()->route('cart.index')->withErrors('ကုဒ်မှားယွင်းနေပါသည်!!!');
+            }else{
+                $number = session()->get('user')['NationalNumber'];
+                $user = BasicUser::where('NationalNumber',$number)->first();
         
-        if($dbordercode === null ){
-            return redirect()->route('cart.index')->withErrors('ကုဒ်မှားယွင်းနေပါသည်!!!');
-        }else{
-            $number = session()->get('user')['NationalNumber'];
-            $user = BasicUser::where('NationalNumber',$number)->first();
-    
-            $order = $this->addToOrderTables($user,null);
+                $order = $this->addToOrderTables($user,null);
 
-            $dborder = Order::find($order->id);
-            $totalPrice = $order->total;
-            $totalQuantity = Cart::count();
-            $products = $dborder->products->all();
-            //dd($products);
-            foreach($products as $key => $product):
-                $OrderId = $order->id;
-                $Name[$key] = $product->name;
-                $Price[$key] = $product->price;
-                $Quantity[$key] = $product->pivot->quantity;
-            endforeach;
-            $ProductName = implode(" , ",$Name);
-            $ProductPrice = implode(" , ",$Price);
-            $ProductQuantity = implode(" , ",$Quantity);
-            // dd($totalQuantity);
+                $dborder = Order::find($order->id);
+                $totalPrice = $order->total;
+                $totalQuantity = Cart::count();
+                $products = $dborder->products->all();
+                //dd($products);
+                foreach($products as $key => $product):
+                    $OrderId = $order->id;
+                    $Name[$key] = $product->name;
+                    $Price[$key] = $product->price;
+                    $Quantity[$key] = $product->pivot->quantity;
+                endforeach;
 
-            //sending order sms
-            //SMSPoh Authorization Token
-            $token = "6F5vmaxSvlg73g6Aq5kkn95CQBajbh3QqdnZyWg8hiyGrBr7l4vS-8Cp4M6o3bG6";
+                $ProductName = implode(" , ",$Name);
+                $ProductPrice = implode(" , ",$Price);
+                $ProductQuantity = implode(" , ",$Quantity);
+                // dd($totalQuantity);
 
-            // Prepare data for POST request
-            $data = [
-                "to"      => "09969467881",
-                "message" => "Unicode(ယူနီကုဒ်): 
+                //sending order sms
+                //SMSPoh Authorization Token
+                $token = "6F5vmaxSvlg73g6Aq5kkn95CQBajbh3QqdnZyWg8hiyGrBr7l4vS-8Cp4M6o3bG6";
+
+                // Prepare data for POST request
+                $data = [
+                    "to"      => "0"."$user->PhNumber",
+                    "message" => "Unicode(ယူနီကုဒ်): 
 သင့်အော်ဒါကိုဇေမင်းထက်ကုမ္ပဏီမှလက်ခံရရှိပါသည်။ သင်တင်လိုက်သောအော်ဒါများမှာ- 
 ( အော်ဒါနံပါတ် : $OrderId , 
 ဝယ်ယူသည့်ပစ္စည်းအမည် :$ProductName , 
@@ -85,39 +89,42 @@ class OrderController extends Controller
 စုစုပေါင်းကျသင့်ငွေ : $totalPrice ) 
 ဝယ်ယူသည့်အတွက်အထူးပင်ကျေးဇူးတင်ရှိပါသည်။
 Zawgyi(ေဇာ္ဂ်ီ):
-သင့္ေအာ္ဒါကိုေဇမင္းထက္ကုမၸဏီမွလက္ခံရရွိပါသည္။ သင္တင္လိုက္ေသာေအာ္ဒါမ်ားမွာ- 
+သင့္ေအာ္ဒါကိုေဇမင္းထက္ကုကုမၸဏီမွလက္ခံရရွိပါသည္။ သင္တင္လိုက္ေသာေအာ္ဒါမ်ားမွာ- 
 (  ေအာ္ဒါနံပါတ္ : $OrderId , 
 ဝယ္ယူသည့္ပစၥည္းအမည္ :$ProductName , 
-ပစၥည္းအေရအတြက္ : $ProductQuantity , 
+ပစၥည္းအေရအတြက္ : $ProductQuantity ,
 ပစၥည္းေဈးႏူန္း : $ProductPrice , 
 စုစုေပါင္းအေရအတြက္ : $totalQuantity , 
 စုစုေပါင္းက်သင့္ေငြ : $totalPrice ) 
 ဝယ္ယူသည့္အတြက္အထူးပင္ေက်းဇူးတင္ရွိပါသည္။ ",
-                "sender"  => "Zay Min Htet Co.Ltd"
-            ];
+                    "sender"  => "Zay Min Htet Co.Ltd"
+                ];
 
 
-            $ch = curl_init("https://smspoh.com/api/v2/send");
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                    'Authorization: Bearer ' . $token,
-                    'Content-Type: application/json'
-                ]);
+                $ch = curl_init("https://smspoh.com/api/v2/send");
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                        'Authorization: Bearer ' . $token,
+                        'Content-Type: application/json'
+                    ]);
 
-            curl_exec($ch);
-            // 
-            
-            //Successful
-            Cart::instance('default')->destroy();
-            session()->forget('coupon');
+                curl_exec($ch);
+                // 
+                
+                //Successful
+                Cart::instance('default')->destroy();
+                session()->forget('coupon');
 
-            //delete selected order code
-            OrderCode::where('ordercode',$order_code)->delete();
+                //delete selected order code
+                OrderCode::where('ordercode',$order_code)->delete();
 
-    
-            return redirect()->route('confirmation.index')->with('success_message','Thanks you! Your order has been successfully accepted!');
+        
+                return redirect()->route('confirmation.index')->with('success_message','Thanks you! Your order has been successfully accepted!');
+            }
+        }else{
+            return redirect()->route('cart.index')->withErrors('အကောင့်သို့ဝင်၍သင့်နေရပ်လိပ်စာထည့်သွင်းရန်လိုအပ်ပါသည်။');
         }
        
     }
