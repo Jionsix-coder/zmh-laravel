@@ -27,7 +27,7 @@ class ShopController extends Controller
                 $categories;
                 $categoryName = optional($categories->where('slug', request()->category)->first())->name;
             }else{
-                $products = Product::orderBy('id','desc');
+                $products = Product::distinct();
                 $categories;
                 $categoryName = 'သင့်အတွက်';
             }
