@@ -62,9 +62,9 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">ပစ္စည်း</td>
-							<td class="description"></td>
-							<td class="saveCart">saveCart</td>
+							<td class="image">ဓာတ်ပုံ</td>
+							<td class="description">ပစ္စည်းအမည်</td>
+							<td class="saveCart">လှည်းသို့ထှည့်ရန်</td>
 							<td class="price">စျေးနှုန်း</td>
 							<td class="quantity">အရေအတွက်</td>
 							<td class="total">စုစုပေါင်း</td>
@@ -79,24 +79,24 @@
 							</td>
 							<td class="cart_description">
 								<h4><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></h4>
-								<p>{{ $item->model->details }}</p>
+								<p>{!! Str::limit($item->model->details, 70, '...') !!}</p>
 							</td>
-							<td>
+							<td class="cart_savecart">
 								<form action="{{ route('cart.switchToSaveCart', $item->rowId) }}" method="POST">
 								@csrf
 								<input type="hidden" name="id" value="{{ $item->rowId }}">
-								<button class="btn btn-default"> SaveCart</button>
+								<button class="btn btn-default cart_save_cart">လှည်းသို့ထှည့်ရန်</button>
 								</form>
 							</td>
 							<td class="cart_price">
 								<p>{{ $item->model->presentPrice() }}</p>
 							</td>
 							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_down" href=""> - </a>
-									<input class="cart_quantity_input" type="text" data-id="{{ $item->rowId }}" name="quantity" value="{{ $item->qty > 0 ? $item->qty : '' }}" autocomplete="off" size="2">
-									<a class="cart_quantity_up" href=""> + </a>
-								</div>
+								<select class="cart_quantity_select" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+									@for($i = 1; $i < 5 + 1 ; $i++)
+									<option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+									@endfor
+							    </select>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">{{ presentPrice($item->subtotal()) }} ( -{{ $item->model->discountPercent > 0 ? $item->model->discountPercent : '0'  }}%)</p>
@@ -184,20 +184,22 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script>
 	(function(){
-		const classname = document.querySelectorAll('.cart_quantity_input')
+		const classname = document.querySelectorAll('.cart_quantity_select')
 
 		Array.from(classname).forEach(function(element){
 			element.addEventListener('change',function(){
 				const id = element.getAttribute('data-id')
+				const productQuantity = element.getAttribute('data-productQuantity')
 				axios.patch(`/cart/${id}`, {
-					quantity : this.value
+					quantity : this.value,
+					productQuantity : productQuantity
 				})
 				.then(function (response) {
 					// console.log(response);
 					window.location.href = '{{ route('cart.index') }}'
 				})
 				.catch(function (error) {
-					console.log(error);
+					//console.log(error);
 					window.location.href = '{{ route('cart.index') }}'
 				});
 			})

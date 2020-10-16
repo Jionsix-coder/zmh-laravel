@@ -7,6 +7,7 @@ use App\Models\BasicUser;
 use App\Models\Order;
 use App\Models\OrderCode;
 use App\Models\OrderProduct;
+use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -41,6 +42,11 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        //check race condition when there are lsee items available to purchase
+        if($this->productAreNotLongerAvailable()){
+            return back()->withErrors('Sorry! One of the item in your cart is no longer available.');
+        }
+
         $number = session()->get('user')['NationalNumber'];
         $user = BasicUser::where('NationalNumber',$number)->first();
         if($user->AddressLine1 !== null){
@@ -54,6 +60,9 @@ class OrderController extends Controller
                 $user = BasicUser::where('NationalNumber',$number)->first();
         
                 $order = $this->addToOrderTables($user,null);
+
+                //decrease the quantity of all the products in the cart
+                $this->decreaseQuantity();
 
                 $dborder = Order::find($order->id);
                 $totalPrice = $order->total;
@@ -216,5 +225,27 @@ Zawgyi(ေဇာ္ဂ်ီ):
             'newSubtotal' => $newSubtotal,
             'newTotal' => $newTotal,
         ]); 
+    }
+
+    protected function decreaseQuantity()
+    {
+        foreach(Cart::content() as $item){
+            $product = Product::find($item->model->id);
+
+
+            $product->update(['quantity' => $product->quantity - $item->qty]);
+        }
+    }
+
+    protected function productAreNotLongerAvailable()
+    {
+        foreach(Cart::content() as $item){
+            $product = Product::find($item->model->id);
+            if($product->quantity < $item->qty){
+                return true;
+            }
+        }
+
+        return false;
     }
 }

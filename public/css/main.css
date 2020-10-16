@@ -976,6 +976,33 @@ h2.title {
 	margin-bottom:30px;
 }
 
+.badge{
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.badge-danger{
+  color: #fff;
+  background-color: #dc3545;
+}
+
+.badge-warning{
+  color: #212529;
+  background-color: #ffc107;
+}
+
+.badge-success{
+  color: #fff;
+  background-color: #28a745;
+}
+
 .single-products {
   position: relative;
 }
@@ -1437,6 +1464,8 @@ h2.title {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   margin-bottom: 5px;
+  font-weight: 500;
+  line-height: 25px;
 }
 
 .product-information span {
@@ -1477,6 +1506,47 @@ h2.title {
   margin-top: 15px;
 }
 
+#details{
+  padding:0 20px;
+  margin-top:60px;
+}
+
+#details p {
+  font-size:16px;
+  padding-left:15px;
+  line-height: 27px;
+  background-color: white;
+  border: 4px solid white;
+  border-radius: 20px;
+}
+
+#reviews{
+  padding:0 20px;
+  margin-top:60px;
+}
+
+#reviews p{
+  font-size:20px;
+  padding-left:15px;
+  text-align: center;
+  background-color: white;
+  border: 4px solid red;
+  border-radius: 20px;
+}
+
+#tag{
+  padding:0 20px;
+  margin-top:60px;
+}
+
+#tag p{
+  font-size:18px;
+  text-align: center;
+  padding-left:15px;
+  background-color: white;
+  border: 4px solid white;
+  border-radius: 20px;
+}
 
 .cart {
   background: #FE980F;
@@ -1489,6 +1559,17 @@ h2.title {
   margin-left: 20px;
 }
 
+.cart_quantity_select{
+  width:40px; 
+  height: 30px;
+  margin-bottom:20px;
+}
+
+.cart_save_cart{
+  width:120px; 
+  height: 40px;
+  margin-bottom:20px;
+}
 
 .shop-details-tab {
   border: 1px solid #F7F7F0;
@@ -1858,19 +1939,16 @@ h2.title {
 
 .cart_delete  {
   display: block;
-  margin-right: -12px;
   overflow: hidden;
 }
 
 
-.cart_delete a {
-  background:#F0F0E9;
-  color: #FFFFFF;
-  padding: 5px 7px;
+.cart_delete button {
+  color: black;
   font-size: 16px
 }
 
-.cart_delete a:hover {
+.cart_delete button:hover {
   background:#FE980F
 }
 

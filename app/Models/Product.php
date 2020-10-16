@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['quantity'];
+
     public function presentPrice()
     {
         return number_format($this->price).' Ks';

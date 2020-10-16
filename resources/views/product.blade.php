@@ -4,7 +4,6 @@
 @section('title', 'Checkout')
 
 @section('extra-css')
-
 @endsection
 
 @section('content')
@@ -40,11 +39,10 @@
 				<div class="product-information"><!--/product-information-->
 					<h2>{!! $product->name !!}</h2>
 					<p>{!! $product->details !!}</p>
-					<p>{!! $product->description !!}</p>
+					<p>{!! Str::limit($product->description,200,' ...') !!}</p>
 					<span>
 						<span>{{ $product->presentPrice() }}</span>
-						<label>အရေအတွက်:</label>
-						<input type="text" value="3" />
+						@if($product->quantity > 0)
 						<form action="{{ route('cart.store') }}" method="POST" style="display: inline">
 							@csrf
 							<input type="hidden" name="id" value="{{ $product->id }}">
@@ -52,8 +50,9 @@
 							<input type="hidden" name="price" value="{{ $product->price }}">
 							<button type="submit" class="btn btn-default cart"><i class="fa fa-md fa-shopping-basket"></i> ခြင်းထဲထည့်ရန်</button>	
 						 </form>
+						@endif
 					</span>
-					<p><b>ရရှိနိုင်:</b> In Stock</p>
+					<p><b>ရရှိနိုင်:</b>{!! $stockLevel !!}</p>
 					<p><b>အခြေအနေ:</b> New</p>
 					<p><b>Brand:</b> Levis</p>
 				</div><!--/product-information-->
@@ -63,120 +62,22 @@
 		<div class="category-tab shop-details-tab"><!--category-tab-->
 			<div class="col-sm-12">
 				<ul class="nav nav-tabs">
-					<li><a href="#details" data-toggle="tab">အသေးစိတ်</a></li>
+					<li class="active"><a href="#details" data-toggle="tab">အသေးစိတ်</a></li>
 					<li><a href="#tag" data-toggle="tab">အမျိုးအစား</a></li>
-					<li class="active"><a href="#reviews" data-toggle="tab">သုံးသပ်ချက်များ</a></li>
+					<li><a href="#reviews" data-toggle="tab">သုံးသပ်ချက်များ</a></li>
 				</ul>
 			</div>
 			<div class="tab-content">
-				<div class="tab-pane fade" id="details" >
-					<p>{{ $product->description }}</p>
+				<div class="tab-pane fade active in" id="details" >
+					<p>{!! $product->description !!}</p>
 				</div>
-				
-				<div class="tab-pane fade" id="companyprofile" >
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery1.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery3.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery2.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery4.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
 				<div class="tab-pane fade" id="tag" >
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery1.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery2.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery3.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{ asset('images/home/gallery4.jpg') }}" alt="" />
-									<h2>12,000Ks</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
-								</div>
-							</div>
-						</div>
-					</div>
+					<p>{{ $CategoryName }}</p>
 				</div>
 				
-				<div class="tab-pane fade active in" id="reviews" >
-					<div class="col-sm-12">
+				<div class="tab-pane fade " id="reviews" >
+					<p style="color: red;">Still in Development</p>
+					{{-- <div class="col-sm-12">
 						<ul>
 							<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
 							<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
@@ -197,7 +98,7 @@
 								Submit
 							</button>
 						</form>
-					</div>
+					</div> --}}
 				</div>
 				
 			</div>

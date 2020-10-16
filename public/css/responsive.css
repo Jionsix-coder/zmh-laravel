@@ -13,6 +13,10 @@
 	margin-left:100px;
 }
 
+.code-box input{
+	width:150px !important;
+}
+
 .view-product img{
 	width: 100%;
 	height:330px;
@@ -106,6 +110,10 @@
    
 .shop-menu ul li a{
 	padding-left: 0;
+}
+
+.code-box input{
+	width:150px;
 }
 
 .panel-title a{
@@ -835,6 +843,11 @@ ul.sub-menu{
 	
 }
 
+.code-box input{
+	width:150px;
+}
+
+
 .item{
 	padding-left: 0;
 }
@@ -980,6 +993,10 @@ ul.sub-menu{
 		border-radius: 20px;
 		margin-bottom: 20px;
 		height: 575px;
+	}
+
+	.code-box input{
+		width:160px;
 	}
 
 	.title-popular{

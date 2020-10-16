@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BasicUser;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -17,16 +18,17 @@ class LandingPageController extends Controller
     public function index()
     {
         if(session()->has('user')){
-            $products = Product::where('featured',true)->take(8)->get();
+            $products = Product::where('featured',true)->take(12)->get();
             $categories = Category::all();
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
-            $recommendedItems2 = Product::inRandomOrder()->take(3)->get();
+            $latestItems = Product::orderBy('id','desc')->take(3)->get();
+            $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
-
             return view('landing-page')->with([
                 'products' =>$products,
                 'recommendedItems' => $recommendedItems,
-                'recommendedItems2' => $recommendedItems2,
+                'latestItems' => $latestItems,
+                'ExpensiveItems' => $ExpensiveItems,
                 'categories' => $categories,
                 'promotionsItem' => $promotionsItem,
             ]);

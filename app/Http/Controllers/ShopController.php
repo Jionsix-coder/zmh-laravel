@@ -27,14 +27,16 @@ class ShopController extends Controller
                 $categories;
                 $categoryName = optional($categories->where('slug', request()->category)->first())->name;
             }else{
-                $products = Product::distinct();
+                $products = Product::inRandomOrder();
                 $categories;
                 $categoryName = 'သင့်အတွက်';
             }
 
             if(request()->sort == 'low_high'){
+                $products = Product::distinct();
                 $products = $products->orderBy('price')->paginate($pagination);
             }elseif(request()->sort == 'high_low'){
+                $products = Product::distinct();
                 $products = $products->orderBy('price','desc')->paginate($pagination);
             }else{
                 $products = $products->paginate($pagination);
@@ -63,15 +65,28 @@ class ShopController extends Controller
         if(session()->has('user')){
             $product = Product::where('slug',$slug)->firstOrFail();
             $categories = Category::all();
-            $recommendedItems = Product::where('slug','!=',$slug)->inRandomOrder()->take(3)->get();
-            $recommendedItems2 = Product::where('slug','!=',$slug && $recommendedItems)->inRandomOrder()->take(3)->get();
+            $categoriesForProduct = $product->categories()->get();
+            foreach($categoriesForProduct as $key => $category):
+
+                $Name[$key] = $category->name;
+            endforeach;
+            $CategoryName = implode(' , ',$Name);
+            $recommendedItems = Product::inRandomOrder()->take(3)->get();
+            $latestItems = Product::orderBy('id','desc')->take(3)->get();
+            $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
+
+
+            $stockLevel = getStockLevel($product->quantity);
 
             return view('product')->with([
                 'product' => $product,
                 'recommendedItems' => $recommendedItems,
-                'recommendedItems2' => $recommendedItems2,
+                'latestItems' => $latestItems,
+                'CategoryName' => $CategoryName,
+                'ExpensiveItems' => $ExpensiveItems,
                 'categories' => $categories,
+                'stockLevel' => $stockLevel,
                 'promotionsItem' => $promotionsItem,
             ]);
         }else{

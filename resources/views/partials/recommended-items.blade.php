@@ -22,15 +22,33 @@
                 @endforeach	
             </div>
             <div class="item">	
-                @foreach ($recommendedItems2 as $item2)
+                @foreach ($latestItems as $lstitem)
                     <div class="col-sm-4">
-                        <a href="{{ route('shop.show', $item2->slug) }}">
+                        <a href="{{ route('shop.show', $lstitem->slug) }}">
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo rmd text-center">
-                                        <img src="{{ asset('images/products/'.$item2->slug.'.jpg') }}" alt="Images" g" />
-                                        <h2>{{ $item2->presentPrice() }}</h2>
-                                        <p>{{ $item2->name }}</p>
+                                        <img src="{{ asset('images/products/'.$lstitem->slug.'.jpg') }}" alt="Images" g" />
+                                        <h2>{{ $lstitem->presentPrice() }}</h2>
+                                        <p>{{ $lstitem->name }}</p>
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach	
+            </div>
+            <div class="item">	
+                @foreach ($ExpensiveItems as $expitem)
+                    <div class="col-sm-4">
+                        <a href="{{ route('shop.show', $expitem->slug) }}">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo rmd text-center">
+                                        <img src="{{ asset('images/products/'.$expitem->slug.'.jpg') }}" alt="Images" g" />
+                                        <h2>{{ $expitem->presentPrice() }}</h2>
+                                        <p>{{ $expitem->name }}</p>
                                         <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
                                     </div>
                                 </div>

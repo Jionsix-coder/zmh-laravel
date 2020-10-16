@@ -49,6 +49,7 @@ class ZmhInstall extends Command
 
             $this->call('migrate:fresh',[
                 '--seed' =>true,
+                '--force' =>true,
             ]);
 
             Artisan::call('db:seed',[
