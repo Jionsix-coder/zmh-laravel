@@ -29,7 +29,9 @@
 					@if ($product->images)
 						@foreach (json_decode($product->images,true) as $image)
 							<div class="product-section-thumbnail selected">
-								<img src="{{ productImage($image) }}" width="95px" height="82px" alt="">
+								<a href="{{ productImage($image) }}" data-lightbox="images" data-title="My caption">
+								    <img src="{{ productImage($image) }}" width="95px" height="82px" alt="">
+							    </a>
 							</div>
 						@endforeach
 					@endif
@@ -128,6 +130,14 @@
             this.classList.add('selected');
         }
     })();
+</script>
+
+<script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+	  'maxHeight' : 100%,
+    })
 </script>
 
 @endsection
