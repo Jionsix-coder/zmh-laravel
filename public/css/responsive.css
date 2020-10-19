@@ -348,6 +348,7 @@ h2.title{
 .header-middle .col-sm-8 {
 	display: inline-block;
 	overflow: inherit;
+	padding-left:0;
 	width: 100%;
 }
 
@@ -977,7 +978,21 @@ ul.sub-menu{
 
 .product-information{
 	padding-left: 0;
-	text-align: center;
+	text-align: left;
+	padding-left:10px;
+}
+
+.cart{
+	margin-left:0;
+}
+
+#details{
+	margin-top: 0;
+	margin-bottom:10px;
+}
+
+#details p{
+	padding-left:0;
 }
 
 .product-information span span{
@@ -988,6 +1003,21 @@ ul.sub-menu{
 
 @media(min-width:400px ) and (max-width:460px)
 {
+	.view-product img{
+		width: 100%;
+		height:230px;
+	}
+
+	.promotionsimg{
+		width:100%;
+		height:160px !important;
+	}
+
+	.productinfo img{
+		width:100%;
+		height:120px;
+	}
+
 	.profile-box-2{
 		border: 4px inset #FE980F;
 		border-radius: 20px;
@@ -1009,9 +1039,9 @@ ul.sub-menu{
 		background: #fff;
 		bottom: -10px;
 		width: 170px;
-		height: 30px;
+		height: 42px;
 		z-index: -1;
-		left: 60%;
+		left: 65%;
 		margin-left:-110px;
 	}
 
@@ -1029,8 +1059,23 @@ ul.sub-menu{
 
 @media (max-width: 400px) {
 
+.view-product img{
+	width: 100%;
+	height:230px;
+}
+
+.promotionsimg{
+	width:100%;
+	height:170px !important;
+}
+
 .title-popular{
 	font-size:12px;
+}
+
+.productinfo img{
+	width:100%;
+	height:120px;
 }
 
 .title-popular:before{
@@ -1057,8 +1102,13 @@ ul.sub-menu{
 }
 }
 
-@media(min-width:340px ) and (max-width:400px)
+@media(min-width:300px ) and (max-width:360px)
 {
+	.view-product img{
+		width: 100%;
+		height:210px;
+	}
+
 	.profile-box-2{
 		border: 4px inset #FE980F;
 		border-radius: 20px;

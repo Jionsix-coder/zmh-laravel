@@ -6,8 +6,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#menus">
-                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                        <a data-toggle="collapse" data-parent="#accordian" href="{{ route('shop.index',['category' => $category->slug]) }}">
+                            <span class="badge pull-right"><i class="fa fa-arrow-right"></i></span>
                             <a class="{{ setActiveCategory($category->slug) }}" href="{{ route('shop.index',['category' => $category->slug]) }}">{{ $category->name }}</a>
                         </a>
                     </h4>
@@ -125,7 +125,64 @@
             </div>
         </div>
 
-        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="2200">
+            <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
+            <div class="carousel-inner">
+
+                @foreach ($latestItems as $key => $item)
+                <div class="item {{$key == 0 ? 'active' : '' }}">	
+                    <div class="col-sm-12">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <a href="{{ route('shop.show', $item->slug) }}">
+                                    <div class="productinfo text-center">
+                                        <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                        <h2>{{ presentPrice($item->price) }}</h2>
+                                        <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
+                                        <form action="{{ route('cart.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{ $item->id }}">
+                                            <input type="hidden" name="name" value="{{ $item->name }}">
+                                            <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
+                                            <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
+                                            <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+                                        </form>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                {{-- @foreach ($promotionsItem->last() as $item)
+                <div class="item">	
+                    <div class="col-sm-12">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo rmd text-center">
+                                    <img src="images/home/product1.jpg" alt="" />
+                                    <del><h2>{{ $item->price }}</h2></del>
+                                    <h4 style="font-size: 25px;"><b>{{ $item->price }}</b></h4>
+                                    <p>{{ $item->details }}</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
+                                    <h5 class="discount-p">{{ $item->discountPercent }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach --}}
+            </div>
+             <a class="left recommended-item-control" href="#new-product-carousel" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+              </a>
+              <a class="right recommended-item-control" href="#new-product-carousel" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+              </a>			
+        </div>
+
+        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
             <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
             <div class="carousel-inner">
 
@@ -135,8 +192,8 @@
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <a href="{{ route('shop.show', $item->slug) }}">
-                                    <div class="productinfo rmd text-center">
-                                        <img src="{{ productImage($item->image)}}" alt="" />
+                                    <div class="productinfo text-center">
+                                        <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
                                         <del><h2>{{ presentPrice($item->price) }}</h2></del>
                                         <h3 style="font-size: 25px;color:black;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></h3>
                                         <p>{{ Str::limit($item->details, 25, ' ...') }}</p>

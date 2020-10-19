@@ -1,5 +1,5 @@
 
-@extends('layout')
+@extends('layout2')
 
 @section('title', 'Checkout')
 
@@ -18,7 +18,7 @@
 	</div>
 @endsection
 				
-	<div class="col-sm-9 padding-right">
+	<div class="col-sm-12 padding-right">
 		<div class="product-details"><!--product-details-->
 			<div class="col-sm-5">
 				<div class="view-product">
@@ -53,8 +53,6 @@
 						@endif
 					</span>
 					<p><b>ရရှိနိုင်:</b>{!! $stockLevel !!}</p>
-					<p><b>အခြေအနေ:</b> New</p>
-					<p><b>Brand:</b> Levis</p>
 				</div><!--/product-information-->
 			</div>
 		</div><!--/product-details-->

@@ -12,7 +12,7 @@
 @section('breadcrumb')
 	<div class="breadcrumbs">
 		<ol class="breadcrumb">
-		<li><a href="/">ပင်မ</a></li>
+		<li><a href="/home">ပင်မ</a></li>
 		<li style="font-weight: bolder;">စျေးဝယ်ရန်</li>
 		</ol>
 	</div>

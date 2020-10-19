@@ -49,7 +49,6 @@
 	<section>
 		<div class="container">
 			<div class="row">				
-					@include('partials.left-slider') 	
 
 				@yield('content')
 			</div>

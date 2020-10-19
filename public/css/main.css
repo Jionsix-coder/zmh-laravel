@@ -618,6 +618,17 @@ ul.sub-menu {
 ******* Home ******
 **************************/
 
+.new-product-h3{
+  font-size:20px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  height:40px;
+  padding-top:5px;
+  border: green 2px solid;
+}
+
+
 #slider {
   padding-bottom: 45px;
 }
@@ -1509,15 +1520,15 @@ h2.title {
 #details{
   padding:0 20px;
   margin-top:60px;
+  background-color: white;
+  border: 4px solid white;
+  border-radius: 20px;
 }
 
 #details p {
   font-size:16px;
   padding-left:15px;
   line-height: 27px;
-  background-color: white;
-  border: 4px solid white;
-  border-radius: 20px;
 }
 
 #reviews{

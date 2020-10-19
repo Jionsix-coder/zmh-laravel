@@ -22,11 +22,11 @@ function productImage($path)
 function getStockLevel($quantity)
 {
     if($quantity > setting('site.stock_threshold')){
-        $stockLevel = '<span class="badge badge-success">In Stock</span>';
+        $stockLevel = '<span class="badge badge-success" style="display:inline;">In Stock</span>';
     }elseif($quantity <= setting('site.stock_threshold') && $quantity > 0){
-        $stockLevel = '<span class="badge badge-warning">Low Stock</span>';
+        $stockLevel = '<span class="badge badge-warning" style="display:inline;">Low Stock</span>';
     }else{
-        $stockLevel = '<span class="badge badge-danger">Not available</span>';
+        $stockLevel = '<span class="badge badge-danger" style="display:inline;">Not available</span>';
     }
 
     return $stockLevel;

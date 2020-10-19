@@ -19,6 +19,7 @@ class ShopController extends Controller
             $pagination = 16;
             $categories = Category::all();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
+            $latestItems = Product::orderBy('id','desc')->take(3)->get();
 
             if(request()->category){
                 $products = Product::with('categories')->whereHas('categories',function($query){
@@ -45,6 +46,7 @@ class ShopController extends Controller
             return view('shop')->with([
                 'products' => $products,
                 'categories' => $categories,
+                'latestItems' => $latestItems,
                 'categoryName' => $categoryName,
                 'promotionsItem' => $promotionsItem,
             ]);

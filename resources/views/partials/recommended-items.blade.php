@@ -10,7 +10,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo rmd text-center">
-                                        <img src="{{ asset('images/products/'.$item->slug.'.jpg') }}" alt="Images" />
+                                        <img class="promotionsimg" src="{{ asset('images/products/'.$item->slug.'.jpg') }}" alt="Images" />
                                         <h2>{{ $item->presentPrice() }}</h2>
                                         <p>{{ $item->name }}</p>
                                         <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
@@ -28,7 +28,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo rmd text-center">
-                                        <img src="{{ asset('images/products/'.$lstitem->slug.'.jpg') }}" alt="Images" g" />
+                                        <img class="promotionsimg" src="{{ asset('images/products/'.$lstitem->slug.'.jpg') }}" alt="Images" g" />
                                         <h2>{{ $lstitem->presentPrice() }}</h2>
                                         <p>{{ $lstitem->name }}</p>
                                         <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
@@ -46,7 +46,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo rmd text-center">
-                                        <img src="{{ asset('images/products/'.$expitem->slug.'.jpg') }}" alt="Images" g" />
+                                        <img class="promotionsimg" src="{{ asset('images/products/'.$expitem->slug.'.jpg') }}" alt="Images" g" />
                                         <h2>{{ $expitem->presentPrice() }}</h2>
                                         <p>{{ $expitem->name }}</p>
                                         <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>

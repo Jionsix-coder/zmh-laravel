@@ -33,7 +33,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="/">ပင်မ</a></li>
+				  <li><a href="/home">ပင်မ</a></li>
 				  <li style="font-weight: bolder;"><i class="fa fa-lg fa-shopping-cart"></i> စျေးခြင်း</li>
 				</ol>
 			</div>
