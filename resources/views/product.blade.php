@@ -11,7 +11,7 @@
 @section('breadcrumb')
 	<div class="breadcrumbs">
 		<ol class="breadcrumb">
-			<li><a href="/">ပင်မ</a></li>
+			<li><a href="/home">ပင်မ</a></li>
 			<li><a href="{{ route('shop.index') }}">စျေးဝယ်ရန် ></a></li>
 			<li>{{ $product->name }}</li>
 		</ol>
@@ -20,21 +20,22 @@
 				
 	<div class="col-sm-12 padding-right">
 		<div class="product-details"><!--product-details-->
-			<div class="col-sm-5">
-				<div class="view-product">
-					<img src="{{ productImage($product->image) }}" alt="" class="active" id="currentImage" />
-				</div>
-
-				<div class="product-section-images">
-					@if ($product->images)
-						@foreach (json_decode($product->images,true) as $image)
-							<div class="product-section-thumbnail selected">
-								<a href="{{ productImage($image) }}" data-lightbox="images" data-title="My caption">
-								    <img src="{{ productImage($image) }}" width="95px" height="82px" alt="">
-							    </a>
-							</div>
-						@endforeach
-					@endif
+			<div class="col-sm-5 col-md-5">
+				<div class="col-md-12">
+					<div class="view-product">
+						<img src="{{ productImage($product->image) }}" alt="" class="active" id="currentImage" />
+					</div>
+					<div class="product-section-images">
+						@if ($product->images)
+							@foreach (json_decode($product->images,true) as $image)
+								<div class="product-section-thumbnail selected">
+									<a href="{{ productImage($image) }}" data-lightbox="images" data-title="My caption">
+										<img src="{{ productImage($image) }}" width="95px" height="82px" alt="">
+									</a>
+								</div>
+							@endforeach
+						@endif
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-7">
