@@ -2,7 +2,7 @@
     <div class="left-sidebar">
         <h2>အမျိုးအစားများ</h2>
         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-            @foreach($categories as $category)
+            {{-- @foreach($categories as $category)
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
@@ -13,32 +13,42 @@
                     </h4>
                 </div>
             </div>
-            @endforeach
+            @endforeach --}}
             
-            {{-- <div class="panel panel-default">
+             <div class="panel panel-default">
+                @foreach (App\Models\Category::with('childs')->where('p_id',0)->get() as $item)
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#womens">
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->name }}">
                             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            မ ဝတ်
+                            {{ $item->name }}
                         </a>
                     </h4>
                 </div>
-                <div id="womens" class="panel-collapse collapse">
+                <div id="{{ $item->name }}" class="panel-collapse collapse">
                     <div class="panel-body">
                         <ol>
-                            <li><a href="#">စွပ်ကျယ်အင်္ကျီများ</a></li>
-                            <li><a href="#">တီရှပ်များ</a></li>
-                            <li><a href="#">ဝမ်းဆက်များ</a></li>
-                            <li><a href="#">တစ်ဆက်တည်းဝတ်စုံများ</a></li>
-                            <li><a href="#">ဂျင်းဘောင်းဘီနှင့်စကတ်များ</a></li>
-                            <li><a href="">ဘောင်းဘီနှင့်စကတ်တိုများ</a></li>
-                            <li><a href="">အသားကပ်ဝတ်စုံနှင့်ခြေအိတ်များ</a></li>
+                            @foreach ($item->childs as $itemChilds)
+                                <li><a href="{{ route('shop.index',['category' => $itemChilds->slug]) }}">{{ $itemChilds->name }}</a></li>
+                            @endforeach
                         </ol>
                     </div>
                 </div>
+                {{-- @else
+                 <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->name }}">
+                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                            <a href="{{ route('shop.index',['category' => $item->slug]) }}">{{ $item->name }}</a>
+                        </a>
+                    </h4>
+                </div>
+                @endif --}}
+                @endforeach
             </div>
-            <div class="panel panel-default">
+
+
+            {{--<div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordian" href="#kids">
@@ -155,24 +165,6 @@
                 </div>
                 @endforeach
 
-                {{-- @foreach ($promotionsItem->last() as $item)
-                <div class="item">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo rmd text-center">
-                                    <img src="images/home/product1.jpg" alt="" />
-                                    <del><h2>{{ $item->price }}</h2></del>
-                                    <h4 style="font-size: 25px;"><b>{{ $item->price }}</b></h4>
-                                    <p>{{ $item->details }}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">{{ $item->discountPercent }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach --}}
             </div>
              <a class="left recommended-item-control" href="#new-product-carousel" data-slide="prev">
                 <i class="fa fa-angle-left"></i>
@@ -214,24 +206,6 @@
                 </div>
                 @endforeach
 
-                {{-- @foreach ($promotionsItem->last() as $item)
-                <div class="item">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <div class="productinfo rmd text-center">
-                                    <img src="images/home/product1.jpg" alt="" />
-                                    <del><h2>{{ $item->price }}</h2></del>
-                                    <h4 style="font-size: 25px;"><b>{{ $item->price }}</b></h4>
-                                    <p>{{ $item->details }}</p>
-                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</a>
-                                    <h5 class="discount-p">{{ $item->discountPercent }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach --}}
             </div>
              <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                 <i class="fa fa-angle-left"></i>

@@ -20,7 +20,6 @@ class LandingPageController extends Controller
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
-            
             $products = Product::where('featured',true)->take(12)->get();
             $categories = Category::all();
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
