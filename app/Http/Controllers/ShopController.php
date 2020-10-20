@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BasicUser;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ class ShopController extends Controller
     public function index()
     {
         if(session()->has('user')){
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
             $pagination = 16;
             $categories = Category::all();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
@@ -45,6 +48,7 @@ class ShopController extends Controller
 
             return view('shop')->with([
                 'products' => $products,
+                'user'=>$user,
                 'categories' => $categories,
                 'latestItems' => $latestItems,
                 'categoryName' => $categoryName,
@@ -65,6 +69,8 @@ class ShopController extends Controller
     public function show($slug)
     {
         if(session()->has('user')){
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
             $product = Product::where('slug',$slug)->firstOrFail();
             $categories = Category::all();
             $categoriesForProduct = $product->categories()->get();
@@ -83,6 +89,7 @@ class ShopController extends Controller
 
             return view('product')->with([
                 'product' => $product,
+                'user' => $user,
                 'recommendedItems' => $recommendedItems,
                 'latestItems' => $latestItems,
                 'CategoryName' => $CategoryName,
@@ -103,6 +110,9 @@ class ShopController extends Controller
                 'query' => 'required|min:3',
             ]);
     
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+
             $query = $request->input('query');
             $categories = Category::all();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
@@ -112,6 +122,7 @@ class ShopController extends Controller
     
             return view('search-results')->with([
                 'products' => $products,
+                'user' => $user,
                 'categories' => $categories,
                 'promotionsItem' => $promotionsItem,
             ]);

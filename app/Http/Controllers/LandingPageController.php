@@ -18,6 +18,9 @@ class LandingPageController extends Controller
     public function index()
     {
         if(session()->has('user')){
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+            
             $products = Product::where('featured',true)->take(12)->get();
             $categories = Category::all();
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
@@ -26,6 +29,7 @@ class LandingPageController extends Controller
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
             return view('landing-page')->with([
                 'products' =>$products,
+                'user' => $user,
                 'recommendedItems' => $recommendedItems,
                 'latestItems' => $latestItems,
                 'ExpensiveItems' => $ExpensiveItems,

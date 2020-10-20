@@ -83,7 +83,7 @@ class OrderController extends Controller
 
                 //sending order sms
                 //SMSPoh Authorization Token
-                $token = "6F5vmaxSvlg73g6Aq5kkn95CQBajbh3QqdnZyWg8hiyGrBr7l4vS-8Cp4M6o3bG6";
+                $token = setting('site.smspoh_token');
 
                 // Prepare data for POST request
                 $data = [
@@ -121,6 +121,48 @@ Zawgyi(ေဇာ္ဂ်ီ):
 
                 curl_exec($ch);
                 // 
+
+                //sending order sms to Company
+                //SMSPoh Authorization Token
+                $token = setting('site.smspoh_token');
+
+                // Prepare data for POST request
+                $companyData = [
+                    "to"      => "09898155551,09775545655",
+                    "message" => "Unicode(ယူနီကုဒ်): 
+အော်ဒါလက်ခံရောက်ရှိပါသည်။
+( အော်ဒါနံပါတ် : $OrderId , 
+ဝယ်ယူသူအမည် : $user->Name , 
+ဝယ်ယူသူဖုန်းနံပါတ် : $user->PhNumber , 
+တာဝန်ထမ်းဆောင်သောရုံး : $user->CurrentOffice , 
+Orderပစ္စည်းအမည် : $ProductName , 
+အရေအတွက် : $ProductQuantity ) 
+Zawgyi(ေဇာ္ဂ်ီ):
+ေအာ္ဒါလက္ခံေရာက္႐ွိပါသည္။
+(  ေအာ္ဒါနံပါတ္ : $OrderId , 
+ဝယ္ယူသူအမည္ :$user->Name , 
+ဝယ္ယူသူဖုန္းနံပါတ္ : $user->PhNumber ,
+တာဝန္ထမ္းေဆာင္ေသာ႐ုံး : $user->CurrentOffice , 
+Orderပစၥည္းအမည္ : $ProductName , 
+အေရအတြက္ : $ProductQuantity )",
+                    "sender"  => "Zay Min Htet Co.Ltd"
+                ];
+
+
+                $ch = curl_init("https://smspoh.com/api/v2/send");
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($companyData));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                        'Authorization: Bearer ' . $token,
+                        'Content-Type: application/json'
+                    ]);
+
+                curl_exec($ch);
+
+                //Updating user Moneyleft
+                $user->MoneyLeft = $user->getOriginal('MoneyLeft') + $this->getNumbers()->get('newTotal');
+                $user->save();
                 
                 //Successful
                 Cart::instance('default')->destroy();

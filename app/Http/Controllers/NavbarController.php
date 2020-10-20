@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BasicUser;
 use Illuminate\Http\Request;
 
 class NavbarController extends Controller
@@ -18,7 +19,12 @@ class NavbarController extends Controller
     public function discipline()
     {
         if(session()->has('user')){
-            return view('discipline');
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+
+            return view('discipline')->with([
+                'user' => $user,
+            ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
@@ -36,7 +42,12 @@ class NavbarController extends Controller
     public function contact()
     {
         if(session()->has('user')){
-            return view('contact-us');
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+
+            return view('contact-us')->with([
+                'user' => $user,
+            ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }

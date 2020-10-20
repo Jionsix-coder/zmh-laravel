@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BasicUser;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -17,10 +18,14 @@ class CartController extends Controller
     public function index()
     {
         if(session()->has('user')){
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+
             return view('cart')->with([
                 'discount' =>$this->getNumbers()->get('discount'),
                 'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
                 'newTotal' => $this->getNumbers()->get('newTotal'),
+                'user' => $user,
             ]); 
         }else{
             return redirect()->route('user.login');
@@ -30,7 +35,12 @@ class CartController extends Controller
     public function saveCart()
     {
         if(session()->has('user')){
-            return view('savecart');
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+
+            return view('savecart')->with([
+                'user' => $user,
+            ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
