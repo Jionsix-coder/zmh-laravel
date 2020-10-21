@@ -30,9 +30,6 @@ class SaveCartController extends Controller
      */
     public function switchToCart($id)
     {
-        $number = session()->get('user')['NationalNumber'];
-        $user = BasicUser::where('NationalNumber',$number)->first();
-
         $item = Cart::instance('saveCart')->get($id);
 
         Cart::instance('saveCart')->remove($id);
@@ -48,7 +45,7 @@ class SaveCartController extends Controller
         Cart::instance('default')->add($item->id, $item->name,1,$item->price)
               ->associate('App\Models\Product');
 
-        return redirect()->route('cart.index')->with('success_message','ဈေးခြင်းထဲတွင်သိမ်းဆည်းပြီးပါပြီ')->compact('user');
+        return redirect()->route('cart.index')->with('success_message','ဈေးခြင်းထဲတွင်သိမ်းဆည်းပြီးပါပြီ');
     }
 }
 
