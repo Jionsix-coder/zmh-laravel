@@ -616,6 +616,9 @@ ul.sub-menu{
 }
 /* XS Portrait */
 @media (max-width: 490px) {
+.product-image-wrapper{
+	height:300px !important;
+}
 
 .product-section-images{
 	display:grid;

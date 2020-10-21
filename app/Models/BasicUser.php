@@ -12,4 +12,5 @@ class BasicUser extends Model
     {
         return $this->hasMany('App\Models\Order');
     }
+
 }
