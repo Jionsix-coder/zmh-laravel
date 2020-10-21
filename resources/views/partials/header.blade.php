@@ -38,10 +38,10 @@
                                 ဘာသာစကား
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">မြန်မာ</a></li>
-                                <li><a href="#">English</a></li>
-                            </ul>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/home">ယူနီကုဒ်</a></li>
+                                    <li><a href="{{ route('switch.zawgyi') }}">ေဇာ္ဂ်ီ</a></li>
+                                </ul>
                         </div>
                         
                         <div class="btn-group">
@@ -58,16 +58,16 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ route('profile.index') }}"><i class="fa fa-lg fa-user"></i> အကောင့်</a></li>
+                            <li><a href="{{ route('profile.index') }}"><i class="fa fa-lg fa-user"></i> {{ __('text.Account') }}</a></li>
                             <li>
-                                <a href="{{ route('cart.save') }}"><i class="fa fa-lg fa-shopping-cart"></i> စျေးလှည်း 
+                                <a href="{{ route('cart.save') }}"><i class="fa fa-lg fa-shopping-cart"></i> {{ __('text.Basket') }} 
                                 @if (Cart::instance('saveCart')->count() > 0)
                                 <span class="badge"> {{ Cart::instance('saveCart')->count() }}</span>
                                 @endif
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('cart.index') }}"><i class="fa fa-lg fa-shopping-basket"></i> စျေးခြင်း 
+                                <a href="{{ route('cart.index') }}"><i class="fa fa-lg fa-shopping-basket"></i> {{ __('text.Cart') }} 
                                     @if (Cart::instance('default')->count() > 0)
                                     <span class="badge"> {{ Cart::instance('default')->count() }}</span>
                                     @endif
@@ -112,7 +112,7 @@
                 <div class="col-sm-3">
                     <form action="{{ route('shop.search') }}" method="GET">
                         <div class="search_box pull-right">
-                            <input type="text" name="query" value="{{ request()->input('query') }}" id="query" placeholder="ပစ္စည်းများရှာရန်"/>
+                            <input type="text" name="query" value="{{ request()->input('query') }}" id="query" placeholder="{{ __('text.SearchBar') }}"/>
                         </div>
                     </form>
                 </div>

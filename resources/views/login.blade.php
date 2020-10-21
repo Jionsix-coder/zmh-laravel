@@ -21,9 +21,10 @@
 				<div class="card-header">
 					<h3><i class="fa fa-lg fa-lock" style="color: #800000;"></i> <strong>အကောင့်ထဲသို့ဝင်ရန်</strong></h3>
 					<hr>
+					<h3><b>Zay Min Htet CO.Ltd</b></h3>
 					<h4><i><b>(Memberအဖွဲ့ဝင်များအတွက်သာ)</b></i></h4>
 					<hr>
-					<p>ဆက်သွယ်ရန် : +95-9-8 98155551 ,<br> +95-9-775545655</p>
+					<p>ဆက်သွယ်ရန် : +95-9-898155551 ,<br> +95-9-775545655</p>
 				</div>
 				<div class="card-body">
 					@if(count($errors) > 0)

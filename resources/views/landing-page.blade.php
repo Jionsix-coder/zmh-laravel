@@ -25,7 +25,7 @@
 						<div class="item active">
 							<div class="col-sm-6">
 								<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
-								<h4 style="line-height: 40px;font-weight:bold;">အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး.</h4>
+								<h4 style="line-height: 40px;font-weight:bold;">{{ __('text.Address') }}</h4>
 								<h4> +95-9-898155551,+95-9-775545655</h4>
 							</div>
 							<div class="col-sm-6 cover-img">
@@ -45,14 +45,14 @@
 @section('content')
 <div class="col-sm-9 padding-right">
 	<div class="features_items"><!--features_items-->
-		<h2 class="title text-center">သင့်အတွက်</h2>
+		<h2 class="title text-center">{{ __('text.For_You') }}</h2>
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<div class="col-sm-6 col-md-6 col-xs-6">
-					<h2 class="title-popular">လူအများကြိုက်ထုတ်ကုန်များ</h2>
+					<h2 class="title-popular">{{ __('text.Most_Like_Product') }}</h2>
 				</div>
 				<div class="col-sm-6 col-md-6 col-xs-6">
-					<a href="{{ route('shop.index') }}" class="btn btn-seemore get">အားလုံးကြည့်ရန်နှိပ်ပါ</a>
+					<a href="{{ route('shop.index') }}" class="btn btn-seemore get">{{ __('text.See_More') }}</a>
 				</div>
 			</div>	
 		</div>
@@ -71,7 +71,7 @@
 								   <input type="hidden" name="id" value="{{ $product->id }}">
 								   <input type="hidden" name="name" value="{{ $product->name }}">
 								   <input type="hidden" name="price" value="{{ $product->price }}">
-								   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+								   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>{{ __('text.Add_To_Cart') }}</button>	
 								</form>
 								
 							</div>

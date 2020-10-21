@@ -5,9 +5,9 @@
                 {{ $menu_item->title }}
                 @if($menu_item->title === 'စည်းမျဉ်းစည်းကမ်း')
                     <ul role="menu" class="sub-menu"> 
-                        <li><a href="{{ route('navbar.discipline') }}"><i class="fa fa-book"></i> စည်းမျဉ်းစည်းကမ်း</a></li> 
-                        <li><a href="{{ route('navbar.armakhan') }}"><i class="fa fa-book"></i> အာမခံ</a></li>
-                        <li><a href="{{ route('navbar.member') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်လိုအပ်ချက်</a></li> 
+                        <li><a href="{{ route('navbar.discipline') }}"><i class="fa fa-book"></i> {{ __('text.Discipline') }}</a></li> 
+                        <li><a href="{{ route('navbar.armakhan') }}"><i class="fa fa-book"></i> {{ __('text.Armakhan') }}</a></li>
+                        <li><a href="{{ route('navbar.member') }}"><i class="fa fa-book"></i> {{ __('text.Member') }}</a></li> 
                     </ul>
                 @endif
             </a>
@@ -17,7 +17,7 @@
         <form action="{{ route('user.logout') }}" method="POST">
             @csrf
             @method('DELETE')
-        <button class="btn-logout" type="submit">ထွက်ရန်</button>
+        <button class="btn-logout" type="submit">{{ __('text.Logout') }}</button>
         </form>
     </li>
 </ul>

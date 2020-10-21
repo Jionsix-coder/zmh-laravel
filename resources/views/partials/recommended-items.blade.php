@@ -13,7 +13,7 @@
                                         <img class="promotionsimg" src="{{ productImage($item->image) }}" alt="Images" />
                                         <h2>{{ $item->presentPrice() }}</h2>
                                         <p>{{ $item->name }}</p>
-                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                         <img class="promotionsimg" src="{{ productImage($lstitem->image) }}" alt="Images" g" />
                                         <h2>{{ $lstitem->presentPrice() }}</h2>
                                         <p>{{ $lstitem->name }}</p>
-                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                         <img class="promotionsimg" src="{{ productImage($expitem->image) }}" alt="Images" g" />
                                         <h2>{{ $expitem->presentPrice() }}</h2>
                                         <p>{{ $expitem->name }}</p>
-                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</button>
+                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
                                     </div>
                                 </div>
                             </div>
