@@ -64,7 +64,7 @@
 							<div class="productinfo text-center">
 								<img src="{{ productImage($product->image) }}" alt="" class="img-fluid" />
 								<h2>{{ $product->presentPrice() }}</h2>
-								<p><a href="<a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></p>
+								<p><a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></p>
 
 								<form action="{{ route('cart.store') }}" method="POST">
 								   @csrf
