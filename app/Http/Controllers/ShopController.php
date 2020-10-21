@@ -116,6 +116,8 @@ class ShopController extends Controller
             $query = $request->input('query');
             $categories = Category::all();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
+            $latestItems = Product::orderBy('id','desc')->take(3)->get();
+            $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
             $products = Product::where('name', 'like' , "%$query%")
                                  ->orWhere('details' ,'like' ,"%$query%")
                                  ->paginate(16);
@@ -123,6 +125,8 @@ class ShopController extends Controller
             return view('search-results')->with([
                 'products' => $products,
                 'user' => $user,
+                'latestItems' => $latestItems,
+                'ExpensiveItems' => $ExpensiveItems,
                 'categories' => $categories,
                 'promotionsItem' => $promotionsItem,
             ]);
