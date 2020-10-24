@@ -40,7 +40,7 @@
                             </button>
                                 <ul class="dropdown-menu">
                                     <li><a href="/home">ယူနီကုဒ်</a></li>
-                                    <li><a href="{{ route('switch.zawgyi') }}">ေဇာ္ဂ်ီ</a></li>
+                                    <li><a href="/home">ေဇာ္ဂ်ီ</a></li>
                                 </ul>
                         </div>
                         
@@ -50,6 +50,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
+                                <li><a href="#">MMK</a></li>
                                 <li><a href="#">Dollar</a></li>
                             </ul>
                         </div>

@@ -1376,6 +1376,9 @@ h2.title {
 /*************************
 *******Product Details CSS******
 **************************/
+.new-product-2nd{
+	display: none;
+}
 
 .product-details{
 	overflow:hidden;

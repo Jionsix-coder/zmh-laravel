@@ -30,7 +30,6 @@ Route::delete('/delete',[BasicUserController::class,'destroy'])->name('user.logo
 Route::get('/profile',[LandingPageController::class,'profile'])->name('profile.index');
 
 Route::get('/home',[LandingPageController::class,'index'])->name('landing.page');
-Route::get('/home/mm/',[LandingPageController::class,'zawgyi'])->name('switch.zawgyi');
 
 Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
 

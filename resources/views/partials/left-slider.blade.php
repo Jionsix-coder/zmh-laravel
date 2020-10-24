@@ -14,9 +14,8 @@
                 </div>
             </div>
             @endforeach --}}
-            
+            @foreach (App\Models\Category::with('childs')->where('p_id',0)->get() as $item)
              <div class="panel panel-default">
-                @foreach (App\Models\Category::with('childs')->where('p_id',0)->get() as $item)
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->name }}">
@@ -44,8 +43,8 @@
                     </h4>
                 </div>
                 @endif --}}
-                @endforeach
             </div>
+            @endforeach
 
 
             {{--<div class="panel panel-default">
@@ -135,84 +134,175 @@
             </div>
         </div>
 
-        <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="2200">
-            <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
-            <div class="carousel-inner">
-
-                @foreach ($latestItems as $key => $item)
-                <div class="item {{$key == 0 ? 'active' : '' }}">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <a href="{{ route('shop.show', $item->slug) }}">
-                                    <div class="productinfo text-center">
-                                        <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
-                                        <h2>{{ presentPrice($item->price) }}</h2>
-                                        <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
-                                        <form action="{{ route('cart.store') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                            <input type="hidden" name="name" value="{{ $item->name }}">
-                                            <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
-                                            <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
-                                            <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
-                                        </form>
+        <div class="row new-product-row ">
+            <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12">
+                <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="1900">
+                    <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
+                    <div class="carousel-inner">
+        
+                        @foreach ($latestItemsAsc as $key => $item)
+                        <div class="item {{$key == 0 ? 'active' : '' }}">	
+                            <div class="col-sm-12">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <a href="{{ route('shop.show', $item->slug) }}">
+                                            <div class="productinfo text-center">
+                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <h2>{{ presentPrice($item->price) }}</h2>
+                                                <p>{{ $item->name }}</p>
+                                                <form action="{{ route('cart.store') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="name" value="{{ $item->name }}">
+                                                    <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
+                                                    <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
+                                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+                                                </form>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
+        
                     </div>
+                    <a class="left recommended-item-control" href="#new-product-carousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right recommended-item-control" href="#new-product-carousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>			
                 </div>
-                @endforeach
-
             </div>
-             <a class="left recommended-item-control" href="#new-product-carousel" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a class="right recommended-item-control" href="#new-product-carousel" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-              </a>			
+    
+            <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12 new-product-2nd">
+                <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
+                    <div class="carousel-inner">
+        
+                        @foreach ($latestItemsDesc as $key => $item)
+                        <div class="item {{$key == 0 ? 'active' : '' }}">	
+                            <div class="col-sm-12">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <a href="{{ route('shop.show', $item->slug) }}">
+                                            <div class="productinfo text-center">
+                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <h2>{{ presentPrice($item->price) }}</h2>
+                                                <p>{{ $item->name }}</p>
+                                                <form action="{{ route('cart.store') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="name" value="{{ $item->name }}">
+                                                    <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
+                                                    <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
+                                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+                                                </form>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+        
+                    </div>
+                    <a class="left recommended-item-control" href="#new-product-carousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right recommended-item-control" href="#new-product-carousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>			
+                </div>
+            </div>
         </div>
-
-        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-            <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
-            <div class="carousel-inner">
-
-                @foreach ($promotionsItem as $key => $item)
-                <div class="item {{$key == 0 ? 'active' : '' }}">	
-                    <div class="col-sm-12">
-                        <div class="product-image-wrapper">
-                            <div class="single-products">
-                                <a href="{{ route('shop.show', $item->slug) }}">
-                                    <div class="productinfo text-center">
-                                        <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
-                                        <del><h2>{{ presentPrice($item->price) }}</h2></del>
-                                        <h3 style="font-size: 25px;color:black;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></h3>
-                                        <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
-                                        <form action="{{ route('cart.store') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id }}">
-                                            <input type="hidden" name="name" value="{{ $item->name }}">
-                                            <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
-                                            <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
-                                            <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
-                                        </form>
-                                        <h5 class="discount-p">- {{ $item->discountPercent }}%</h5>
+        <div class="row">
+            <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12">
+                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="1900">
+                    <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
+                    <div class="carousel-inner">
+        
+                        @foreach ($promotionsItemsAsc as $key => $item)
+                        <div class="item {{$key == 0 ? 'active' : '' }}">	
+                            <div class="col-sm-12">
+                                <div class="product-image-wrapper" id="promotions-image-wrapper">
+                                    <div class="single-products">
+                                        <a href="{{ route('shop.show', $item->slug) }}">
+                                            <div class="productinfo text-center">
+                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <del><h2 id="promotions-h2">{{ presentPrice($item->price) }}</h2></del>
+                                                <p class="promotions-h3" style="font-size: 25px;color:black;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></p>
+                                                <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
+                                                <form action="{{ route('cart.store') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="name" value="{{ $item->name }}">
+                                                    <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
+                                                    <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
+                                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+                                                </form>
+                                                <h5 class="discount-p">- {{ $item->discountPercent }}%</h5>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
+                        @endforeach
+        
                     </div>
+                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>			
                 </div>
-                @endforeach
-
             </div>
-             <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-                <i class="fa fa-angle-left"></i>
-              </a>
-              <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-                <i class="fa fa-angle-right"></i>
-              </a>			
+
+            <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12 new-product-2nd">
+                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
+                    <div class="carousel-inner">
+        
+                        @foreach ($promotionsItemsDesc as $key => $item)
+                        <div class="item {{$key == 0 ? 'active' : '' }}">	
+                            <div class="col-sm-12">
+                                <div class="product-image-wrapper" id="promotions-image-wrapper">
+                                    <div class="single-products">
+                                        <a href="{{ route('shop.show', $item->slug) }}">
+                                            <div class="productinfo text-center">
+                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <del><h2 id="promotions-h2">{{ presentPrice($item->price) }}</h2></del>
+                                                <p class="promotions-h3" style="font-size: 25px;color:black;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></p>
+                                                <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
+                                                <form action="{{ route('cart.store') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="name" value="{{ $item->name }}">
+                                                    <input type="hidden" name="price" value="{{ $item->price * (1 - $item->discountPercent / 100) }}">
+                                                    <input type="hidden" name="discountPercent" value="{{ $item->discountPercent }}">
+                                                    <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+                                                </form>
+                                                <h5 class="discount-p">- {{ $item->discountPercent }}%</h5>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+        
+                    </div>
+                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>			
+                </div>
+            </div>
         </div>
     </div>
 </div>

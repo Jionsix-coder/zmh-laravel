@@ -42,6 +42,9 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'ordercode' => 'required',
+        ]);
         //check race condition when there are lsee items available to purchase
         if($this->productAreNotLongerAvailable()){
             return back()->withErrors('Sorry! One of the item in your cart is no longer available.');

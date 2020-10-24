@@ -42,37 +42,37 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="Name" class="form-control" placeholder="အမည်">				
+							<input type="text" name="Name" class="form-control" placeholder="အမည်" required>				
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-badge"></i></span>
 							</div>
-							<input type="text" name="PositionDepartment" class="form-control" placeholder="ရာထူး | ဋ္ဌာန">
+							<input type="text" name="PositionDepartment" class="form-control" placeholder="ရာထူး | ဋ္ဌာန" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-map-marked"></i></span>
 							</div>
-							<input type="text" name="CityTineState" class="form-control" placeholder="မြို့ | တိုင်း | ပြည်နယ်">
+							<input type="text" name="CityTineState" class="form-control" placeholder="မြို့ | တိုင်း | ပြည်နယ်" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 							</div>
-							<input type="text" name="PersonalNumber" class="form-control" placeholder="ကိုယ်ပိုင်အမှတ်">
+							<input type="text" name="PersonalNumber" class="form-control" placeholder="ကိုယ်ပိုင်အမှတ်" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-card"></i></span>
 							</div>
-							<input type="text" name="NationalNumber" class="form-control" placeholder="မှတ်ပုံတင်အမှတ်">
+							<input type="text" name="NationalNumber" class="form-control" placeholder="မှတ်ပုံတင်အမှတ်" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-building"></i></span>
 							</div>
-							<input type="text" name="CurrentOffice" class="form-control" placeholder="လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး">
+							<input type="text" name="CurrentOffice" class="form-control" placeholder="လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး" required>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">

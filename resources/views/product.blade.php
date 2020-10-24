@@ -23,13 +23,15 @@
 			<div class="col-sm-5 col-md-5">
 				<div class="col-md-12">
 					<div class="view-product">
-						<img src="{{ productImage($product->image) }}" alt="" class="active" id="currentImage" />
+						<a href="{{ productImage($product->image) }}" data-lightbox="images" data-title="{{ $product->name }}">
+						   <img src="{{ productImage($product->image) }}" alt="" class="active" id="currentImage" />
+						</a>
 					</div>
 					<div class="product-section-images">
 						@if ($product->images)
 							@foreach (json_decode($product->images,true) as $image)
 								<div class="product-section-thumbnail selected">
-									<a href="{{ productImage($image) }}" data-lightbox="images" data-title="My caption">
+									<a href="{{ productImage($image) }}" data-lightbox="images" data-title="{{ $product->name }}">
 										<img src="{{ productImage($image) }}" width="95px" height="82px" alt="">
 									</a>
 								</div>
@@ -41,8 +43,8 @@
 			<div class="col-sm-7">
 				<div class="product-information"><!--/product-information-->
 					<h2>{!! $product->name !!}</h2>
-					<p>{!! $product->details !!}</p>
-					<p>{!! Str::limit($product->description,200,' ...') !!}</p>
+					<p>{!! nl2br($product->details) !!}</p>
+					<p>{!! nl2br(Str::limit($product->description,200,' ...')) !!}</p>
 					<span>
 						<span>{{ $product->presentPrice() }}</span>
 						@if($product->quantity > 0)
@@ -70,7 +72,7 @@
 			</div>
 			<div class="tab-content">
 				<div class="tab-pane fade active in" id="details" >
-					<p>{!! $product->description !!}</p>
+					<p>{!! nl2br($product->description) !!}</p>
 				</div>
 				<div class="tab-pane fade" id="tag" >
 					<p>{{ $CategoryName }}</p>

@@ -169,7 +169,7 @@
 							<form action="{{ route('order.store') }}" method="POST">
 							@csrf
 							   <li class="code-box">တာဝန်ခံကုဒ်<span><input type="text" name="ordercode" placeholder="တာဝန်ခံကုဒ်ရိုက်ထည့်ရန်နေရာ" required></span></li>
-						</ul>
+						    </ul>
 						       <button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
 						    </form>
 					</div>
