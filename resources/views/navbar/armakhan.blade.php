@@ -12,13 +12,14 @@
     <link href="{{ asset('css/prettyPhoto.css') }}" rel="stylesheet">
     <link href="{{ asset('css/price-range.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
 	<link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/logo.ico">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -30,7 +31,30 @@
 <body>
     @include('partials.header')
     <div class="container">
-        <h1>Armakhan</h1>
+        <div class="row">
+            <div class="col-md-12 discipline-box">
+                <h2>Unicode (ယူနီကုဒ်)</h2>
+                <ol>
+                    <li><p></p></li>
+                    <li><p></p></li>
+                    <li><p></p></li>
+                    <li><p></p></li>
+                    <li><p></p></li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 discipline-box">
+                <h2>Zawgyi (ေဇာ္ဂ်ီ)</h2>
+                <ol>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+        </div>
     </div>
    @include('partials.footer')
 

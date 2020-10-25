@@ -10,7 +10,12 @@ class NavbarController extends Controller
     public function armakhan()
     {
         if(session()->has('user')){
-            return view('armakhan');
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+
+            return view('navbar.armakhan')->with([
+                'user' => $user,
+            ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
@@ -22,7 +27,7 @@ class NavbarController extends Controller
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
 
-            return view('discipline')->with([
+            return view('navbar.discipline')->with([
                 'user' => $user,
             ]);
         }else{
@@ -33,7 +38,11 @@ class NavbarController extends Controller
     public function member()
     {
         if(session()->has('user')){
-            return view('member');
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+            return view('navbar.member')->with([
+                'user' => $user,
+            ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
@@ -45,7 +54,7 @@ class NavbarController extends Controller
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
 
-            return view('contact-us')->with([
+            return view('navbar.contact-us')->with([
                 'user' => $user,
             ]);
         }else{

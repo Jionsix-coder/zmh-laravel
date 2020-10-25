@@ -81,7 +81,12 @@ class ShopController extends Controller
             $CategoryName = implode(' , ',$Name);
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
-            $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
+            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
+            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
+            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
+            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
+            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
+            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
 
 
@@ -92,8 +97,11 @@ class ShopController extends Controller
                 'user' => $user,
                 'recommendedItems' => $recommendedItems,
                 'latestItems' => $latestItems,
+                'latestItemsAsc' => $latestItemsAsc,
+                'latestItemsDesc' => $latestItemsDesc,
+                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
+                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'CategoryName' => $CategoryName,
-                'ExpensiveItems' => $ExpensiveItems,
                 'categories' => $categories,
                 'stockLevel' => $stockLevel,
                 'promotionsItem' => $promotionsItem,
@@ -115,8 +123,13 @@ class ShopController extends Controller
 
             $query = $request->input('query');
             $categories = Category::all();
+            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
+            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
+            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
+            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
+            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
+            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
-            $latestItems = Product::orderBy('id','desc')->take(3)->get();
             $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
             $products = Product::where('name', 'like' , "%$query%")
                                  ->orWhere('details' ,'like' ,"%$query%")
@@ -125,8 +138,11 @@ class ShopController extends Controller
             return view('search-results')->with([
                 'products' => $products,
                 'user' => $user,
-                'latestItems' => $latestItems,
                 'ExpensiveItems' => $ExpensiveItems,
+                'latestItemsAsc' => $latestItemsAsc,
+                'latestItemsDesc' => $latestItemsDesc,
+                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
+                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'categories' => $categories,
                 'promotionsItem' => $promotionsItem,
             ]);
