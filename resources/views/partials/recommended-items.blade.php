@@ -24,7 +24,7 @@
                         @endforeach	
                     </div>
                     <div class="item">	
-                        @foreach ($latestItems as $lstitem)
+                        @foreach ($latestItemsAsc as $lstitem)
                             <div class="col-sm-4">
                                 <a href="{{ route('shop.show', $lstitem->slug) }}">
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
@@ -42,7 +42,7 @@
                         @endforeach	
                     </div>
                     <div class="item">	
-                        @foreach ($ExpensiveItems as $expitem)
+                        @foreach ($ExpensiveItemsAsc as $expitem)
                             <div class="col-sm-4">
                                 <a href="{{ route('shop.show', $expitem->slug) }}">
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
@@ -90,7 +90,7 @@
                         @endforeach	
                     </div>
                     <div class="item">	
-                        @foreach ($latestItems as $lstitem)
+                        @foreach ($latestItemsDesc as $lstitem)
                             <div class="col-sm-4">
                                 <a href="{{ route('shop.show', $lstitem->slug) }}">
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
@@ -108,7 +108,7 @@
                         @endforeach	
                     </div>
                     <div class="item">	
-                        @foreach ($ExpensiveItems as $expitem)
+                        @foreach ($ExpensiveItemsDesc as $expitem)
                             <div class="col-sm-4">
                                 <a href="{{ route('shop.show', $expitem->slug) }}">
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">

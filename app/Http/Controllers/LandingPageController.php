@@ -27,7 +27,8 @@ class LandingPageController extends Controller
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
             $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
             $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
-            $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
+            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
+            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
             $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
             $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
             return view('landing-page')->with([
@@ -37,7 +38,8 @@ class LandingPageController extends Controller
                 'latestItems' => $latestItems,
                 'latestItemsAsc' => $latestItemsAsc,
                 'latestItemsDesc' => $latestItemsDesc,
-                'ExpensiveItems' => $ExpensiveItems,
+                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
+                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'categories' => $categories,
                 'promotionsItemsAsc' => $promotionsItemsAsc,
                 'promotionsItemsDesc' => $promotionsItemsDesc,

@@ -62,7 +62,9 @@
 				<div class="product-image-wrapper">
 					<div class="single-products">
 							<div class="productinfo text-center">
-								<img src="{{ productImage($product->image) }}" alt="" class="img-fluid" />
+								<div class="productinfo-img">
+									<img src="{{ productImage($product->image) }}" alt="" class="img-fluid" />
+								</div>
 								<h2>{{ $product->presentPrice() }}</h2>
 								<p><a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></p>
 

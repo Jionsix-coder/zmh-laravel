@@ -1089,9 +1089,17 @@ h2.title {
   border:1px solid black;
 }
 
-.productinfo img{
-  width: 100%;
-  height: 150px;
+.productinfo-img{
+    width: 100%;
+    height: 160px;
+    display: block;
+}
+
+.productinfo-img img{
+  max-width:100%;
+  width: auto;
+  height: auto;
+  max-height:100%;
 }
 
 .productinfo{
