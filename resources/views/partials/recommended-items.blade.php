@@ -11,8 +11,10 @@
                                 <a href="{{ route('shop.show', $item->slug) }}">
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
                                         <div class="single-products">
-                                            <div class="productinfo rmd text-center">
-                                                <img class="promotionsimg" src="{{ productImage($item->image) }}" alt="Images" />
+                                            <div class="productinfo text-center">
+                                                <div class="productinfo-img">
+                                                    <img class="promotionsimg" src="{{ productImage($item->image) }}" alt="Images" />
+                                                </div>
                                                 <p class="recommended-p">{{ $item->presentPrice() }}</p>
                                                 <p>{{ $item->name }}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
@@ -30,7 +32,9 @@
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo rmd text-center">
-                                                <img class="promotionsimg" src="{{ productImage($lstitem->image) }}" alt="Images" g" />
+                                                <div class="productinfo-img">
+                                                    <img src="{{ productImage($lstitem->image) }}" alt="Images" g" />
+                                                </div>
                                                 <p class="recommended-p">{{ $lstitem->presentPrice() }}</p>
                                                 <p>{{ $lstitem->name }}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
@@ -48,7 +52,9 @@
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo rmd text-center">
-                                                <img class="promotionsimg" src="{{ productImage($expitem->image) }}" alt="Images" g" />
+                                                <div class="productinfo-img">
+                                                    <img class="promotionsimg" src="{{ productImage($expitem->image) }}" alt="Images" g" />
+                                                </div>
                                                 <p class="recommended-p">{{ $expitem->presentPrice() }}</p>
                                                 <p>{{ $expitem->name }}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
@@ -78,7 +84,9 @@
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo rmd text-center">
-                                                <img class="promotionsimg" src="{{ productImage($item->image) }}" alt="Images" />
+                                                <div class="productinfo-img">
+                                                    <img class="promotionsimg" src="{{ productImage($item->image) }}" alt="Images" />
+                                                </div>
                                                 <p class="recommended-p">{{ $item->presentPrice() }}</p>
                                                 <p>{{ $item->name }}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
@@ -96,7 +104,9 @@
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo rmd text-center">
-                                                <img class="promotionsimg" src="{{ productImage($lstitem->image) }}" alt="Images" g" />
+                                                <div class="productinfo-img">
+                                                    <img class="promotionsimg" src="{{ productImage($lstitem->image) }}" alt="Images" g" />
+                                                </div>
                                                 <p class="recommended-p">{{ $lstitem->presentPrice() }}</p>
                                                 <p>{{ $lstitem->name }}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>
@@ -114,7 +124,9 @@
                                     <div class="product-image-wrapper" id="recommened-image-wrapper">
                                         <div class="single-products">
                                             <div class="productinfo rmd text-center">
-                                                <img class="promotionsimg" src="{{ productImage($expitem->image) }}" alt="Images" g" />
+                                                <div class="productinfo-img">
+                                                    <img class="promotionsimg" src="{{ productImage($expitem->image) }}" alt="Images" g" />
+                                                </div>
                                                 <p class="recommended-p">{{ $expitem->presentPrice() }}</p>
                                                 <p>{{ $expitem->name }}</p>
                                                 <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>{{ __('text.Add_To_Cart') }}</button>

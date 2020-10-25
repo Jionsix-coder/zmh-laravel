@@ -147,7 +147,9 @@
                                     <div class="single-products">
                                         <a href="{{ route('shop.show', $item->slug) }}">
                                             <div class="productinfo text-center">
-                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <div class="productinfo-img">
+                                                    <img src="{{ productImage($item->image)}}" alt="" />
+                                                </div>
                                                 <h2>{{ presentPrice($item->price) }}</h2>
                                                 <p>{{ $item->name }}</p>
                                                 <form action="{{ route('cart.store') }}" method="POST">
@@ -177,7 +179,7 @@
             </div>
     
             <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12 new-product-2nd">
-                <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <div id="new-product-carousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
                     <div class="carousel-inner">
         
@@ -188,7 +190,9 @@
                                     <div class="single-products">
                                         <a href="{{ route('shop.show', $item->slug) }}">
                                             <div class="productinfo text-center">
-                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <div class="productinfo-img">
+                                                    <img src="{{ productImage($item->image)}}" alt="" />
+                                                </div>
                                                 <h2>{{ presentPrice($item->price) }}</h2>
                                                 <p>{{ $item->name }}</p>
                                                 <form action="{{ route('cart.store') }}" method="POST">
@@ -208,10 +212,10 @@
                         @endforeach
         
                     </div>
-                    <a class="left recommended-item-control" href="#new-product-carousel" data-slide="prev">
+                    <a class="left recommended-item-control" href="#new-product-carousel1" data-slide="prev">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a class="right recommended-item-control" href="#new-product-carousel" data-slide="next">
+                    <a class="right recommended-item-control" href="#new-product-carousel1" data-slide="next">
                         <i class="fa fa-angle-right"></i>
                     </a>			
                 </div>
@@ -230,7 +234,9 @@
                                     <div class="single-products">
                                         <a href="{{ route('shop.show', $item->slug) }}">
                                             <div class="productinfo text-center">
-                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <div class="productinfo-img">
+                                                    <img src="{{ productImage($item->image)}}" alt="" />
+                                                </div>
                                                 <del><h2 id="promotions-h2">{{ presentPrice($item->price) }}</h2></del>
                                                 <p class="promotions-h3" style="font-size: 25px;color:black;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></p>
                                                 <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
@@ -262,7 +268,7 @@
             </div>
 
             <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12 new-product-2nd">
-                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <div id="recommended-item-carousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
                     <div class="carousel-inner">
         
@@ -273,7 +279,9 @@
                                     <div class="single-products">
                                         <a href="{{ route('shop.show', $item->slug) }}">
                                             <div class="productinfo text-center">
-                                                <img class="promotionsimg" src="{{ productImage($item->image)}}" alt="" />
+                                                <div class="productinfo-img">
+                                                    <img src="{{ productImage($item->image)}}" alt="" />
+                                                </div>
                                                 <del><h2 id="promotions-h2">{{ presentPrice($item->price) }}</h2></del>
                                                 <p class="promotions-h3" style="font-size: 25px;color:black;"><b>{{ presentPrice($item->price * (1 - $item->discountPercent / 100))  }}</b></p>
                                                 <p>{{ Str::limit($item->details, 25, ' ...') }}</p>
@@ -295,10 +303,10 @@
                         @endforeach
         
                     </div>
-                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                    <a class="left recommended-item-control" href="#recommended-item-carousel1" data-slide="prev">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                    <a class="right recommended-item-control" href="#recommended-item-carousel1" data-slide="next">
                         <i class="fa fa-angle-right"></i>
                     </a>			
                 </div>
