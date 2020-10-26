@@ -23,6 +23,12 @@ class ShopController extends Controller
             $categories = Category::all();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
+            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
+            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
+            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
+            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
+            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
+            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
 
             if(request()->category){
                 $products = Product::with('categories')->whereHas('categories',function($query){
@@ -51,6 +57,12 @@ class ShopController extends Controller
                 'user'=>$user,
                 'categories' => $categories,
                 'latestItems' => $latestItems,
+                'latestItemsAsc' => $latestItemsAsc,
+                'latestItemsDesc' => $latestItemsDesc,
+                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
+                'promotionsItemsAsc' => $promotionsItemsAsc,
+                'promotionsItemsDesc' => $promotionsItemsDesc,
+                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'categoryName' => $categoryName,
                 'promotionsItem' => $promotionsItem,
             ]);
@@ -100,6 +112,8 @@ class ShopController extends Controller
                 'latestItemsAsc' => $latestItemsAsc,
                 'latestItemsDesc' => $latestItemsDesc,
                 'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
+                'promotionsItemsAsc' => $promotionsItemsAsc,
+                'promotionsItemsDesc' => $promotionsItemsDesc,
                 'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'CategoryName' => $CategoryName,
                 'categories' => $categories,
@@ -143,6 +157,8 @@ class ShopController extends Controller
                 'latestItemsDesc' => $latestItemsDesc,
                 'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
                 'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
+                'promotionsItemsAsc' => $promotionsItemsAsc,
+                'promotionsItemsDesc' => $promotionsItemsDesc,
                 'categories' => $categories,
                 'promotionsItem' => $promotionsItem,
             ]);

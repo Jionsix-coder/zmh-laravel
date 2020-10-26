@@ -10,32 +10,46 @@
 <section id="slider"><!--slider-->
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12">
-				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-					<!-- <div class="cover-img">
-						<img src="images/home/cover.jpg" alt="">
-					</div> -->
-					<!-- <ol class="carousel-indicators">
-						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-						<li data-target="#slider-carousel" data-slide-to="1"></li>
-						<li data-target="#slider-carousel" data-slide-to="2"></li>
-					</ol> -->
+			<div class="col-sm-6">
+				<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
+				<h4 style="line-height: 40px;font-weight:bold;">{{ __('text.Address') }}</h4>
+				<h4> +95-9-898155551,+95-9-775545655</h4>
+			</div>
+			<div class="col-sm-6 carousel-mp4">
+				<div id="slider-carousel1" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#slider-carousel1" data-slide-to="0" class="active"></li>
+						<li data-target="#slider-carousel1" data-slide-to="1"></li>
+						<li data-target="#slider-carousel1" data-slide-to="2"></li>
+					</ol>
 					
 					<div class="carousel-inner">
 						<div class="item active">
-							<div class="col-sm-6">
-								<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
-								<h4 style="line-height: 40px;font-weight:bold;">{{ __('text.Address') }}</h4>
-								<h4> +95-9-898155551,+95-9-775545655</h4>
-							</div>
-							<div class="col-sm-6 cover-img">
-								<img src="{{ asset('images/home/cover.jpg') }}" class="" alt="" />
-							</div>
+							<video class="video-fluid" autoplay loop style="max-height:100%;max-width:100%;">
+								<source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
+							</video>
 						</div>
+						<div class="item">
+							<video class="video-fluid" autoplay loop style="max-height:100%;max-width:100%;">
+								<source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
+							</video>
+						</div>
+						
+						<div class="item">
+							<video class="video-fluid" autoplay loop style="max-height:100%;max-width:100%;">
+								<source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+							</video>
+						</div>
+						
 					</div>
-					</div>
+					
+					<a href="#slider-carousel1" class="left control-carousel " data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a href="#slider-carousel1" class="right control-carousel " data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -89,4 +103,13 @@
 	
 </div>
 
+@endsection
+
+@section('extra-js')
+<!-- CSS -->
+
+<!-- jQuery and JS bundle w/ Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 @endsection
