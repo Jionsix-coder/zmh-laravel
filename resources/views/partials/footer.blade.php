@@ -13,25 +13,9 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('images/overlay/overlay.jpg') }}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <img src="{{ asset('images/overlay/overlay1.jpg') }}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
+                                        <a href="{{ asset('images/overlay/overlay.jpg') }}" data-lightbox="images" data-title="MLM">
+                                            <img src="{{ asset('images/overlay/overlay.jpg') }}" alt="" />
+                                        </a>
                                     </div>
                                 </a>
                                 <p>Circle of Hands</p>
@@ -43,10 +27,9 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('images/overlay/overlay2.jpg') }}" alt="" />
-                                    </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
+                                        <a href="{{ asset('images/overlay/overlay1.jpg') }}" data-lightbox="images" data-title="MLM">
+                                            <img src="{{ asset('images/overlay/overlay1.jpg') }}" alt="" />
+                                        </a>
                                     </div>
                                 </a>
                                 <p>Circle of Hands</p>
@@ -58,10 +41,23 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{ asset('images/overlay/overlay3.jpg') }}" alt="" />
+                                        <a href="{{ asset('images/overlay/overlay2.jpg') }}" data-lightbox="images" data-title="MLM">
+                                            <img src="{{ asset('images/overlay/overlay2.jpg') }}" alt="" />
+                                        </a>
                                     </div>
-                                    <div class="overlay-icon">
-                                        <i class="fa fa-play-circle-o"></i>
+                                </a>
+                                <p>Circle of Hands</p>
+                                <h2>24 DEC 2014</h2>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-3">
+                            <div class="video-gallery text-center">
+                                <a href="#">
+                                    <div class="iframe-img">
+                                        <a href="{{ asset('images/overlay/overlay3.jpg') }}" data-lightbox="images" data-title="MLM">
+                                            <img src="{{ asset('images/overlay/overlay3.jpg') }}" alt="" />
+                                        </a>
                                     </div>
                                 </a>
                                 <p>Circle of Hands</p>

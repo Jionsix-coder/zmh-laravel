@@ -7,6 +7,23 @@
 @endsection
 
 @section('slider')
+<!--Modal Box-->
+<div id="myModal" class="modal show fade" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h5 class="modal-title" style="font-size:18px;text-align:center;font-weight:bold;"> Welcome to ZayMinHtet Company Limited <br> ( မင်္ဂလာပါ။ ) <br> ( ဇေမင်းထက်ကုမ္ပဏီမှကြိုဆိုပါတယ်။ )</h5>
+			</div>
+			<div class="modal-body">
+				<p class="">Memberအသစ်များအနေဖြင့်သိရှိစေရန်များကိုဖတ်ကြားပေးပါရန်။<br>
+				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="https://zayminhtet.com/member" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;" class=" __mm">ဒီကိုနှိပ်ပါ။</a></p>
+				<button type="submit" data-dismiss="modal" class="btn btn-primary">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end of modal box-->
 <section id="slider"><!--slider-->
 	<div class="container">
 		<div class="row">
@@ -16,7 +33,7 @@
 				<h4> +95-9-898155551,+95-9-775545655</h4>
 			</div>
 			<div class="col-sm-6 carousel-mp4">
-				<div id="slider-carousel1" class="carousel slide" data-ride="carousel">
+				<div id="slider-carousel1" class="carousel slide" data-ride="carousel" >
 					<ol class="carousel-indicators">
 						<li data-target="#slider-carousel1" data-slide-to="0" class="active"></li>
 						<li data-target="#slider-carousel1" data-slide-to="1"></li>
@@ -24,20 +41,20 @@
 					</ol>
 					
 					<div class="carousel-inner">
-						<div class="item active">
-							<video class="video-fluid" autoplay loop style="max-height:100%;max-width:100%;">
-								<source src="https://mdbootstrap.com/img/video/Lines.mp4" type="video/mp4" />
+						<div class="item active" id="video">
+							<video class="video-fluid" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" data-interval="1900">
+								<source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
 							</video>
 						</div>
-						<div class="item">
-							<video class="video-fluid" autoplay loop style="max-height:100%;max-width:100%;">
-								<source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
+						<div class="item" id="video">
+							<video class="video-fluid" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" data-interval="3200">
+								<source src="{{ asset('videos/video1.mp4') }}" type="video/mp4" />
 							</video>
 						</div>
 						
-						<div class="item">
-							<video class="video-fluid" autoplay loop style="max-height:100%;max-width:100%;">
-								<source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+						<div class="item" id="video">
+							<video class="video-fluid" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" data-interval="5500">
+								<source src="{{ asset('videos/video2.mp4') }}" type="video/mp4" />
 							</video>
 						</div>
 						
@@ -112,4 +129,18 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
+<script>
+	$('video').on('play', function (e) {
+		$("#video").carousel('pause');
+	});
+	$('video').on('stop pause ended', function (e) {
+		$("#video").carousel();
+	});
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+</script>
 @endsection
