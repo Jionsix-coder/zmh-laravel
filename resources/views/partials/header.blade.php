@@ -59,16 +59,16 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{ route('profile.index') }}"><i class="fa fa-lg fa-user"></i> {{ __('text.Account') }}</a></li>
+                            <li><a href="{{ route('profile.index') }}"><i class="fa fa-lg fa-user"></i> အကောင့်</a></li>
                             <li>
-                                <a href="{{ route('cart.save') }}"><i class="fa fa-lg fa-shopping-cart"></i> {{ __('text.Basket') }} 
+                                <a href="{{ route('cart.save') }}"><i class="fa fa-lg fa-shopping-cart"></i> ဈေးလှည်း 
                                 @if (Cart::instance('saveCart')->count() > 0)
                                 <span class="badge"> {{ Cart::instance('saveCart')->count() }}</span>
                                 @endif
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('cart.index') }}"><i class="fa fa-lg fa-shopping-basket"></i> {{ __('text.Cart') }} 
+                                <a href="{{ route('cart.index') }}"><i class="fa fa-lg fa-shopping-basket"></i> ဈေးခြင်း 
                                     @if (Cart::instance('default')->count() > 0)
                                     <span class="badge"> {{ Cart::instance('default')->count() }}</span>
                                     @endif
@@ -113,7 +113,7 @@
                 <div class="col-sm-3">
                     <form action="{{ route('shop.search') }}" method="GET">
                         <div class="search_box pull-right">
-                            <input type="text" name="query" value="{{ request()->input('query') }}" id="query" placeholder="{{ __('text.SearchBar') }}"/>
+                            <input type="text" name="query" value="{{ request()->input('query') }}" id="query" placeholder="ပစ္စည်းများရှာရန်"/>
                         </div>
                     </form>
                 </div>

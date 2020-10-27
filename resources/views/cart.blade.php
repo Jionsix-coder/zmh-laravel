@@ -113,7 +113,7 @@
 				@endforeach
 				@else
 					
-					<h3 class="no-item-h3">ဈေးဖြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
+					<h3 class="no-item-h3">ဈေးခြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
 					<a href="{{ route('shop.index') }}" class="btn btn-primary btn-cs">Contine Shopping</a>
 
 				@endif

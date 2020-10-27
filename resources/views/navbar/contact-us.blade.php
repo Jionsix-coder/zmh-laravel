@@ -69,7 +69,7 @@
 							<p>Yangon , Myanmar.</p>
 							<p>Mobile: +95-9-898155551</p>
 							<p>Mobile: +95-9-775545655</p>
-							<p>Email: zayminhte999@gmail.com</p>
+							<p>Email: zayminhtetcompanylimited@gmail.com</p>
 	    				</address>
 	    				<div class="social-networks">
 	    					<h2 class="title text-center">Social Networking</h2>

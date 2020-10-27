@@ -13,13 +13,13 @@
 			<div class="col-sm-6">
 				<div class="item">
 					<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
-					<h4 style="line-height: 40px;font-weight:bold;">{{ __('text.Address') }}</h4>
+					<h4 style="line-height: 40px;font-weight:bold;">အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး.</h4>
 					<h4> +95-9-898155551,+95-9-775545655</h4>
 				</div>
 				<br>
 			</div>
 			<div class="col-sm-6 carousel-mp4">
-				<div id="slider-carousel1" class="carousel slide" data-ride="carousel" >
+				<div id="slider-carousel1" class="carousel slide" data-interval="false">
 					<ol class="carousel-indicators">
 						<li data-target="#slider-carousel1" data-slide-to="0" class="active"></li>
 						<li data-target="#slider-carousel1" data-slide-to="1"></li>
@@ -28,18 +28,18 @@
 					
 					<div class="carousel-inner">
 						<div class="item active" id="video">
-							<video class="video-fluid" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" data-interval="1900">
+							<video class="video-fluid" id="video" muted="true" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" >
 								<source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
 							</video>
 						</div>
 						<div class="item" id="video">
-							<video class="video-fluid" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" data-interval="3200">
+							<video class="video-fluid" id="video" muted="true" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" >
 								<source src="{{ asset('videos/video1.mp4') }}" type="video/mp4" />
 							</video>
 						</div>
 						
 						<div class="item" id="video">
-							<video class="video-fluid" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" data-interval="5500">
+							<video class="video-fluid" id="video" muted="true" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" >
 								<source src="{{ asset('videos/video2.mp4') }}" type="video/mp4" />
 							</video>
 						</div>
@@ -79,14 +79,14 @@
 <!-- end of modal box-->
 <div class="col-sm-9 padding-right">
 	<div class="features_items"><!--features_items-->
-		<h2 class="title text-center">{{ __('text.For_You') }}</h2>
+		<h2 class="title text-center">သင့်အတွက်</h2>
 		<div class="row">
 			<div class="col-md-12 col-sm-12">
 				<div class="col-sm-6 col-md-6 col-xs-6">
-					<h2 class="title-popular">{{ __('text.Most_Like_Product') }}</h2>
+					<h2 class="title-popular">လူအများကြိုက်ထုတ်ကုန်များ</h2>
 				</div>
 				<div class="col-sm-6 col-md-6 col-xs-6">
-					<a href="{{ route('shop.index') }}" class="btn btn-seemore get">{{ __('text.See_More') }}</a>
+					<a href="{{ route('shop.index') }}" class="btn btn-seemore get">အားလုံးကြည့်ရန်နှိပ်ပါ</a>
 				</div>
 			</div>	
 		</div>
@@ -107,7 +107,7 @@
 								   <input type="hidden" name="id" value="{{ $product->id }}">
 								   <input type="hidden" name="name" value="{{ $product->name }}">
 								   <input type="hidden" name="price" value="{{ $product->price }}">
-								   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>{{ __('text.Add_To_Cart') }}</button>	
+								   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
 								</form>
 								
 							</div>
@@ -127,17 +127,18 @@
 
 @section('extra-js')
 <script>
-    $(document).ready(function(){
-        $("#myModal").modal('show');
-    });
-</script>
-<script>
-	$('video').on('play', function (e) {
-		$("#video").carousel('pause');
-	});
-	$('video').on('stop pause ended', function (e) {
-		$("#video").carousel();
-	});
+$(document).ready(function(){
+	$("#myModal").modal('show');
+});
+$('#video').on('ended', function () {
+  $('.carousel').carousel('next');
+});
+$('video').on('play', function (e) {
+	$("#video").carousel('pause');
+});
+$('video').on('stop pause ended', function (e) {
+	$("#video").carousel();
+});
 </script>
 
 @endsection

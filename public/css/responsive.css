@@ -79,7 +79,7 @@
 }
 
 #recommened-image-wrapper{
-	height:270px !;
+	height:300px !important;
 }
 
 .recommended-p:before{
@@ -823,7 +823,7 @@ ul.sub-menu{
 }
 
 #recommened-image-wrapper{
-	height:270px !important;
+	height:300px !important;
 }
 
 #promotions-h2{
