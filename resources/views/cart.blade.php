@@ -6,7 +6,7 @@
     <meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Cart | E-Shopper</title>
+    <title>Cart | ZMH-OnlineShop</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/prettyPhoto.css') }}" rel="stylesheet">
@@ -113,8 +113,8 @@
 				@endforeach
 				@else
 					
-					<h3>No Items In Cart!</h3>
-					<a href="{{ route('shop.index') }}" class="btn btn-default">Contine Shopping</a>
+					<h3 class="no-item-h3">ဈေးဖြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
+					<a href="{{ route('shop.index') }}" class="btn btn-primary btn-cs">Contine Shopping</a>
 
 				@endif
 			</tbody>

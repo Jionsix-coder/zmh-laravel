@@ -786,6 +786,17 @@ ul.sub-menu{
 /* XS Portrait */
 @media (max-width: 490px) {
 
+.btn-cs{
+	margin-left:34%;
+	margin-bottom: 20px;
+}
+	
+.no-item-h3{
+	color:red;
+	font-size:22px;
+	font-weight: bolder;
+	text-align: center;
+}
 
 .control-carousel {
 	position: absolute;
@@ -888,7 +899,7 @@ ul.sub-menu{
 	height: 150px;
 }
 .product-image-wrapper{
-	height:270px !important;
+	height:300px !important;
 }
 
 .product-section-images{
@@ -1296,6 +1307,11 @@ ul.sub-menu{
 
 @media(min-width:400px ) and (max-width:460px)
 {
+
+	.recommended-p {
+		margin-top: 8px;
+	}
+
 	.productinfo-img{
 		width: 100%;
 		height: 140px;
@@ -1370,6 +1386,18 @@ ul.sub-menu{
 }
 
 @media (max-width: 400px) {
+.btn-cs{
+	margin-left:28%;
+	margin-bottom: 20px;
+}
+	
+.no-item-h3{
+	color:red;
+	font-size:22px;
+	font-weight: bolder;
+	text-align: center;
+}
+
 #promotions-h2{
 	margin: 0 !important;
 }
