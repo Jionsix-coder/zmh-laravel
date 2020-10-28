@@ -31,6 +31,7 @@ class LandingPageController extends Controller
             $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
             $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
             $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
+            
             return view('landing-page')->with([
                 'products' =>$products,
                 'user' => $user,

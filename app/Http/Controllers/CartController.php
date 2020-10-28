@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BasicUser;
 use App\Models\Product;
+use Illuminate\Support\Facades\Cookie;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;

@@ -130,7 +130,10 @@ return [
     |
     | The service providers listed here will be automatically loaded on the
     | request to your application. Feel free to add your own services to
-    | this array to grant expanded functionality to your applications.
+    | this array to grant expa$minutes = 60;
+      $response = new Response('Set Cookie');
+      $response->withCookie(cookie('name', 'MyValue', $minutes));
+      return $response;nded functionality to your applications.
     |
     */
 
