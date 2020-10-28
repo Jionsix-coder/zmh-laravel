@@ -7,7 +7,7 @@
                     <ul role="menu" class="sub-menu"> 
                         <li><a href="{{ route('navbar.discipline') }}"><i class="fa fa-book"></i> စည်းမျဉ်းစည်းကမ်း</a></li> 
                         <li><a href="{{ route('navbar.armakhan') }}"><i class="fa fa-book"></i> အာမခံ</a></li>
-                        <li><a href="{{ route('navbar.member') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်လိုအပ်ချက်</a></li> 
+                        <li><a href="{{ route('navbar.member') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်များသိထားရန်</a></li> 
                         <li><a href="{{ route('navbar.member') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်သစ်လိုအပ်ချက်</a></li> 
                     </ul>
                 @endif

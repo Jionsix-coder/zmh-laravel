@@ -69,7 +69,7 @@
 				<h5 class="modal-title" style="font-size:18px;text-align:center;font-weight:bold;"> Welcome to ZayMinHtet Company Limited <br> ( မင်္ဂလာပါ။ ) <br> ( ဇေမင်းထက်ကုမ္ပဏီမှကြိုဆိုပါတယ်။ )</h5>
 			</div>
 			<div class="modal-body">
-				<p>Memberအသစ်များအနေဖြင့်သိရှိစေရန်များကိုဖတ်ကြားပေးပါရန်။<br>
+				<p>Memberများအနေဖြင့်သိရှိစေရန်များကိုဖတ်ကြားပေးပါရန်။<br>
 				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="{{ route('navbar.member') }}" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;">ဒီကိုနှိပ်ပါ။</a></p>
 				<button type="submit" data-dismiss="modal" class="btn btn-primary">Close</button>
 			</div>
