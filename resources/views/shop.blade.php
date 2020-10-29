@@ -14,7 +14,7 @@
 	<div class="breadcrumbs">
 		<ol class="breadcrumb">
 		<li><a href="/home">ပင်မ</a></li>
-		<li style="font-weight: bolder;">စျေးဝယ်ရန်</li>
+		<li style="font-weight: bolder;">{{ request()->category != null ? $categoryName : 'စျေးဝယ်ရန်' }}</li>
 		</ol>
 	</div>
 @endsection
