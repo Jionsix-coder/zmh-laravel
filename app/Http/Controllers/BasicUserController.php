@@ -30,9 +30,9 @@ class BasicUserController extends Controller
      */
     public function check(Request $request)
     {
-        $zawgyi = MyanFont::fontDetect($request->Name);
+        $font = MyanFont::fontDetect($request->Name);
 
-        if($zawgyi == "zawgyi"){
+        if($font == "zawgyi"){
             $Name = MyanFont::zg2uni($request->Name);
             $PositionDepartment = MyanFont::zg2uni($request->PositionDepartment);
             $NationalNumber = MyanFont::zg2uni($request->NationalNumber);
@@ -76,7 +76,7 @@ class BasicUserController extends Controller
             }else{
                 return redirect()->route('user.login')->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
             }
-        }elseif($zawgyi == "unicode"){
+        }elseif($font == "unicode"){
             $number = $request->NationalNumber;
             $user = BasicUser::where('NationalNumber',$number)->first();
             if($user){

@@ -65,7 +65,6 @@
                             <td class="description">Name</td>
                             <td>switchToBasket</td>
 							<td class="price">စျေးနှုန်း</td>
-							<td class="quantity">အရေအတွက်</td>
 							<td class="total">စုစုပေါင်း</td>
 							<td></td>
 						</tr>
@@ -84,18 +83,11 @@
                                 <form action="{{ route('saveCart.switchToCart', $item->rowId) }}" method="POST">
                                     @csrf
                                 <input type="hidden" name="id" value="{{ $item->rowId }}">
-                                <button class="btn btn-default"> Move to cart</button>
+                                <button class="btn btn-default">ခြင်းသို့ထည့်ရန်</button>
                                 </form>
                             </td>
 							<td class="cart_price">
 								<p>{{ $item->model->presentPrice() }}</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_down" href=""> - </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_up" href=""> + </a>
-								</div>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">12,000 Ks</p>
@@ -112,8 +104,8 @@
 				@endforeach
 				@else
 					
-					<h3>No Items In Cart!</h3>
-					<a href="{{ route('shop.index') }}" class="btn btn-default">Contine Shopping</a>
+				<h3 class="no-item-h3">ဈေးလှည်းထဲတွင်ပစ္စည်းမရှိပါ။</h3>
+				<a href="{{ route('shop.index') }}" class="btn btn-primary btn-cs">Contine Shopping</a>
 
 				@endif
 			</tbody>
