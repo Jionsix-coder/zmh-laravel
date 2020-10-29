@@ -1,7 +1,7 @@
 <div class="col-sm-3">
     <div class="left-sidebar">
         <h2>အမျိုးအစားများ</h2>
-        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+        <div class="panel-group category-products" id="accordian"><!--category-products-->
             {{-- @foreach($categories as $category)
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -18,13 +18,13 @@
              <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->name }}">
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->slug }}">
                             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                             {{ $item->name }}
                         </a>
                     </h4>
                 </div>
-                <div id="{{ $item->name }}" class="panel-collapse collapse">
+                <div id="{{ $item->slug }}" class="panel-collapse collapse">
                     <div class="panel-body">
                         <ol>
                             @foreach ($item->childs as $itemChilds)
@@ -33,74 +33,9 @@
                         </ol>
                     </div>
                 </div>
-                {{-- @else
-                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->name }}">
-                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            <a href="{{ route('shop.index',['category' => $item->slug]) }}">{{ $item->name }}</a>
-                        </a>
-                    </h4>
-                </div>
-                @endif --}}
             </div>
             @endforeach
 
-
-            {{--<div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#kids">
-                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                            ကလေးအသုံးအဆောင်
-                        </a>
-                    </h4>
-                </div>
-                <div id="kids" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        <ol>
-                            <li><a href="#">ကလေးအဝတ်အစားများ</a></li>
-                            <li><a href="#">ကလေးအိပ်ယာပစ္စည်းများ</a></li>
-                            <li><a href="#">ကလေးပစ္စည်းများ</a></li>
-                            <li><a href="#">ပွဲတော်ပစ္စည်းများ</a></li>
-                            <li><a href="#">ရှူးဖိနပ်များ</a></li>
-                            <li><a href="">ဆက်စပ်ပစ္စည်းများ</a></li>
-                            <li><a href="">ဘရတ်ရှ်နှင့်ဘီးများ</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">ဖုန်းနှင့်ဆက်စပ်ပစ္စည်း</a></h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">လျှပ်စစ်ပစ္စည်း</a></h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">ကွန်ပျူတာနှင့်ဆက်စပ်ပစ္စည်း</a></h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">အားကစားနှင့်ခရီးသွားပစ္စည်း</a></h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">မျက်မှန် နှင့် နာရီ</a></h4>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#">ပရိဘောဂ</a></h4>
-                </div>
-            </div> --}}
         </div><!--/category-products-->
 
         {{-- <div class="brands_products"><!--brands_products-->
