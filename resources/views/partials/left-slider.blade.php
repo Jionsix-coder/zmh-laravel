@@ -18,13 +18,13 @@
              <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->name }}">
+                        <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->slug }}">
                             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                             {{ $item->name }}
                         </a>
                     </h4>
                 </div>
-                <div id="{{ $item->name }}" class="panel-collapse collapse">
+                <div id="{{ $item->slug }}" class="panel-collapse collapse">
                     <div class="panel-body">
                         <ol>
                             @foreach ($item->childs as $itemChilds)
