@@ -785,6 +785,11 @@ ul.sub-menu{
 }
 /* XS Portrait */
 @media (max-width: 490px) {
+iframe {
+	/* override other styles to make responsive */
+	width: 100% !important;
+	height: 230px !important;
+}
 
 .btn-cs{
 	margin-left:34%;
@@ -1307,6 +1312,11 @@ ul.sub-menu{
 
 @media(min-width:400px ) and (max-width:460px)
 {
+	iframe {
+		/* override other styles to make responsive */
+		width: 100% !important;
+		height: 200px !important;
+	}
 
 	.recommended-p {
 		margin-top: 8px;

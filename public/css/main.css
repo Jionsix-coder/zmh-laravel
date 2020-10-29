@@ -13,10 +13,11 @@ body {
   background-color: #cdcdb1;
 }
 /**Video**/
-video {
+iframe {
   /* override other styles to make responsive */
-  width: 100%    !important;
-  height: auto   !important;
+  width: 100% !important;
+  height: 300px !important;
+
 }
 
 /**logo**/
@@ -710,10 +711,6 @@ ul.sub-menu {
   background: #FE980F;
 }
 
-.video-fluid{
-  border:4px solid white;
-  border-radius: 20px;
-}
 
 .control-carousel {
   position: absolute;

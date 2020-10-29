@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\BasicUser;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\VideoSlider;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\App;
 
 class LandingPageController extends Controller
@@ -23,6 +25,7 @@ class LandingPageController extends Controller
             $user = BasicUser::where('NationalNumber',$number)->first();
             $products = Product::where('featured',true)->take(12)->get();
             $categories = Category::all();
+            $videos = VideoSlider::orderBy('id','desc')->take(3)->get();
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
             $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
@@ -42,6 +45,7 @@ class LandingPageController extends Controller
                 'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
                 'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'categories' => $categories,
+                'videos' => $videos,
                 'promotionsItemsAsc' => $promotionsItemsAsc,
                 'promotionsItemsDesc' => $promotionsItemsDesc,
             ]);

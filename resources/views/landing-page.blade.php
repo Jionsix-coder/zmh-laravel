@@ -27,23 +27,11 @@
 					</ol>
 					
 					<div class="carousel-inner">
-						<div class="item active" id="video">
-							<video class="video-fluid" id="video" muted="true" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" >
-								<source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
-							</video>
-						</div>
-						<div class="item" id="video">
-							<video class="video-fluid" id="video" muted="true" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" >
-								<source src="{{ asset('videos/video1.mp4') }}" type="video/mp4" />
-							</video>
-						</div>
-						
-						<div class="item" id="video">
-							<video class="video-fluid" id="video" muted="true" autoplay="autoplay" controls="controls" style="max-height:100%;max-width:100%;" >
-								<source src="{{ asset('videos/video2.mp4') }}" type="video/mp4" />
-							</video>
-						</div>
-						
+						@foreach ($videos as $key => $video)
+							<div class="item {{$key == 0 ? 'active' : '' }}" id="video">		
+								<iframe class="video-fluid" src="https://player.vimeo.com/video/{{ $video->video_id }}?autoplay=1" frameborder="0" webkitallowfullscreen allow=autoplay	 mozallowfullscreen allowfullscreen></iframe>
+							</div>	
+						@endforeach					
 					</div>
 					
 					<a href="#slider-carousel1" class="left control-carousel " data-slide="prev">
@@ -130,15 +118,30 @@
 $(document).ready(function(){
 	$("#myModal").modal('show');
 });
+
 $('#video').on('ended', function () {
   $('.carousel').carousel('next');
 });
+
 $('video').on('play', function (e) {
 	$("#video").carousel('pause');
 });
+
 $('video').on('stop pause ended', function (e) {
 	$("#video").carousel();
 });
+
+var iframe = document.querySelector('iframe');
+var player = new Vimeo.Player(iframe);
+
+player.on('play', function() {
+	console.log('Played the video');
+});
+
+player.getVideoTitle().then(function(title) {
+	console.log('title:', title);
+});
 </script>
+<script src="https://player.vimeo.com/api/player.js"></script>
 
 @endsection
