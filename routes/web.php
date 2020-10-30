@@ -55,7 +55,8 @@ Route::post('/basicuser',[BasicUserController::class,'update'])->name('basicuser
 
 Route::get('/armakhan',[NavbarController::class,'armakhan'])->name('navbar.armakhan');
 Route::get('/discipline',[NavbarController::class,'discipline'])->name('navbar.discipline');
-Route::get('/member',[NavbarController::class,'member'])->name('navbar.member');
+Route::get('/newmember',[NavbarController::class,'newmember'])->name('navbar.newmember');
+Route::get('/aboutmember',[NavbarController::class,'aboutmember'])->name('navbar.aboutmember');
 Route::get('/contact',[NavbarController::class,'contact'])->name('navbar.contact');
 
 Route::get('/thankyou',[ConfirmationController::class,'index'])->name('confirmation.index');

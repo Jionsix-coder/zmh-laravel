@@ -1318,6 +1318,13 @@ ul.sub-menu{
 		height: 200px !important;
 	}
 
+	.control-carousel {
+		position: absolute;
+		top: 38%;
+		font-size: 30px;
+		color: #C2C2C1;
+	}
+
 	.recommended-p {
 		margin-top: 8px;
 	}

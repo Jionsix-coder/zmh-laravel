@@ -58,7 +58,7 @@
 			</div>
 			<div class="modal-body">
 				<p>Memberများအနေဖြင့်သိရှိစေရန်များကိုဖတ်ကြားပေးပါရန်။<br>
-				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="{{ route('navbar.member') }}" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;">ဒီကိုနှိပ်ပါ။</a></p>
+				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="{{ route('navbar.newmember') }}" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;">ဒီကိုနှိပ်ပါ။</a></p>
 				<button type="submit" data-dismiss="modal" class="btn btn-primary">Close</button>
 			</div>
 		</div>
