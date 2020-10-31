@@ -59,6 +59,9 @@
 			<div class="modal-body">
 				<p>Memberများအနေဖြင့်သိရှိစေရန်များကိုဖတ်ကြားပေးပါရန်။<br>
 				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="{{ route('navbar.newmember') }}" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;">ဒီကိုနှိပ်ပါ။</a></p>
+				<h4><p class="officer-text">တာဝန်ခံကုဒ်တောင်းရမည့်သူအမည် </p>- <em>{{ $officer->name }}</em></h4>
+				<h4><p class="officer-text">တာဝန်ခံကုဒ်တောင်းရမည့်သူဖုန်းနံပါတ် </p>- <em>+95{{ $officer->phnumber }}</em></h4>
+				<h4><p class="officer-text">တာဝန်ခံကုဒ်တောင်းရမည့်သူရာထူး </p>- <em>{{ $officer->currentposition }}</em></h4>
 				<button type="submit" data-dismiss="modal" class="btn btn-primary">Close</button>
 			</div>
 		</div>

@@ -6,9 +6,11 @@ use App\Models\BasicUser;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\VideoSlider;
+use App\Models\CodeOfficer;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\App;
 
 class LandingPageController extends Controller
@@ -22,10 +24,13 @@ class LandingPageController extends Controller
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
-            $user = BasicUser::where('NationalNumber',$number)->first();
+            $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
+            $PersonalNumber = $user->PersonalNumber;
+            $code =Str::before($PersonalNumber,'-');
+            $officer= CodeOfficer::where('officecode',$code)->firstOrFail();
             $products = Product::where('featured',true)->take(12)->get();
             $categories = Category::all();
-            $videos = VideoSlider::orderBy('id','desc')->take(3)->get();
+            $videos = VideoSlider::orderBy('id','desc')->get();
             $recommendedItems = Product::inRandomOrder()->take(3)->get();
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
             $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
@@ -38,6 +43,7 @@ class LandingPageController extends Controller
             return view('landing-page')->with([
                 'products' =>$products,
                 'user' => $user,
+                'officer' => $officer,
                 'recommendedItems' => $recommendedItems,
                 'latestItems' => $latestItems,
                 'latestItemsAsc' => $latestItemsAsc,
@@ -58,7 +64,7 @@ class LandingPageController extends Controller
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
-            $user = BasicUser::where('NationalNumber',$number)->first();
+            $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
 
             return view('profile')->with([
                 'user' => $user,

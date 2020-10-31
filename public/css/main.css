@@ -253,6 +253,10 @@ a#scrollUp i{
 	background:#fff;
 }
 
+.officer-text{
+  color:#996633;
+  display: inline;
+}
 
 .header-bottom {
   padding-bottom: 30px;
