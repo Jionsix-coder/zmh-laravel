@@ -37,7 +37,6 @@
             @endforeach
 
         </div><!--/category-products-->
-
         {{-- <div class="brands_products"><!--brands_products-->
             <h2>Brands</h2>
             <div class="brands-name">
