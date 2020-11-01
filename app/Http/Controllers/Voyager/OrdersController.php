@@ -85,8 +85,7 @@ class OrdersController extends VoyagerBaseController
             $view = "voyager::$slug.read";
         }
 
-        $number = session()->get('user')['NationalNumber'];
-        $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
+        $user = BasicUser::find($id);
         $order = Order::find($id);
         $products = $order->products;
 

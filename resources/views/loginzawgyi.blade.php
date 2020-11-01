@@ -25,6 +25,8 @@
 					<h4><i><b>(Memberအဖြဲ႕ဝင္မ်ားအတြက္သာ)</b></i></h4>
 					<hr>
 					<p>ဆက္သြယ္ရန္ : +95-9-898155551 ,<br> +95-9-775545655</p>
+					<hr>
+					<h3><b>Zawgyi Form</b></h3>
 				</div>
 				<div class="card-body">
 					@if(count($errors) > 0)

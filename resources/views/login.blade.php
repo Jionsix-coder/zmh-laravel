@@ -4,17 +4,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">
+	<meta name="author" content="">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	
 	<title>Login | Zay Min Htet Co.Ltd</title>
 	 <!--Bootsrap 4 CDN-->
-	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	 <!--Custom css-->
 	 <link rel="stylesheet" href="css/login.css">
 	 <!--Fontawesome CDN-->
-	 <script src="https://kit.fontawesome.com/270fe78054.js" crossorigin="anonymous"></script>
+	 <script src="https://kit.fontawesome.com/270fe78054.js" crossorigin="anonymous"></script>>
 </head><!--/head-->
 
 <body>
+	<!--Modal Box-->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" style="font-size:18px;text-align:center;font-weight:bold;"> Welcome to ZayMinHtet Company Limited <br> ( မင်္ဂလာပါ။ ) <br> ( ဇေမင်းထက်ကုမ္ပဏီမှကြိုဆိုပါတယ်။ )</h5>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>သင်၏ဖုန်းအား unicode font အသုံးပြုထားပါက	<b><a href="{{ route('user.login') }}">ဤနေရာ</a></b> ကိုနှိပ်ပါ။</p>
+						<p>သင္၏ဖုန္းအား zawgyi font အသုံးျပဳထားပါက <b><a href="{{route('user.loginzawgyi')}}">ဤေနရာ</a></b> ကိုႏွိပ္ပါ။</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- end of modal box-->
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
@@ -25,7 +44,8 @@
 					<h4><i><b>(Memberအဖွဲ့ဝင်များအတွက်သာ)</b></i></h4>
 					<hr>
 					<p>ဆက်သွယ်ရန် : +95-9-898155551 ,<br> +95-9-775545655</p>
-					<a href="{{ route('user.loginzawgyi') }}" style="text-align: center;color:white;"><legend>Zawgyi Login</legend></a>
+					<hr>
+					<h3><b>Unicode Form</b></h3>
 				</div>
 				<div class="card-body">
 					@if(count($errors) > 0)
@@ -83,9 +103,10 @@
 			</div>
 		</div>
 	</div>
-  
-	
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 </body>
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
 </html>

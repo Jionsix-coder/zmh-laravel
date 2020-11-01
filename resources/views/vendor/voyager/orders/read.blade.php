@@ -166,14 +166,28 @@
                     <div class="col-md-12" id="printObj" style="border:2px solid black; margin-top:20px;">
                         <div class="row">
                             <div class="col-md-9">
-                                <h2 style="text-align: center"><b>Products</b></h2>
+                                <div style="
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;">
+                                    <img src="/images/logo.jpg" style=" overflow:auto;" width="75px" height="75px" alt="">
+                                    <h3 style="text-align: center; display:inline; padding:10px; font-weight:bolder;">ZAY MIN HTET Co., Ltd</h3>
+                                </div>
+                                <div style="text-align: center">
+                                    <h4>No.(200/206),9th floor,Bet: 134x135 Street,Sat Yone Road,Ma-U-Gone Quarter,Tamwe Township,Yangon,Myanmar.</h4>
+                                    <h4><i class="voyager-phone"> +95-9-898155551, +95-9-775545655</i></h4>
+                                    <h4> Email: zayminhtetcompanylimited@gmail.com</h4>
+                                </div>
+                                <hr>
+                                <h3 style="text-align: center;">INVOICE</h3>
+                                <hr>
                                 <table class="table table-bordered table-dark">
                                     <thead class="thead-dark">
                                       <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Single Price</th>
-                                        <th>Quantity</th>
+                                        <th>ပစ္စည်းဓာတ်ပုံ</th>
+                                        <th>ပစ္စည်းအမည်</th>
+                                        <th>ပစ္စည်းဈေးနူန်း(တစ်ခု)</th>
+                                        <th>ပစ္စည်းအရေအတွက်</th>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -189,14 +203,14 @@
                                   </table>
                             </div>
                             <div class="col-md-3">
-                                <h2 style="text-align: center"><b>Summary</b></h2>
-                                <div class="details" style="border:4px solid black;border-radius:10px;padding:10px">
-                                    <p style="font-weight:bold; font-size:18px;">Total : <b>{{ $order->subtotal }}</b></p>
-                                    <p style="font-weight:bold; font-size:18px;">Discount : <b>{{ $order->discount }}</b></p>
-                                    <p style="font-weight:bold; font-size:18px;{{ $order->discount == 0 ? 'display:none;' : 'display:initial;' }}">New Discount Total Price : <b>{{ $order->total }}</b> </p>
+                                <br>
+                                <div class="details" style="border:4px solid black;border-radius:10px; padding:15px; text-align:right;">
+                                    <p style="font-weight:bold; font-size:18px;">ဈေးနူန်း : {{ $order->subtotal }}</p>
+                                    <p style="font-weight:bold; font-size:18px;">Discount : {{ $order->discount }}</p>
+                                    <p style="font-weight:bold; margin-bottom:10px; font-size:18px;{{ $order->discount == 0 ? 'display:none;' : 'display:initial;' }}">Discountချပြီးစုစုပေါင်းဈေးနူန်း : {{ $order->total }} </p>
                                     <div style="border-top: 1px solid black; margin-bottom:10px;"></div>
-                                    <p style="font-weight:bold; font-size:18px;">Total Price : <b>{{ $order->total }}</b></p>
-                                    <p style="font-weight:bold; font-size:18px;">Balance : <b>{{ $user->MoneyLeft }}</b></p>
+                                    <p style="font-weight:bold; font-size:18px;">စုစုပေါင်းဈေးနူန်း : {{ $order->total }}</p>
+                                    <p style="font-weight:bold; font-size:18px;">လက်ကျန်ငွေ : {{ $user->MoneyLeft }}</p>
                                 </div>
                             </div>
                         </div>
