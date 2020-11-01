@@ -37,7 +37,7 @@ class BasicUserController extends Controller
     public function check(Request $request)
     {
         $number = $request->NationalNumber;
-        $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
+        $user = BasicUser::where('NationalNumber',$number)->first();
         if($user){
             if($user->Name === $request->Name){
                 if($user->PositionDepartment === $request->PositionDepartment){
@@ -91,7 +91,7 @@ class BasicUserController extends Controller
     public function checkzawgyi(Request $request)
     {
         $number = $request->NationalNumber;
-        $user = BasicUserZawgyi::where('NationalNumber',$number)->firstOrFail();
+        $user = BasicUserZawgyi::where('NationalNumber',$number)->first();
         $NationalNumber = MyanFont::zg2uni($user->NationalNumber);
         if($user){
             if($user->Name === $request->Name){

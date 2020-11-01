@@ -18,7 +18,7 @@
 		</ol>
 	</div>
 @endsection
-		<div class=" {{ request()->category !=  null ? 'col-sm-12' : 'col-sm-9' }} padding-right">
+		<div class=" {{ (request()->category || Request::url() === 'https://zayminhtet.com/shop') !=  null ? 'col-sm-12' : 'col-sm-9' }} padding-right">
 			<div class="features_items"><!--features_items-->
 				<h2 class="title text-center">{{ $categoryName }}</h2>
 

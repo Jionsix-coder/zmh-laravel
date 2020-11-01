@@ -1,4 +1,4 @@
-<div class="col-sm-3" style="{{ request()->category !=  null ? 'display:none;' : '' }}">
+<div class="col-sm-3" style="{{ (request()->category || Request::url() === 'https://zayminhtet.com/shop') !=  null ? 'display:none;' : '' }}">
     <div class="left-sidebar">
         <h2>အမျိုးအစားများ</h2>
         <div class="panel-group category-products" id="accordian"><!--category-products-->
