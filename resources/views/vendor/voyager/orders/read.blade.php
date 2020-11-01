@@ -23,6 +23,7 @@
                 </a>
             @endif
         @endcan
+        <button class="print-link btn btn-primary" onclick="jQuery.print('#printObj')"><i class="voyager-book-download"></i>Print</button>   
         @can('browse', $dataTypeContent)
         <a href="{{ route('voyager.'.$dataType->slug.'.index') }}" class="btn btn-warning">
             <span class="glyphicon glyphicon-list"></span>&nbsp;
@@ -44,16 +45,27 @@
                         <h3 class="panel-title">Products</h3>
                     </div>
                     <div class="panel-body" style="border-top:0;">
-                        <ul>
-                            @foreach ($products as $product)
-                                <li style="margin-bottom:10px;">
-                                    <div>Product Id: {{ $product->id }}</div>
-                                    <div>Product Name: {{ $product->name }}</div>
-                                    <div>Product Price: {{ $product->presentPrice() }}</div>
-                                    <div>Product Quantity: {{ $product->pivot->quantity }}</div>
-                                </li>
-                            @endforeach
-                        </ul>
+                        <h2 style="text-align: center"><b>Products</b></h2>
+                                <table class="table table-bordered table-dark">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Single Price</th>
+                                        <th>Quantity</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach ($products as $product)
+                                      <tr>
+                                        <th><img src="{{ productImage($product->image) }}" width="50px" height="50px" alt="" style="margin-left:20px;"></th>
+                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->name }}</p></td>
+                                        <td><p style="font-weight:bold; font-size:18px;">{{ presentPrice($product->price) }}</p></td>
+                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->pivot->quantity }}</p></td>
+                                      </tr>
+                                      @endforeach
+                                    </tbody>
+                                  </table>
                     </div>
                     <!-- form start -->
                     @foreach($dataType->readRows as $row)
@@ -151,7 +163,44 @@
                             <hr style="margin:0;">
                         @endif
                     @endforeach
-
+                    <div class="col-md-12" id="printObj" style="border:2px solid black; margin-top:20px;">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2 style="text-align: center"><b>Products</b></h2>
+                                <table class="table table-bordered table-dark">
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Single Price</th>
+                                        <th>Quantity</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @foreach ($products as $product)
+                                      <tr>
+                                        <th><img src="{{ productImage($product->image) }}" width="50px" height="50px" alt="" style="margin-left:20px;"></th>
+                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->name }}</p></td>
+                                        <td><p style="font-weight:bold; font-size:18px;">{{ presentPrice($product->price) }}</p></td>
+                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->pivot->quantity }}</p></td>
+                                      </tr>
+                                      @endforeach
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <div class="col-md-3">
+                                <h2 style="text-align: center"><b>Summary</b></h2>
+                                <div class="details" style="border:4px solid black;border-radius:10px;padding:10px">
+                                    <p style="font-weight:bold; font-size:18px;">Total : <b>{{ $order->subtotal }}</b></p>
+                                    <p style="font-weight:bold; font-size:18px;">Discount : <b>{{ $order->discount }}</b></p>
+                                    <p style="font-weight:bold; font-size:18px;{{ $order->discount == 0 ? 'display:none;' : 'display:initial;' }}">New Discount Total Price : <b>{{ $order->total }}</b> </p>
+                                    <div style="border-top: 1px solid black; margin-bottom:10px;"></div>
+                                    <p style="font-weight:bold; font-size:18px;">Total Price : <b>{{ $order->total }}</b></p>
+                                    <p style="font-weight:bold; font-size:18px;">Balance : <b>{{ $user->MoneyLeft }}</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,6 +229,38 @@
 @stop
 
 @section('javascript')
+<script src="http://doersguild.github.io/jQuery.print/jQuery.print.js"></script> 
+
+<script type="text/javascript">
+        
+    //<![CDATA[
+        jQuery(function($) { 'use strict';
+        $("#printObj").find('button').on('click', function() {
+            //Print ele4 with custom options
+            $("#printObj").print({
+                //Use Global styles
+                globalStyles : false,
+                //Add link with attrbute media=print
+                mediaPrint : false,
+                //Custom stylesheet
+                stylesheet : "http://fonts.googleapis.com/css?family=Inconsolata",
+                //Print in a hidden iframe
+                iframe : true,
+                //Don't print this
+                noPrintSelector : ".avoid-this",
+                //Add this at top
+                prepend : "Hello World!!!<br/>",
+                //Add this on bottom
+                append : "<span><br/>Buh Bye!</span>",
+                //Log to console when printing is done via a deffered callback
+                deferred: $.Deferred().done(function() { console.log('Printing done', arguments); })
+            });
+        });
+        // Fork https://github.com/sathvikp/jQuery.print for the full list of options
+    });
+    //]]>
+    
+</script>
     @if ($isModelTranslatable)
         <script>
             $(document).ready(function () {
@@ -188,6 +269,7 @@
         </script>
     @endif
     <script>
+
         var deleteFormAction;
         $('.delete').on('click', function (e) {
             var form = $('#delete_form')[0];

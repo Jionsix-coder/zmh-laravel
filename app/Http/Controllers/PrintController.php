@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasicUser;
 use Illuminate\Http\Request;
 
-class ConfirmationController extends Controller
+class PrintController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function prnpriview()
     {
-        $number = $request->NationalNumber;
-        $user = BasicUser::where('NationalNumber',$number)->first();
-
-        return view('thankyou')->with([
-            'user' => $user,
-        ]);
+        
     }
 
     /**

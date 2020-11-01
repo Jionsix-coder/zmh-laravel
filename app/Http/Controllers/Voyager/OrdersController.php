@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Voyager;
 use App\Models\Category;
 use App\Models\CategoryProduct;
 use App\Models\Order;
+use App\Models\BasicUser;
 use App\Models\Product;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -84,9 +85,11 @@ class OrdersController extends VoyagerBaseController
             $view = "voyager::$slug.read";
         }
 
+        $number = session()->get('user')['NationalNumber'];
+        $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
         $order = Order::find($id);
         $products = $order->products;
 
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','products'));
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','products','order','user'));
     }
 }

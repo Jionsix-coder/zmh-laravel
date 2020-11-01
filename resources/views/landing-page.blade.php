@@ -28,7 +28,7 @@
 					
 					<div class="carousel-inner">
 						@foreach ($videos as $key => $video)
-							<div class="item {{$key == 0 ? 'active' : '' }}" id="video">		
+							<div class="item {{$key == 0 ? 'active' : '' }} embed-responsive embed-responsive-4by3" id="video">		
 								<iframe class="video-fluid" src="https://player.vimeo.com/video/{{ $video->video_id }}?autoplay=1" frameborder="0" webkitallowfullscreen allow=autoplay	 mozallowfullscreen allowfullscreen></iframe>
 							</div>	
 						@endforeach					
