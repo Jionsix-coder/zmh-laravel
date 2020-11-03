@@ -23,7 +23,7 @@
                 </a>
             @endif
         @endcan
-        <button class="print-link btn btn-primary" onclick="jQuery.print('#printObj')"><i class="voyager-book-download"></i>Print</button>   
+        <button class="print-link btn btn-primary" onclick="jQuery.print('#printObj')"><i class="voyager-book-download"></i>Print</button>
         @can('browse', $dataTypeContent)
         <a href="{{ route('voyager.'.$dataType->slug.'.index') }}" class="btn btn-warning">
             <span class="glyphicon glyphicon-list"></span>&nbsp;
@@ -40,33 +40,6 @@
             <div class="col-md-12">
 
                 <div class="panel panel-bordered" style="padding-bottom:5px;">
-
-                    <div class="panel-heading" style="padding-bottom:0;">
-                        <h3 class="panel-title">Products</h3>
-                    </div>
-                    <div class="panel-body" style="border-top:0;">
-                        <h2 style="text-align: center"><b>Products</b></h2>
-                                <table class="table table-bordered table-dark">
-                                    <thead class="thead-dark">
-                                      <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Single Price</th>
-                                        <th>Quantity</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      @foreach ($products as $product)
-                                      <tr>
-                                        <th><img src="{{ productImage($product->image) }}" width="50px" height="50px" alt="" style="margin-left:20px;"></th>
-                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->name }}</p></td>
-                                        <td><p style="font-weight:bold; font-size:18px;">{{ presentPrice($product->price) }}</p></td>
-                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->pivot->quantity }}</p></td>
-                                      </tr>
-                                      @endforeach
-                                    </tbody>
-                                  </table>
-                    </div>
                     <!-- form start -->
                     @foreach($dataType->readRows as $row)
                         @php
@@ -163,77 +136,37 @@
                             <hr style="margin:0;">
                         @endif
                     @endforeach
-                    <div class="col-md-12" id="printObj" style="border:2px solid black; margin-top:20px;">
-                        <div class="row">
-                            <div class="col-md-9">
-                                @php
-                                    $date =date('Y-m-d');
-                                @endphp
-                                <h3>Date : {{ $date }}</h3>
-                                <div style="
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;">
-                                    <img src="/images/logo.jpg" style=" overflow:auto;" width="75px" height="75px" alt="">
-                                    <h3 style="text-align: center; display:inline; padding:10px; font-weight:bolder;">ZAY MIN HTET Co., Ltd</h3>
-                                </div>
-                                <div style="text-align: center">
-                                    <h4>No.(200/206),9th floor,Bet: 134x135 Street,Sat Yone Road,Ma-U-Gone Quarter,Tamwe Township,Yangon,Myanmar.</h4>
-                                    <h4><i class="voyager-phone"> +95-9-898155551, +95-9-775545655</i></h4>
-                                    <h4> Email: zayminhtetcompanylimited@gmail.com</h4>
-                                </div>
-                                <hr>
-                                <h3 style="text-align: center;">INVOICE</h3>
-                                <hr>
-                                <h4 style="display: inline-block">ဝယ်ယူသူအမည် : {{ $user->Name }}</h4>
-                                <h4 style="display: inline-block;float:right">ဖုန်းနံပါတ် : +95-{{ $user->PhNumber }}</h4>
-                                <br>
-                                <h4 style="display: inline-block">ရာထူး | ဋ္ဌာန : {{ $user->PositionDepartment }}</h4>
-                                <h4 style="display: inline-block;float:right">လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး : {{ $user->CurrentOffice }}</h4>
-                                <hr>
-                                <table class="table table-bordered table-dark">
-                                    <thead class="thead-dark">
-                                      <tr>
-                                        <th>ပစ္စည်းဓာတ်ပုံ</th>
-                                        <th>ပစ္စည်းအမည်</th>
-                                        <th>ပစ္စည်းဈေးနူန်း(တစ်ခု)</th>
-                                        <th>ပစ္စည်းအရေအတွက်</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      @foreach ($products as $product)
-                                      <tr>
-                                        <th><img src="{{ productImage($product->image) }}" width="50px" height="50px" alt="" style="margin-left:20px;"></th>
-                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->name }}</p></td>
-                                        <td><p style="font-weight:bold; font-size:18px;">{{ presentPrice($product->price) }}</p></td>
-                                        <td><p style="font-weight:bold; font-size:18px;">{{ $product->pivot->quantity }}</p></td>
-                                      </tr>
-                                      @endforeach
-                                    </tbody>
-                                  </table>
+                    <div class="col-md-12" id="printObj" style="margin-top:30px;">
+                        
+                        <div class="col-md-4" style="border: 4px solid black">
+                            <div style="
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;">
+                                <img src="/images/logo.jpg" style=" overflow:auto;" width="75px" height="75px" alt="">
+                                <h3 style="text-align: center; display:inline; padding:10px; font-weight:bolder;">ZAY MIN HTET Co., Ltd</h3>
                             </div>
-                            <div class="col-md-3">
-                                @php
-                                   $discount = $order->discount;
-                                   $balance = $user->MoneyLeft;
-                                   $oneMonthBalance = $order->total + $balance;
-                                @endphp
-                                <br>
-                                <div class="details" style="border:4px solid black;border-radius:10px; padding:15px; text-align:right;">
-                                    <p style="font-weight:bold; font-size:18px;">ဈေးနူန်း : {{ presentPrice(($order->subtotal + $discount)) }}</p>
-                                    <p style="font-weight:bold; font-size:18px;">Discount : {{ presentPrice($order->discount) }}</p>
-                                    <p style="font-weight:bold; font-size:18px;{{ $order->discount == 0 ? 'display:none;' : 'display:initial;' }}">Discountချပြီးစုစုပေါင်းဈေးနူန်း : {{ presentPrice($order->total) }} </p>
-                                    <div style="border-top: 1px solid black; margin:10px 0px;"></div>
-                                    <p style="font-weight:bold; font-size:18px;">စုစုပေါင်းဈေးနူန်း : {{ presentPrice($order->total) }}</p>
-                                    <p style="font-weight:bold; font-size:18px;">လက်ကျန်ငွေ : {{ presentPrice($balance) }}</p>
-                                    <div style="border-top: 1px solid black; margin:10px 0px;"></div>
-                                    <p style="font-weight:bold; font-size:18px;">စုစုပေါင်းပေးရန်လက်ကျန်ငွေ : {{ presentPrice(($order->total + $balance)) }}</p>
-                                    <div style="border-top: 1px solid black; margin:10px 0px;"></div>
-                                    <h3 style="text-align: center; font-weight:bolder;">(1)လချင်းပေးရန်ငွေ : ({{ presentPrice($oneMonthBalance / 4) }})</h3>
-                                </div>
+                            <div style="text-align: center">
+                                <h4>No.(200/206),9th floor,Bet: 134x135 Street,Sat Yone Road,Ma-U-Gone Quarter,Tamwe Township,Yangon,Myanmar.</h4>
+                                <h4><i class="voyager-phone"> +95-9-898155551, +95-9-775545655</i></h4>
+                                <h4> Email: zayminhtetcompanylimited@gmail.com</h4>
                             </div>
+                            <br>
+                            <h3>အမည် : {{ $user->Name }}</h3>
+                            <hr>
+                            <h3>ရာထူး | ဋ္ဌာန : {{ $user->PositionDepartment }}</h3>
+                            <hr>
+                            <h3>မြို့ | တိုင်း | ပြည်နယ် : {{ $user->CityTineState }}</h3>
+                            <hr>
+                            <h3>ကိုယ်ပိုင်အမှတ် : {{ $user->PersonalNumber }}</h3>
+                            <hr>
+                            <h3>မှတ်ပုံတင်အမှတ် : {{ $user->NationalNumber }}</h3>
+                            <hr>
+                            <h3>လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး : {{ $user->CurrentOffice }}</h3>
+                            <hr>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -302,7 +235,6 @@
         </script>
     @endif
     <script>
-
         var deleteFormAction;
         $('.delete').on('click', function (e) {
             var form = $('#delete_form')[0];
