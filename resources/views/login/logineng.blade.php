@@ -65,37 +65,37 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="Name" class="form-control" placeholder="Name" required>				
+							<input type="text" name="Name" class="form-control" placeholder="Name" value="{{ old('Name') }}" required>				
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-badge"></i></span>
 							</div>
-							<input type="text" name="PositionDepartment" class="form-control" placeholder="PositionDepartment" required>
+							<input type="text" name="PositionDepartment" class="form-control" placeholder="PositionDepartment" value="{{ old('PositionDepartment') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-map-marked"></i></span>
 							</div>
-							<input type="text" name="CityTineState" class="form-control" placeholder="City | Tine | State" required>
+							<input type="text" name="CityTineState" class="form-control" placeholder="City | Tine | State" value="{{ old('CityTineState') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 							</div>
-							<input type="text" name="PersonalNumber" class="form-control" placeholder="Personal Number" required>
+							<input type="text" name="PersonalNumber" class="form-control" placeholder="Personal Number" value="{{ old('PersonalNumber') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-card"></i></span>
 							</div>
-							<input type="text" name="NationalNumber" class="form-control" placeholder="National Number" required>
+							<input type="text" name="NationalNumber" class="form-control" placeholder="National Number" value="{{ old('NationalNumber') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-building"></i></span>
 							</div>
-							<input type="text" name="CurrentOffice" class="form-control" placeholder="CurrentOffice" required>
+							<input type="text" name="CurrentOffice" class="form-control" placeholder="CurrentOffice" value="{{ old('CurrentOffice') }}" required>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">

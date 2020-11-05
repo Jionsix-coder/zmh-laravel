@@ -43,7 +43,7 @@ class BasicUserController extends Controller
     public function check(Request $request)
     {
         $number = $request->NationalNumber;
-        $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
+        $user = BasicUser::where('NationalNumber',$number)->first();
         if($user){
             if($user->Name === $request->Name){
                 if($user->PositionDepartment === $request->PositionDepartment){
@@ -58,46 +58,32 @@ class BasicUserController extends Controller
                                     
                                     return redirect()->route('landing.page');
                                 }else{
-                                    return redirect()->route('user.login')->withInput(
-                                        $request->except('NationalNumber')
-                                    )->withErrors('လက်ရှိတာဝန်ထမ်းဆောင်သောရုံးမှားယွင်းနေပါသည်။');
+                                    return back()->withInput()->withErrors('လက်ရှိတာဝန်ထမ်းဆောင်သောရုံးမှားယွင်းနေပါသည်။');
                                 }
                             }else{
-                                return redirect()->route('user.login')->withInput(
-                                    $request->except('NationalNumber')
-                                )->withErrors('မြို့ | တိုင်း | ပြည်နယ်မှားယွင်းနေပါသည်။');
+                                return back()->withInput()->withErrors('မြို့ | တိုင်း | ပြည်နယ်မှားယွင်းနေပါသည်။');
                             }
                         }else{
-                            return redirect()->route('user.login')->withInput(
-                                $request->except('NationalNumber')
-                            )->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
+                            return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
                         }
                     }else{
-                        return redirect()->route('user.login')->withInput(
-                            $request->except('NationalNumber')
-                        )->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+                        return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
                     }
                 }else{
-                    return redirect()->route('user.login')->withInput(
-                        $request->except('NationalNumber')
-                    )->withErrors('ရာထူး | ဋ္ဌာန မှားယွင်းနေပါသည်။');
+                    return back()->withInput()->withErrors('ရာထူး | ဋ္ဌာန မှားယွင်းနေပါသည်။');
                 }
             }else{
-                return redirect()->route('user.login')->withInput(
-                    $request->except('NationalNumber')
-                )->withErrors('အမည်မှားယွင်းနေပါသည်။');
+                return back()->withInput()->withErrors('အမည်မှားယွင်းနေပါသည်။');
             }
         }else{
-            return redirect()->route('user.login')->withInput(
-                $request->except('NationalNumber')
-            )->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+            return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
         }
     }
 
     public function checkzawgyi(Request $request)
     {
         $number = $request->NationalNumber;
-        $user = BasicUserZawgyi::where('NationalNumber',$number)->firstOrFail();
+        $user = BasicUserZawgyi::where('NationalNumber',$number)->first();
         $NationalNumber = MyanFont::zg2uni($user->NationalNumber);
         if($user){
             if($user->Name === $request->Name){
@@ -113,49 +99,35 @@ class BasicUserController extends Controller
                                     
                                     return redirect()->route('landing.page');
                                 }else{
-                                    return redirect()->route('user.loginzawgyi')->withInput(
-                                        $request->except('NationalNumber')
-                                    )->withErrors('လက္ရွိတာဝန္ထမ္းေဆာင္ေသာ႐ုံးမွားယြင္းေနပါသည္။');
+                                    return back()->withInput()->withErrors('လက္ရွိတာဝန္ထမ္းေဆာင္ေသာ႐ုံးမွားယြင္းေနပါသည္။');
                                 }
                             }else{
-                                return redirect()->route('user.loginzawgyi')->withInput(
-                                    $request->except('NationalNumber')
-                                )->withErrors('ၿမိဳ႕ | တိုင္း | ျပည္နယ္မွားယြင္းေနပါသည္။');
+                                return back()->withInput()->withErrors('ၿမိဳ႕ | တိုင္း | ျပည္နယ္မွားယြင္းေနပါသည္။');
                             }
                         }else{
-                            return redirect()->route('user.loginzawgyi')->withInput(
-                                $request->except('NationalNumber')
-                            )->withErrors('ကိုယ္ပိုင္အမွတ္မွားယြင္းေနပါသည္။');
+                            return back()->withInput()->withErrors('ကိုယ္ပိုင္အမွတ္မွားယြင္းေနပါသည္။');
                         }
                     }else{
-                        return redirect()->route('user.loginzawgyi')->withInput(
-                            $request->except('NationalNumber')
-                        )->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
+                        return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
                     }
                 }else{
-                    return redirect()->route('user.loginzawgyi')->withInput(
-                        $request->except('NationalNumber')
-                    )->withErrors('ရာထူး | ႒ာန မွားယြင္းေနပါသည္။');
+                    return back()->withInput()->withErrors('ရာထူး | ႒ာန မွားယြင္းေနပါသည္။');
                 }
             }else{
-                return redirect()->route('user.loginzawgyi')->withInput(
-                    $request->except('NationalNumber')
-                )->withErrors('အမည္မွားယြင္းေနပါသည္။');
+                return back()->withInput()->withErrors('အမည္မွားယြင္းေနပါသည္။');
             }
         }else{
-            return redirect()->route('user.loginzawgyi')->withInput(
-                $request->except('NationalNumber')
-            )->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
+            return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
         }
     }
 
     public function checkenglish(Request $request)
     {
         $number = $request->NationalNumber;
-        $enguser = BasicUserEng::where('NationalNumber',$number)->firstOrFail();
-        $personalNumber = $enguser->PersonalNumber;
-        $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
+        $enguser = BasicUserEng::where('NationalNumber',$number)->first();
         if($enguser){
+            $personalNumber = $enguser->PersonalNumber;
+            $user = BasicUser::where('PersonalNumber',$personalNumber)->first();
             if($enguser->Name === $request->Name){
                 if($enguser->PositionDepartment === $request->PositionDepartment){
                     if($enguser->NationalNumber === $request->NationalNumber){
@@ -171,39 +143,25 @@ class BasicUserController extends Controller
                                     
                                     return redirect()->route('landing.page');
                                 }else{
-                                    return redirect()->route('user.loginenglish')->withInput(
-                                        $request->except('NationalNumber')
-                                    )->withErrors('လက္ရွိတာဝန္ထမ္းေဆာင္ေသာ႐ုံးမွားယြင္းေနပါသည္။');
+                                    return back()->withInput()->withErrors('လက္ရွိတာဝန္ထမ္းေဆာင္ေသာ႐ုံးမွားယြင္းေနပါသည္။');
                                 }
                             }else{
-                                return redirect()->route('user.loginenglish')->withInput(
-                                    $request->except('NationalNumber')
-                                )->withErrors('ၿမိဳ႕ | တိုင္း | ျပည္နယ္မွားယြင္းေနပါသည္။');
+                                return back()->withInput()->withErrors('ၿမိဳ႕ | တိုင္း | ျပည္နယ္မွားယြင္းေနပါသည္။');
                             }
                         }else{
-                            return redirect()->route('user.loginenglish')->withInput(
-                                $request->except('NationalNumber')
-                            )->withErrors('ကိုယ္ပိုင္အမွတ္မွားယြင္းေနပါသည္။');
+                            return back()->withInput()->withErrors('ကိုယ္ပိုင္အမွတ္မွားယြင္းေနပါသည္။');
                         }
                     }else{
-                        return redirect()->route('user.loginenglish')->withInput(
-                            $request->except('NationalNumber')
-                        )->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
+                        return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
                     }
                 }else{
-                    return redirect()->route('user.loginenglish')->withInput(
-                        $request->except('NationalNumber')
-                    )->withErrors('ရာထူး | ႒ာန မွားယြင္းေနပါသည္။');
+                    return back()->withInput()->withErrors('ရာထူး | ႒ာန မွားယြင္းေနပါသည္။');
                 }
             }else{
-                return redirect()->route('user.loginenglish')->withInput(
-                    $request->except('NationalNumber')
-                )->withErrors('အမည္မွားယြင္းေနပါသည္။');
+                return back()->withInput()->withErrors('အမည္မွားယြင္းေနပါသည္။');
             }
         }else{
-            return redirect()->route('user.loginenglish')->withInput(
-                $request->except('NationalNumber')
-            )->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
+            return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
         }
     }
 

@@ -6,13 +6,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Home | E-Shopper</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/price-range.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -27,7 +28,7 @@
 <body>
 	<div class="container text-center">
 		<div class="content-404">
-			<img src="images/404/404.png" class="img-responsive" alt="" />
+			<img src="{{ asset('images/404/404.png') }}" class="img-responsive" alt="" />
 			<h1><b>OPPS!</b> We Couldn’t Find this Page</h1>
 			<p>Uh... So it looks like you brock something. The page you are looking for has up and Vanished.</p>
 			<h2 style="margin-bottom: 50px;"><a href="{{ route('landing.page') }}">Bring me back Home</a></h2>
@@ -35,11 +36,14 @@
 	</div>
 
   
-    <script src="js/jquery.js"></script>
-	<script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('js/price-range.js') }}"></script>
+    <script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('js/lightbox.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
