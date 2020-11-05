@@ -8,7 +8,7 @@
                 <ol>
                     @foreach ($texts as $text)
                         <li>
-                            <p>{{ $text->text }}</p>
+                            <p>{!! $text->text !!}</p>
                         </li>
                     @endforeach
                 </ol>

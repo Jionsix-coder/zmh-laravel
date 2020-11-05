@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasicUser;
 use Illuminate\Http\Request;
 
 class ConfirmationController extends Controller
@@ -12,14 +11,14 @@ class ConfirmationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $number = $request->NationalNumber;
-        $user = BasicUser::where('NationalNumber',$number)->first();
-
-        return view('thankyou')->with([
-            'user' => $user,
-        ]);
+        return view('thankyou');
+        // if(session()->has('success_message')){
+        //     return view('thankyou');
+        // }else{
+        //     return redirect('/home');
+        // }
     }
 
     /**

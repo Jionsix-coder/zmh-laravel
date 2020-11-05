@@ -152,17 +152,17 @@
                                 <h4> Email: zayminhtetcompanylimited@gmail.com</h4>
                             </div>
                             <br>
-                            <h3>အမည် : {{ $user->Name }}</h3>
+                            <h3>အမည် = {{ $user->Name }}</h3>
                             <hr>
-                            <h3>ရာထူး | ဋ္ဌာန : {{ $user->PositionDepartment }}</h3>
+                            <h3>ရာထူး | ဋ္ဌာန = {{ $user->PositionDepartment }}</h3>
                             <hr>
-                            <h3>မြို့ | တိုင်း | ပြည်နယ် : {{ $user->CityTineState }}</h3>
+                            <h3>မြို့ | တိုင်း | ပြည်နယ် = {{ $user->CityTineState }}</h3>
                             <hr>
-                            <h3>ကိုယ်ပိုင်အမှတ် : {{ $user->PersonalNumber }}</h3>
+                            <h3>ကိုယ်ပိုင်အမှတ် = {{ $user->PersonalNumber }}</h3>
                             <hr>
-                            <h3>မှတ်ပုံတင်အမှတ် : {{ $user->NationalNumber }}</h3>
+                            <h3>မှတ်ပုံတင်အမှတ် = {{ $user->NationalNumber }}</h3>
                             <hr>
-                            <h3>လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး : {{ $user->CurrentOffice }}</h3>
+                            <h3>လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး = {{ $user->CurrentOffice }}</h3>
                             <hr>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
                 @if($menu_item->title === 'စည်းမျဉ်းစည်းကမ်း')
                     <ul role="menu" class="sub-menu"> 
                         <li><a href="{{ route('navbar.discipline') }}"><i class="fa fa-book"></i> စည်းမျဉ်းစည်းကမ်း</a></li> 
-                        <li><a href="{{ route('navbar.armakhan') }}"><i class="fa fa-book"></i> အာမခံ</a></li>
+                        <li><a href="{{ route('navbar.armakhan') }}"><i class="fa fa-book"></i> အာမခံစည်းကမ်းချက်</a></li>
                         <li><a href="{{ route('navbar.aboutmember') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်များသိထားရန်</a></li> 
                         <li><a href="{{ route('navbar.newmember') }}"><i class="fa fa-book"></i> အဖွဲ့ဝင်သစ်လိုအပ်ချက်</a></li> 
                     </ul>

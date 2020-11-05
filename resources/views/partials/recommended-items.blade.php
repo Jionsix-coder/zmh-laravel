@@ -1,5 +1,5 @@
 <div class="recommended_items"><!--recommended_items-->
-    <h2 class="title text-center">recommended items</h2>
+    <h2 class="title text-center">အကြံပြုပစ္စည်းများ</h2>
     
     <div class="row">
         <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12">

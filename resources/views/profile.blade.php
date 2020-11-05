@@ -91,7 +91,7 @@
                       <div class="form-group">
                         <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                             <div class="input-group-addon">+95</div>
-                            <input type="text" name="PhNumber" class="form-control" id="inlineFormInputGroup" placeholder="9253888809" required>
+                            <input type="text" name="PhNumber" class="form-control" id="inlineFormInputGroup" placeholder="9012367492" required>
                         </div>
                       </div>
                       <div class="form-group">
