@@ -7,6 +7,7 @@
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +95-9-898155551 <i class="fa fa-phone"></i> +95-9-775545655</a></li>
                         </ul>
+                        <p><b>Your Name :{{ $user->Name }}</b></p>
                         <p class="delivery-p">{ <b>(4)လအရစ်ကျငွေပေးချေရန်</b> }</p>
                     </div>
                 </div>

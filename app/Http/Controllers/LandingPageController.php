@@ -72,7 +72,15 @@ class LandingPageController extends Controller
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
-            $user = BasicUser::where('NationalNumber',$number)->firstOrFail();
+            $user = BasicUser::where('NationalNumber',$number)->first();
+            if($user == null){
+                $number = session()->get('user')['PersonalNumber'];
+                $user = BasicUser::where('PersonalNumber',$number)->first();
+
+                if($user == null){
+                    return redirect()->route('user.login')->withErrors('There is no user!!');
+                }
+            }
 
             return view('profile')->with([
                 'user' => $user,
