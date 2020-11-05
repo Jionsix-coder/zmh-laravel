@@ -84,7 +84,11 @@ class BasicUserController extends Controller
     {
         $number = $request->NationalNumber;
         $user = BasicUserZawgyi::where('NationalNumber',$number)->first();
-        $NationalNumber = MyanFont::zg2uni($user->NationalNumber);
+        if($user){
+            $NationalNumber = MyanFont::zg2uni($user->NationalNumber);
+        }else{
+            return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
+        }
         if($user){
             if($user->Name === $request->Name){
                 if($user->PositionDepartment === $request->PositionDepartment){
@@ -94,6 +98,7 @@ class BasicUserController extends Controller
                                 if($user->CurrentOffice === $request->CurrentOffice){
                                     session()->put('user',[
                                         'NationalNumber' => $NationalNumber,
+                                        'PersonalNumber' => $user->PersonalNumber,
                                         'MoneyLeft' => $user->MoneyLeft,
                                     ]);
                                     
