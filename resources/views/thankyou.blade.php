@@ -32,8 +32,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 thankyou">
-                <h3>Thank You</h3>
-                <a href=""><h4>Go back to home Page</h4></a>
+                <h3>ဝယ်ယူအားပေးမူအတွက်အထူးပင်ကျေးဇူးတင်ရှိပါသည်။</h3>
+                <h3>ကျွန်တော်တို့ဇေမင်းထက်ကုမ္ပဏီမှပြန်လည်အကြောင်းကြားဆက်သွယ်ပေးပါမည်။</h3>
+                <a href="{{ route('landing.page') }}"><h4>ပင်မသို့ပြန်သွားရန်</h4></a>
             </div>
         </div>
     </div>

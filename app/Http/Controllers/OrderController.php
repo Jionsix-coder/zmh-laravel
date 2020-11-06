@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\OrderCode;
 use App\Models\OrderProduct;
 use App\Models\Product;
+use App\Models\CodeOfficer;
+use Illuminate\Support\Str;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -79,37 +81,38 @@ class OrderController extends Controller
                     $Quantity[$key] = $product->pivot->quantity;
                 endforeach;
 
+                //getting codeofficer ph number
+                $PersonalNumber = $user->PersonalNumber;
+                $code =Str::before($PersonalNumber,'-');
+                $officer= CodeOfficer::where('officecode',$code)->first();
+                //dd($officer);
+                $date =date('d-m-y');
+
+                // end of getting coeofficer ph number
+
                 $ProductName = implode(" , ",$Name);
                 $ProductPrice = implode(" , ",$Price);
                 $ProductQuantity = implode(" , ",$Quantity);
                 // dd($totalQuantity);
+// Start Of Sending Customer , Code Officer & Company //
 
-                //sending order sms
+                //sending order sms to customer
                 //SMSPoh Authorization Token
                 $token = setting('site.smspoh_token');
 
                 // Prepare data for POST request
                 $data = [
                     "to"      => "0"."$user->PhNumber",
-                    "message" => "Unicode(ယူနီကုဒ်): 
-သင့်အော်ဒါကိုဇေမင်းထက်ကုမ္ပဏီမှလက်ခံရရှိပါသည်။ သင်တင်လိုက်သောအော်ဒါများမှာ- 
-( အော်ဒါနံပါတ် : $OrderId , 
-ဝယ်ယူသည့်ပစ္စည်းအမည် :$ProductName , 
-ပစ္စည်းအရေအတွက် : $ProductQuantity , 
-ပစ္စည်းဈေးနူန်း : $ProductPrice , 
-စုစုပေါင်းအရေအတွက် : $totalQuantity , 
-စုစုပေါင်းကျသင့်ငွေ : $totalPrice ) 
-ဝယ်ယူသည့်အတွက်အထူးပင်ကျေးဇူးတင်ရှိပါသည်။
-Zawgyi(ေဇာ္ဂ်ီ):
-သင့္ေအာ္ဒါကိုေဇမင္းထက္ကုကုမၸဏီမွလက္ခံရရွိပါသည္။ သင္တင္လိုက္ေသာေအာ္ဒါမ်ားမွာ- 
-(  ေအာ္ဒါနံပါတ္ : $OrderId , 
-ဝယ္ယူသည့္ပစၥည္းအမည္ :$ProductName , 
-ပစၥည္းအေရအတြက္ : $ProductQuantity ,
-ပစၥည္းေဈးႏူန္း : $ProductPrice , 
-စုစုေပါင္းအေရအတြက္ : $totalQuantity , 
-စုစုေပါင္းက်သင့္ေငြ : $totalPrice ) 
-ဝယ္ယူသည့္အတြက္အထူးပင္ေက်းဇူးတင္ရွိပါသည္။ ",
-                    "sender"  => "Zay Min Htet Co.Ltd"
+                    "message" => "Zay Min Htet Co.,Ltd
+Your order is received by Zay Min Htet Co.,Ltd. Your orders are:
+(Order Number: $OrderId,
+Product Name: $ProductName,
+Item Quantity: $ProductQuantity,
+Price: $ProductPrice,
+Total Quantity: $totalQuantity,
+Total Amount: $totalPrice)
+Thank you very much for your purchase.",
+                    "sender"  => "Zay Min Htet Co.,Ltd"
                 ];
 
 
@@ -125,30 +128,53 @@ Zawgyi(ေဇာ္ဂ်ီ):
                 curl_exec($ch);
                 // 
 
-                //sending order sms to Company
+                //sending order sms to CodeOfficer
+                //SMSPoh Authorization Token
+                $token = setting('site.smspoh_token');
+
+                // Prepare data for POST request
+                $data = [
+                    "to"      => "0"."$officer->phnumber",
+                    "message" => "Zay Min Htet Co.,Ltd
+(Mingalarpar)
+We have purchased a total amount ($totalPrice) at Zay Min Htet Co.,Ltd.
+Date - ($date).
+Customer Name - ($user->Name),
+Customer Ph No. - (0$user->PhNumber),
+Customer Position - ($user->PositionDepartment)",
+                    "sender"  => "Zay Min Htet Co.,Ltd"
+                ];
+
+
+                $ch = curl_init("https://smspoh.com/api/v2/send");
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                        'Authorization: Bearer ' . $token,
+                        'Content-Type: application/json'
+                    ]);
+
+                curl_exec($ch);
+                // 
+
+                //sending order sms to ZMH Company
                 //SMSPoh Authorization Token
                 $token = setting('site.smspoh_token');
 
                 // Prepare data for POST request
                 $companyData = [
-                    "to"      => "09898155551,09775545655",
-                    "message" => "Unicode(ယူနီကုဒ်): 
-အော်ဒါလက်ခံရောက်ရှိပါသည်။
-( အော်ဒါနံပါတ် : $OrderId , 
-ဝယ်ယူသူအမည် : $user->Name , 
-ဝယ်ယူသူဖုန်းနံပါတ် : $user->PhNumber , 
-တာဝန်ထမ်းဆောင်သောရုံး : $user->CurrentOffice , 
-Orderပစ္စည်းအမည် : $ProductName , 
-အရေအတွက် : $ProductQuantity ) 
-Zawgyi(ေဇာ္ဂ်ီ):
-ေအာ္ဒါလက္ခံေရာက္႐ွိပါသည္။
-(  ေအာ္ဒါနံပါတ္ : $OrderId , 
-ဝယ္ယူသူအမည္ :$user->Name , 
-ဝယ္ယူသူဖုန္းနံပါတ္ : $user->PhNumber ,
-တာဝန္ထမ္းေဆာင္ေသာ႐ုံး : $user->CurrentOffice , 
-Orderပစၥည္းအမည္ : $ProductName , 
-အေရအတြက္ : $ProductQuantity )",
-                    "sender"  => "Zay Min Htet Co.Ltd"
+                    "to"      => "09775545655",
+                    "message" => "Zay Min Htet Co.,Ltd
+Order Received!!!
+(Order Id: $OrderId,
+Customer Name: $user->Name,
+Customer Ph No. : 0$user->PhNumber,
+Office: $user->CurrentOffice,
+Product Name: $ProductName,
+Quantity: $ProductQuantity
+Total Amount : $totalPrice)",
+                    "sender"  => "Zay Min Htet Co.,Ltd"
                 ];
 
 
@@ -162,6 +188,41 @@ Orderပစၥည္းအမည္ : $ProductName ,
                     ]);
 
                 curl_exec($ch);
+                //
+
+                //sending order sms to ZMH Company
+                //SMSPoh Authorization Token
+                $token = setting('site.smspoh_token');
+
+                // Prepare data for POST request
+                $companyData = [
+                    "to"      => "09253888809",
+                    "message" => "Zay Min Htet Co.,Ltd
+Order Received!!!
+(Order Id: $OrderId,
+Customer Name: $user->Name,
+Customer Ph No. : 0$user->PhNumber,
+Office: $user->CurrentOffice,
+Product Name: $ProductName,
+Quantity: $ProductQuantity,
+Total Amount : $totalPrice)",
+                    "sender"  => "Zay Min Htet Co.,Ltd"
+                ];
+
+
+                $ch = curl_init("https://smspoh.com/api/v2/send");
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($companyData));
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                        'Authorization: Bearer ' . $token,
+                        'Content-Type: application/json'
+                    ]);
+
+                curl_exec($ch);
+                //
+
+//End Of Sending SMS To Customer, Code Officer & Company//
 
                 //Updating user Moneyleft
                 $user->MoneyLeft = $user->getOriginal('MoneyLeft') + $this->getNumbers()->get('newTotal');

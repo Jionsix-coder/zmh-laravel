@@ -13,7 +13,7 @@
 			<div class="col-sm-6">
 				<div class="item">
 					<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
-					<h4 style="line-height: 40px;font-weight:bold;">အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး.</h4>
+					<h4 style="line-height: 40px;font-weight:bold; font-size:14px;">အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး.</h4>
 					<h4> +95-9-898155551,+95-9-775545655</h4>
 				</div>
 				<br>
@@ -58,7 +58,7 @@
 			</div>
 			<div class="modal-body">
 				<p>Memberများအနေဖြင့်သိရှိစေရန်များကိုဖတ်ကြားပေးပါရန်။<br>
-				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="{{ route('navbar.newmember') }}" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;">ဒီကိုနှိပ်ပါ။</a></p>
+				ဖတ်ကြားရန်နှိပ်ရန် <i class="fa fa-lg fa-angle-double-right"></i> <a href="{{ route('navbar.aboutmember') }}" style="font-size: 18px;font-weight:bold; color:#808000;padding:5px;">ဒီကိုနှိပ်ပါ။</a></p>
 				<hr>
 				<h3 style="text-align: center;"> <b>(တာဝန်ခံကုဒ်တောင်းရမည့်သူ)</b></h3>
 				<hr>
