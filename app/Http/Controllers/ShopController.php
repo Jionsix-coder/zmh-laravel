@@ -86,6 +86,7 @@ class ShopController extends Controller
             $product = Product::where('slug',$slug)->firstOrFail();
             $categories = Category::all();
             $categoriesForProduct = $product->categories()->get();
+            $CategoryName = '';
             foreach($categoriesForProduct as $key => $category):
 
                 $Name[$key] = $category->name;
@@ -147,6 +148,7 @@ class ShopController extends Controller
             $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
             $products = Product::where('name', 'like' , "%$query%")
                                  ->orWhere('details' ,'like' ,"%$query%")
+                                 ->orWhere('description' ,'like' ,"%$query%")
                                  ->paginate(16);
     
             return view('search-results')->with([

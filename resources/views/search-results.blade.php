@@ -1,5 +1,5 @@
 
-@extends('layout')
+@extends('layout2')
 
 @section('title', 'Search results')
 
@@ -9,7 +9,7 @@
 	<div class="breadcrumbs">
 		<ol class="breadcrumb">
 		<li><a href="/home">ပင်မ</a></li>
-		<li style="font-weight: bolder;">Search Result</li>
+		<li style="font-weight: bolder; padding-left:10px;">{{ request()->input('query') }} ({{ $products->total() }})</li>
 		</ol>
 	</div>
 @endsection
@@ -31,7 +31,7 @@
                         </ul>
                     </div>
                 @endif
-                <h3>{{ $products->total() }} result(s) for '{{ request()->input('query') }}'</h3>
+                <h4 style="text-align: center;margin:10px;padding:5px;border:4px double black;">{{ $products->total() }} result(s) for '{{ request()->input('query') }}'</h4>
 
 				@foreach ($products as $product)
                 <div class="col-md-3 col-xs-6 col-sm-4">
@@ -40,13 +40,21 @@
 							<div class="single-products">
 								<div class="productinfo text-center">
 									<div class="productinfo-img">
-									    <img src="{{ productImage($product->image) }}" alt="" />
+										<img src="{{ productImage($product->image) }}" alt="" class="img-fluid" />
 									</div>
 									<h2>{{ $product->presentPrice() }}</h2>
 									<p><a href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a></p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-cart"></i>ခြင်းထဲထည့်ရန်</a>
+	
+									<form action="{{ route('cart.store') }}" method="POST">
+									   @csrf
+									   <input type="hidden" name="id" value="{{ $product->id }}">
+									   <input type="hidden" name="name" value="{{ $product->name }}">
+									   <input type="hidden" name="price" value="{{ $product->price }}">
+									   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+									</form>
+									
 								</div>
-							</div>
+						    </div>
 						</div>
 					</a> 
 				</div>

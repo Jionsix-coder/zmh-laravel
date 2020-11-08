@@ -7,6 +7,7 @@ use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SaveCartController;
 use App\Http\Controllers\ShopController;
 use Gloudemans\Shoppingcart\Facades\Cart;

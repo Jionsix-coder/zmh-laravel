@@ -101,7 +101,7 @@
 								   <input type="hidden" name="id" value="{{ $product->id }}">
 								   <input type="hidden" name="name" value="{{ $product->name }}">
 								   <input type="hidden" name="price" value="{{ $product->price }}">
-								   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg  fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
+								   <button type="submit" class="btn btn-default add-to-cart"><i class="fa fa-lg fa-shopping-basket"></i>ခြင်းထဲထည့်ရန်</button>	
 								</form>
 								
 							</div>

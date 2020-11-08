@@ -128,12 +128,6 @@
 			
 			<div class="row">
 				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li style="color: red; font-size:16px;">လက်ကျန်ငွေ : <span>{{ $user->MoneyLeft }}</span></li>
-							<li style="color: black; font-size:16px;">တစ်လချင်းပေးရမည့်ငွေ : <span>{{ presentPrice($newTotal / 4) }}</span></li>
-						</ul>
-					</div>
 					@if (! session()->has('coupon'))
 					<div class="total_area">
 						<form action="{{ route('coupon.store') }}" method="POST">
@@ -166,10 +160,12 @@
 							<div class="line"></div>
 							<li>အရေအတွက်စုစုပေါင်း<span>{{ Cart::count() > 0 ? Cart::count() : 0 }} </span></li>
 							<li>စုစုပေါင်း <span>{{ presentPrice($newTotal) }}</span></li>
+							<li style="color: red;">လက်ကျန်ငွေ : <span>{{ $user->MoneyLeft }}</span></li>
+							<li style="color: black; font-size:13px;">တစ်လချင်းပေးရမည့်ငွေ : <span>{{ presentPrice($newTotal / 4) }}</span></li>
 							<form action="{{ route('order.store') }}" method="POST">
 							@csrf
-							   <li class="code-box">တာဝန်ခံကုဒ်<span><input type="text" name="ordercode" placeholder="တာဝန်ခံကုဒ်ရိုက်ထည့်ရန်နေရာ" required></span></li>
-						    </ul>
+							<li class="code-box">တာဝန်ခံကုဒ်<span><input type="text" name="ordercode" placeholder="တာဝန်ခံကုဒ်ရိုက်ထည့်ရန်နေရာ" required></span></li>
+						</ul>
 						       <button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
 						    </form>
 					</div>

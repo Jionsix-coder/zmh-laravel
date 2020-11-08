@@ -1158,7 +1158,7 @@ ul.sub-menu{
 }
 
 .code-box input{
-	width:150px;
+	width:120px;
 }
 
 
@@ -1371,7 +1371,7 @@ ul.sub-menu{
 	}
 
 	.code-box input{
-		width:160px;
+		width:150px;
 	}
 
 	.title-popular{
@@ -1494,6 +1494,10 @@ ul.sub-menu{
 
 @media(min-width:300px ) and (max-width:360px)
 {
+	.code-box input{
+		width:110px;
+	}
+
 	#promotions-h2{
 		margin: 0 !important;
 	}

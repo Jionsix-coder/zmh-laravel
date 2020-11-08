@@ -85,8 +85,8 @@ class OrdersController extends VoyagerBaseController
             $view = "voyager::$slug.read";
         }
 
-        $user = BasicUser::find($id);
         $order = Order::find($id);
+        $user = BasicUser::find($order->user_id);
         $products = $order->products;
 
         return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable', 'isSoftDeleted','products','order','user'));
