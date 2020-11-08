@@ -14,7 +14,7 @@
 				<div class="item">
 					<h1><span>ZAY MIN HTET</span> Co.Ltd</h1>
 					<h4 style="line-height: 40px;font-weight:bold; font-size:14px;">အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး.</h4>
-					<h4 style="font-size:12px;font-weight:bold;"> +95-9-898155551,+95-9-775545655</h4>
+					<h4 style="font-size:14px;font-weight:bold;"> +95-9-898155551,+95-9-775545655</h4>
 				</div>
 				<br>
 			</div>
