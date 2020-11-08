@@ -144,7 +144,6 @@
 					<div class="total_area">
 						
 						<ul>
-							<li>စုစုပေါင်းခွဲ <span>{{ presentPrice(Cart::subtotal()) }}</span></li>
 							@if (session()->has('coupon'))
 								<li>Discount ({{ session()->get('coupon')['name'] }}) :
 									<form action="{{ route('coupon.destroy') }}" method="POST" style="display: inline">
@@ -155,7 +154,7 @@
 									<span>- {{ presentPrice($discount) }} </span>
 								</li>
 								<div class="line"></div>
-							    <li>စုစုပေါင်းခွဲ New<span>{{ presentPrice($newSubtotal) }}</span></li>
+							    <li>စုစုပေါင်း New<span>{{ presentPrice($newSubtotal) }}</span></li>
 							@endif
 							<div class="line"></div>
 							<li>အရေအတွက်စုစုပေါင်း<span>{{ Cart::count() > 0 ? Cart::count() : 0 }} </span></li>
