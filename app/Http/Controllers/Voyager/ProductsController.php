@@ -371,11 +371,16 @@ class ProductsController extends VoyagerBaseController
 
             $access_token = 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD';
         try {
+
+            $description = nl2br($request->description);
+            $description = strip_tags($request->description);
+            $description = str_replace("&nbsp;"," ",$description);
+
             $data = [
                 'message' => "
 $request->name
 
-$request->description",
+$description",
                 'source' => $fb->fileToUpload($request->image == "null" ? $data->image : $request->image),
             ];
 
