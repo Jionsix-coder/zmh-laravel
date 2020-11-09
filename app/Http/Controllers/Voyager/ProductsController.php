@@ -354,60 +354,6 @@ class ProductsController extends VoyagerBaseController
             $redirect = redirect()->back();
         }
 
-        dd($request);
-
-        //Integrating fb auto post
-
-        $fb = new \Facebook\Facebook([
-            'app_id' => '429137728122335',
-            'app_secret' => 'a7d08d2b99f53898d4792e34b93c47f8',
-            'default_graph_version' => 'v8.0',
-            'default_access_token' => 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD', // optional
-          ]);
-
-          $access_token = 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD';
-        try {
-            $ProductName = $request->name;
-            $ProductDetails = $request->details;
-
-            $uploadimage1 = $fb->post('/575814903055402/photos',['published' => 'false', 'source' => $fb->fileToUpload('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')],$access_token);
-            $uploadimage2 = $fb->post('/575814903055402/photos',['published' => 'false', 'source' => $fb->fileToUpload('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')],$access_token);
-            $uploadimage3 = $fb->post('/575814903055402/photos',['published' => 'false', 'source' => $fb->fileToUpload('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')],$access_token);
-
-            $uploadimage1 = $uploadimage1->getGraphNode()->asArray();
-            $uploadimage2 = $uploadimage2->getGraphNode()->asArray();
-            $uploadimage3 = $uploadimage3->getGraphNode()->asArray();
-
-            $photo1 = $uploadimage1['id'];
-            $photo2 = $uploadimage2['id'];
-            $photo3 = $uploadimage3['id'];
-            // Returns a `FacebookFacebookResponse` object
-            // $response = $fb->post(
-            //   '/575814903055402/feed',
-            //   array (
-            //     'message' => 'Hello From App',
-            //     'access_token' => 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD',
-            //     'picture' => $picture,
-            //   ),
-            // );
-            $response = $fb->post('/575814903055402/feed',[
-                'attached_media[0]' => '{"media_fbid":"'.$photo1.'"}',
-                'attached_media[1]' => '{"media_fbid":"'.$photo2.'"}',
-                'attached_media[2]' => '{"media_fbid":"'.$photo3.'"}',
-                'message' => "
-                Product Name : $ProductName
-                Product Details : $ProductDetails"
-            ],$access_token);
-          } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-          } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-          }
-          $graphNode = $response->getGraphNode();
-
-
         return $redirect->with([
             'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
@@ -457,6 +403,39 @@ class ProductsController extends VoyagerBaseController
 
         if (view()->exists("voyager::$slug.edit-add")) {
             $view = "voyager::$slug.edit-add";
+        }
+
+        //Integrating fb auto post
+        if($request->fbpost == "on"){
+
+        $fb = new \Facebook\Facebook([
+            'app_id' => '429137728122335',
+            'app_secret' => 'a7d08d2b99f53898d4792e34b93c47f8',
+            'default_graph_version' => 'v8.0',
+            'default_access_token' => 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD', // optional
+            ]);
+
+            $access_token = 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD';
+        try {
+            $data = [
+                'message' => "
+$request->name
+
+$request->description",
+                'source' => $fb->fileToUpload($request->image),
+            ];
+
+            $response = $fb->post('/575814903055402/photos',$data,$access_token);
+
+
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+            }
+            $response->getGraphNode();
         }
 
         $allCategories = Category::all();
@@ -518,3 +497,35 @@ class ProductsController extends VoyagerBaseController
         }
     }
 }
+
+// //
+           // $uploadimage1 = $fb->post('/575814903055402/photos',['published' => 'false', 'source' => $fb->fileToUpload('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')],$access_token);
+            // $uploadimage2 = $fb->post('/575814903055402/photos',['published' => 'false', 'source' => $fb->fileToUpload('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')],$access_token);
+            // $uploadimage3 = $fb->post('/575814903055402/photos',['published' => 'false', 'source' => $fb->fileToUpload('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')],$access_token);
+
+            // $uploadimage1 = $uploadimage1->getGraphNode()->asArray();
+            // $uploadimage2 = $uploadimage2->getGraphNode()->asArray();
+            // $uploadimage3 = $uploadimage3->getGraphNode()->asArray();
+
+            // $photo1 = $uploadimage1['id'];
+            // $photo2 = $uploadimage2['id'];
+            // $photo3 = $uploadimage3['id'];
+            // // Returns a `FacebookFacebookResponse` object
+            // // $response = $fb->post(
+            // //   '/575814903055402/feed',
+            // //   array (
+            // //     'message' => 'Hello From App',
+            // //     'access_token' => 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD',
+            // //     'picture' => $picture,
+            // //   ),
+            // // );
+            // $response = $fb->post('/575814903055402/feed',[
+            //     'attached_media[0]' => '{"media_fbid":"'.$photo1.'"}',
+            //     'attached_media[1]' => '{"media_fbid":"'.$photo2.'"}',
+            //     'attached_media[2]' => '{"media_fbid":"'.$photo3.'"}',
+            //     'message' => "
+            //     Product Name : $ProductName
+            //     Product Details : $ProductDetails"
+            // ],$access_token);
+
+////
