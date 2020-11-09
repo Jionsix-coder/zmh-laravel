@@ -129,11 +129,11 @@ $('#video').on('ended', function () {
   $('.carousel').carousel('next');
 });
 
-$('video').on('play', function (e) {
+$('#video').on('play', function (e) {
 	$("#video").carousel('pause');
 });
 
-$('video').on('stop pause ended', function (e) {
+$('#video').on('stop pause ended', function (e) {
 	$("#video").carousel();
 });
 
