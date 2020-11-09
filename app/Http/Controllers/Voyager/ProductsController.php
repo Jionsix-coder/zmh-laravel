@@ -354,6 +354,39 @@ class ProductsController extends VoyagerBaseController
             $redirect = redirect()->back();
         }
 
+        //Integrating fb auto post
+        if($request->fbpost == "on"){
+
+        $fb = new \Facebook\Facebook([
+            'app_id' => '429137728122335',
+            'app_secret' => 'a7d08d2b99f53898d4792e34b93c47f8',
+            'default_graph_version' => 'v8.0',
+            'default_access_token' => 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD', // optional
+            ]);
+
+            $access_token = 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD';
+        try {
+            $data = [
+                'message' => "
+$request->name
+
+$request->description",
+                'source' => $fb->fileToUpload($request->image),
+            ];
+
+            $response = $fb->post('/575814903055402/photos',$data,$access_token);
+
+
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+            }
+            $response->getGraphNode();
+        }
+
         return $redirect->with([
             'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",
             'alert-type' => 'success',
