@@ -8,6 +8,7 @@ use App\Models\Product;
 use Exception;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Database\Schema\SchemaManager;
@@ -357,6 +358,10 @@ class ProductsController extends VoyagerBaseController
         //Integrating fb auto post
         if($request->fbpost == "on"){
 
+        $request->validate([
+            'image' => 'required|image'
+        ]); 
+
         $fb = new \Facebook\Facebook([
             'app_id' => '429137728122335',
             'app_secret' => 'a7d08d2b99f53898d4792e34b93c47f8',
@@ -371,7 +376,7 @@ class ProductsController extends VoyagerBaseController
 $request->name
 
 $request->description",
-                'source' => $fb->fileToUpload($request->image),
+                'source' => $fb->fileToUpload($request->image == "null" ? $data->image : $request->image),
             ];
 
             $response = $fb->post('/575814903055402/photos',$data,$access_token);
@@ -440,6 +445,8 @@ $request->description",
 
         //Integrating fb auto post
         if($request->fbpost == "on"){
+
+        
 
         $fb = new \Facebook\Facebook([
             'app_id' => '429137728122335',
