@@ -11,7 +11,7 @@ class Order extends Model
     protected $fillable = [
         'user_id','account_name','position_department','city_tine_state','personal_number',
         'national_number','current_office','discount','discount_code','ordercode','subtotal',
-        'total','error',
+        'total','colour','error',
     ];
 
     public function basicuser()

@@ -29,7 +29,8 @@
 
 <body>
 	@include('partials.header')
-
+<form action="{{ route('order.store') }}" method="POST">
+@csrf
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -67,12 +68,17 @@
 							<td class="saveCart">လှည်းသို့ထှည့်ရန်</td>
 							<td class="price">စျေးနှုန်း</td>
 							<td class="quantity">အရေအတွက်</td>
+							<td class="colour">colour</td>
 							<td class="total">စုစုပေါင်း</td>
 							<td></td>
 						</tr>
 					</thead>
 					<tbody>
 				@foreach (Cart::content() as $item)
+				@php
+					$colour = $item->model->colour;
+					$product_colour = explode(',',$colour);
+				@endphp
 						<tr>
 							<td class="cart_product">
 								<a href=""><img src="{{ productImage($item->model->image)}}" alt=""></a>
@@ -97,6 +103,13 @@
 									<option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
 									@endfor
 							    </select>
+							</td>
+							<td class="cart_colour">
+								<select name="colour" id="">
+									@foreach ($product_colour as $colour)
+									    <option value="{{ $colour }}">{{ $colour }}</option>
+									@endforeach
+								</select>
 							</td>
 							<td class="cart_total">
 								<p class="cart_total_price">{{ presentPrice($item->subtotal()) }} ( -{{ $item->model->discountPercent > 0 ? $item->model->discountPercent : '0'  }}%)</p>
@@ -161,17 +174,15 @@
 							<li>စုစုပေါင်း <span>{{ presentPrice($newTotal) }}</span></li>
 							<li style="color: red;">လက်ကျန်ငွေ : <span>{{ $user->MoneyLeft }}</span></li>
 							<li style="color: black; font-size:13px;">တစ်လချင်းပေးရမည့်ငွေ : <span>{{ presentPrice($newTotal / 4) }}</span></li>
-							<form action="{{ route('order.store') }}" method="POST">
-							@csrf
 							<li class="code-box">တာဝန်ခံကုဒ်<span><input type="text" name="ordercode" placeholder="တာဝန်ခံကုဒ်ရိုက်ထည့်ရန်နေရာ" required></span></li>
 						</ul>
-						       <button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
-						    </form>
+						    <button class="btn btn-default update" type="submit">အော်ဒါတင်ရန်</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section><!--/#do_action-->
+</form>
 
 
    @include('partials.footer')

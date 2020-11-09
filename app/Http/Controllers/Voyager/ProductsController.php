@@ -467,6 +467,7 @@ $description",
 $request->name
 
 $request->description",
+                'link' => "https://play.google.com/store/apps/details?id=com.zayminhtet.coltd.user",
                 'source' => $fb->fileToUpload($request->image),
             ];
 

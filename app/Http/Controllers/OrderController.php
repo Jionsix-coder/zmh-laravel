@@ -304,6 +304,7 @@ Total Amount : $totalPrice)",
             'discount_code' => $this->getNumbers()->get('discount_code'),
             'subtotal' => $this->getNumbers()->get('newSubtotal'),
             'total' => $this->getNumbers()->get('newTotal'),
+            'colour' => request()->colour,
             'error'=> $error,
 
         ]);

@@ -20,7 +20,6 @@ class CreateProductsTable extends Migration
             $table->string('details')->nullable();
             $table->integer('price');
             $table->text('description')->nullable();
-            $table->string('colour')->nullable();
             $table->boolean('featured')->default(false);
             $table->boolean('promotions')->default(false);
             $table->integer('discountPercent')->nullable();
