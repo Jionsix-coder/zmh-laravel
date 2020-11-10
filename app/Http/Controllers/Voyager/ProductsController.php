@@ -380,8 +380,10 @@ class ProductsController extends VoyagerBaseController
                 'message' => "
 $request->name
 
-$description",
-                'source' => $fb->fileToUpload($request->image == "null" ? $data->image : $request->image),
+$description
+
+https://play.google.com/store/apps/details?id=com.zayminhtet.coltd.user",
+                'source' => $fb->fileToUpload($request->image),
             ];
 
             $response = $fb->post('/575814903055402/photos',$data,$access_token);
@@ -451,7 +453,9 @@ $description",
         //Integrating fb auto post
         if($request->fbpost == "on"){
 
-        
+        $request->validate([
+            'image' => 'required|image'
+        ]); 
 
         $fb = new \Facebook\Facebook([
             'app_id' => '429137728122335',
@@ -462,14 +466,20 @@ $description",
 
             $access_token = 'EAAGGTGnYLd8BAAu6SDZCTkjxvzZClgwBRH815ekZAlTvcTbdZAAeD1Qr7OZAZBagUgqZBcKyjxyTcDJmKXbbTcR5bfT3sIjsYzfZAVdyhAdOKF2il4RjItgxGxEupFU2w4MvGP9w2IHetnCGM4NljcVYiobA8RiVwbu2lH9ovAbVBgZDZD';
         try {
-            $data = [
+
+            $description = nl2br($request->description);
+            $description = strip_tags($request->description);
+            $description = str_replace("&nbsp;"," ",$description);
+
+            $data = array(
                 'message' => "
 $request->name
 
-$request->description",
-                'link' => "https://play.google.com/store/apps/details?id=com.zayminhtet.coltd.user",
+$description
+
+https://play.google.com/store/apps/details?id=com.zayminhtet.coltd.user",
                 'source' => $fb->fileToUpload($request->image),
-            ];
+            );
 
             $response = $fb->post('/575814903055402/photos',$data,$access_token);
 
