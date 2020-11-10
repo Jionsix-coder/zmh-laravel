@@ -22,17 +22,7 @@ class BasicUserController extends Controller
      */
     public function index()
     {
-        return view('login.login');
-    }
-
-    public function indexzawgyi()
-    {
-        return view('login.loginzawgyi');
-    }
-
-    public function indexenglish()
-    {
-        return view('login.logineng');
+        return view('login');
     }
 
     /**
@@ -43,7 +33,7 @@ class BasicUserController extends Controller
     public function check(Request $request)
     {
         $number = $request->NationalNumber;
-        $user = BasicUser::where('NationalNumber',$number)->first();
+        $user = BasicUserEng::where('NationalNumber',$number)->first();
         if($user){
             if($user->Name === $request->Name){
                 if($user->PositionDepartment === $request->PositionDepartment){
@@ -79,97 +69,6 @@ class BasicUserController extends Controller
             return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
         }
     }
-
-    public function checkzawgyi(Request $request)
-    {
-        $number = $request->NationalNumber;
-        $user = BasicUserZawgyi::where('NationalNumber',$number)->first();
-        if($user){
-            $NationalNumber = MyanFont::zg2uni($user->NationalNumber);
-        }else{
-            return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
-        }
-        if($user){
-            if($user->Name === $request->Name){
-                if($user->PositionDepartment === $request->PositionDepartment){
-                    if($user->NationalNumber === $request->NationalNumber){
-                        if($user->PersonalNumber === $request->PersonalNumber){
-                            if($user->CityTineState === $request->CityTineState){
-                                if($user->CurrentOffice === $request->CurrentOffice){
-                                    session()->put('user',[
-                                        'NationalNumber' => $NationalNumber,
-                                        'PersonalNumber' => $user->PersonalNumber,
-                                        'MoneyLeft' => $user->MoneyLeft,
-                                    ]);
-                                    
-                                    return redirect()->route('landing.page');
-                                }else{
-                                    return back()->withInput()->withErrors('လက္ရွိတာဝန္ထမ္းေဆာင္ေသာ႐ုံးမွားယြင္းေနပါသည္။');
-                                }
-                            }else{
-                                return back()->withInput()->withErrors('ၿမိဳ႕ | တိုင္း | ျပည္နယ္မွားယြင္းေနပါသည္။');
-                            }
-                        }else{
-                            return back()->withInput()->withErrors('ကိုယ္ပိုင္အမွတ္မွားယြင္းေနပါသည္။');
-                        }
-                    }else{
-                        return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
-                    }
-                }else{
-                    return back()->withInput()->withErrors('ရာထူး | ႒ာန မွားယြင္းေနပါသည္။');
-                }
-            }else{
-                return back()->withInput()->withErrors('အမည္မွားယြင္းေနပါသည္။');
-            }
-        }else{
-            return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
-        }
-    }
-
-    public function checkenglish(Request $request)
-    {
-        $number = $request->NationalNumber;
-        $enguser = BasicUserEng::where('NationalNumber',$number)->first();
-        if($enguser){
-            $personalNumber = $enguser->PersonalNumber;
-            $user = BasicUser::where('PersonalNumber',$personalNumber)->first();
-            if($enguser->Name === $request->Name){
-                if($enguser->PositionDepartment === $request->PositionDepartment){
-                    if($enguser->NationalNumber === $request->NationalNumber){
-                        if($enguser->PersonalNumber === $request->PersonalNumber){
-                            if($enguser->CityTineState === $request->CityTineState){
-                                if($enguser->CurrentOffice === $request->CurrentOffice){
-                                    $personalNumber = $enguser->PersonalNumber;
-                                    $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
-                                    session()->put('user',[
-                                        'NationalNumber' => $user->NationalNumber,
-                                        'MoneyLeft' => $user->MoneyLeft,
-                                    ]);
-                                    
-                                    return redirect()->route('landing.page');
-                                }else{
-                                    return back()->withInput()->withErrors('လက္ရွိတာဝန္ထမ္းေဆာင္ေသာ႐ုံးမွားယြင္းေနပါသည္။');
-                                }
-                            }else{
-                                return back()->withInput()->withErrors('ၿမိဳ႕ | တိုင္း | ျပည္နယ္မွားယြင္းေနပါသည္။');
-                            }
-                        }else{
-                            return back()->withInput()->withErrors('ကိုယ္ပိုင္အမွတ္မွားယြင္းေနပါသည္။');
-                        }
-                    }else{
-                        return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
-                    }
-                }else{
-                    return back()->withInput()->withErrors('ရာထူး | ႒ာန မွားယြင္းေနပါသည္။');
-                }
-            }else{
-                return back()->withInput()->withErrors('အမည္မွားယြင္းေနပါသည္။');
-            }
-        }else{
-            return back()->withInput()->withErrors('မွတ္ပုံတင္အမွတ္မွားယြင္းေနပါသည္။');
-        }
-    }
-
     /**
      * Store a newly created resource in storage.
      *

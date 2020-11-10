@@ -25,12 +25,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[BasicUserController::class,'index'])->name('user.login');
-Route::get('/zawgyi',[BasicUserController::class,'indexzawgyi'])->name('user.loginzawgyi');
-Route::get('/english',[BasicUserController::class,'indexenglish'])->name('user.loginenglish');
-
-Route::post('/check',[BasicUserController::class,'check'])->name('user.check');
-Route::post('/check/zawgyi',[BasicUserController::class,'checkzawgyi'])->name('user.checkzawgyi');
-Route::post('/check/english',[BasicUserController::class,'checkenglish'])->name('user.checkenglish');
+Route::post('/check/english',[BasicUserController::class,'check'])->name('user.checkenglish');
 
 Route::delete('/delete',[BasicUserController::class,'destroy'])->name('user.logout');
 
