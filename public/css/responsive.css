@@ -1,5 +1,14 @@
 /* lg */ 
 @media (min-width: 1200px) {
+	select{
+		display: block;
+		background: #F0F0E9;
+		border:0;
+		color: #696763;
+		padding: 5px;
+		width: 135px;
+		border-radius: 0;
+	}
  
 	.update{
 		margin-left:420px !important;
@@ -70,7 +79,6 @@
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	font-weight: 700;
-	margin-left: 33%;
 	margin-top: 5px;
 }
 
@@ -93,6 +101,17 @@
 	left: 52%;
 	top:55%;
 	margin-left: -65px;
+}
+
+select{
+	background: #F0F0E9;
+	border:0;
+	color: #696763;
+	padding: 5px;
+	margin:10px 0;
+	width: 135px;
+	display: block;
+	border-radius: 0;
 }
 
 .recommended-p:after{
@@ -808,6 +827,18 @@ iframe {
 	top: 35%;
 	font-size: 40px;
 	color: #C2C2C1;
+}
+
+select{
+	background: #F0F0E9;
+    border: 0;
+    color: #696763;
+    padding: 5px;
+	margin:10px 0;
+	width:135px;
+	height:35px;
+	display: block;
+    border-radius: 0;
 }
 
 .productinfo-img{

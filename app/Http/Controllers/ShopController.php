@@ -88,7 +88,6 @@ class ShopController extends Controller
             $categoriesForProduct = $product->categories()->get();
             $CategoryName = '';
             foreach($categoriesForProduct as $key => $category):
-
                 $Name[$key] = $category->name;
             endforeach;
             $CategoryName = implode(' , ',$Name);

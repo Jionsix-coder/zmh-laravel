@@ -47,6 +47,15 @@
 					<p>{!! nl2br(Str::limit($product->description,200,' ...')) !!}</p>
 					<span>
 						<span>{{ $product->presentPrice() }}</span>
+						@php
+							$colour = $product->colour;
+							$product_colour = explode(',',$colour);
+						@endphp
+						<select name="" id="">
+							@foreach ($product_colour as $colour)
+								<option value="{{ $colour }}">{{ $colour }}</option>
+							@endforeach
+						</select>
 						@if($product->quantity > 0)
 						<form action="{{ route('cart.store') }}" method="POST" style="display: inline">
 							@csrf
