@@ -150,6 +150,9 @@
                                 <h4>No.(200/206),9th floor,Bet: 134x135 Street,Sat Yone Road,Ma-U-Gone Quarter,Tamwe Township,Yangon,Myanmar.</h4>
                                 <h4><i class="voyager-phone"> +95-9-898155551, +95-9-775545655</i></h4>
                                 <h4> Email: zayminhtetcompanylimited@gmail.com</h4>
+                                <br>
+                                <h3 style="font-size:18px;font-weight:bold;">Play store သို့ဝင်၍ Zay Min Htet Apk ဒေါင်း၍ဝင်ပါ။</h3>
+                                <div style="border-top:3px solid black;"></div>
                             </div>
                             <br>
                             <h3>အမည် = {{ $user->Name }}</h3>
