@@ -46,12 +46,13 @@
 					<p>{!! nl2br($product->details) !!}</p>
 					<p>{!! nl2br(Str::limit($product->description,200,' ...')) !!}</p>
 					<span>
-						<span>{{ $product->presentPrice() }}</span>
+						<p style="color:#FE980F;font-weight:bold;font-size:20px;">{{ $product->presentPrice() }}</p>
 						@php
 							$colour = $product->colour;
 							$product_colour = explode(',',$colour);
 						@endphp
-						<select name="" id="">
+						<p style="display:block">ရရှိနိုင်သောအရောင်များ</p>
+						<select name="colour" id="">
 							@foreach ($product_colour as $colour)
 								<option value="{{ $colour }}">{{ $colour }}</option>
 							@endforeach

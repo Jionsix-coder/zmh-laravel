@@ -68,7 +68,7 @@
 							<td class="saveCart">လှည်းသို့ထှည့်ရန်</td>
 							<td class="price">စျေးနှုန်း</td>
 							<td class="quantity">အရေအတွက်</td>
-							<td class="colour">colour</td>
+							<td class="colour">အရောင်</td>
 							<td class="total">စုစုပေါင်း</td>
 							<td></td>
 						</tr>
