@@ -7,7 +7,6 @@ use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\SaveCartController;
 use App\Http\Controllers\ShopController;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -25,7 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[BasicUserController::class,'index'])->name('user.login');
-Route::post('/check/english',[BasicUserController::class,'check'])->name('user.checkenglish');
+Route::get('/english',[BasicUserController::class,'indexenglish'])->name('user.loginenglish');
+
+Route::post('/check',[BasicUserController::class,'check'])->name('user.check');
+Route::post('/check/english',[BasicUserController::class,'checkenglish'])->name('user.checkenglish');
 
 Route::delete('/delete',[BasicUserController::class,'destroy'])->name('user.logout');
 

@@ -22,7 +22,12 @@ class BasicUserController extends Controller
      */
     public function index()
     {
-        return view('login');
+        return view('login.login');
+    }
+
+    public function indexenglish()
+    {
+        return view('login.logineng');
     }
 
     /**
@@ -33,7 +38,7 @@ class BasicUserController extends Controller
     public function check(Request $request)
     {
         $number = $request->NationalNumber;
-        $user = BasicUserEng::where('NationalNumber',$number)->first();
+        $user = BasicUser::where('NationalNumber',$number)->first();
         if($user){
             if($user->Name === $request->Name){
                 if($user->PositionDepartment === $request->PositionDepartment){
@@ -69,6 +74,51 @@ class BasicUserController extends Controller
             return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
         }
     }
+
+    public function checkenglish(Request $request)
+    {
+        $number = $request->NationalNumber;
+        $enguser = BasicUserEng::where('NationalNumber',$number)->first();
+        if($enguser){
+            $personalNumber = $enguser->PersonalNumber;
+            $user = BasicUser::where('PersonalNumber',$personalNumber)->first();
+            if($enguser->Name === $request->Name){
+                if($enguser->PositionDepartment === $request->PositionDepartment){
+                    if($enguser->NationalNumber === $request->NationalNumber){
+                        if($enguser->PersonalNumber === $request->PersonalNumber){
+                            if($enguser->CityTineState === $request->CityTineState){
+                                if($enguser->CurrentOffice === $request->CurrentOffice){
+                                    $personalNumber = $enguser->PersonalNumber;
+                                    $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
+                                    session()->put('user',[
+                                        'NationalNumber' => $user->NationalNumber,
+                                        'MoneyLeft' => $user->MoneyLeft,
+                                    ]);
+                                    
+                                    return redirect()->route('landing.page');
+                                }else{
+                                    return back()->withInput()->withErrors('လက်ရှိတာဝန်ထမ်းဆောင်သောရုံးမှားယွင်းနေပါသည်။');
+                                }
+                            }else{
+                                return back()->withInput()->withErrors('မြို့ | တိုင်း | ပြည်နယ်မှားယွင်းနေပါသည်။');
+                            }
+                        }else{
+                            return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
+                        }
+                    }else{
+                        return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+                    }
+                }else{
+                    return back()->withInput()->withErrors('ရာထူး | ဋ္ဌာန မှားယွင်းနေပါသည်။');
+                }
+            }else{
+                return back()->withInput()->withErrors('အမည်မှားယွင်းနေပါသည်။');
+            }
+        }else{
+            return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

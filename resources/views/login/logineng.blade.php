@@ -18,6 +18,23 @@
 </head><!--/head-->
 
 <body>
+	<!--Modal Box-->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" style="font-size:18px;text-align:center;font-weight:bold;"> Welcome to ZayMinHtet Company Limited <br> ( မင်္ဂလာပါ။ ) <br> ( ဇေမင်းထက်ကုမ္ပဏီမှကြိုဆိုပါတယ်။ )</h5>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>သင်၏ဖုန်းအား unicode font အသုံးပြုထားပါက	<b><a href="{{ route('user.login') }}">ဤနေရာ</a></b> ကိုနှိပ်ပါ။</p>
+                        <p>Englishလိုရိုက်ထည့်လိုပါက <b><a href="{{route('user.loginenglish')}}">ဤေနရာ</a></b> ကိုႏွိပ္ပါ။</p>
+					</div>
+					<button type="submit" data-dismiss="modal" class="btn btn-primary">Close</button>
+				</div>
+			</div>
+		</div>
+	<!-- end of modal box-->
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">
@@ -29,7 +46,7 @@
 					<hr>
 					<p>ဆက်သွယ်ရန် : +95-9-898155551 ,<br> +95-9-775545655</p>
 					<hr>
-					<h3><b>Login Form</b></h3>
+					<h3><b>English Form</b></h3>
 				</div>
 				<div class="card-body">
 					@if(count($errors) > 0)
@@ -47,37 +64,37 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="Name" class="form-control" placeholder="အမည်" value="{{ old('Name') }}" required>				
+							<input type="text" name="Name" class="form-control" placeholder="Name" value="{{ old('Name') }}" required>				
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-badge"></i></span>
 							</div>
-							<input type="text" name="PositionDepartment" class="form-control" placeholder="ရာထူး | ဋ္ဌာန" value="{{ old('PositionDepartment') }}" required>
+							<input type="text" name="PositionDepartment" class="form-control" placeholder="PositionDepartment" value="{{ old('PositionDepartment') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-map-marked"></i></span>
 							</div>
-							<input type="text" name="CityTineState" class="form-control" placeholder="မြို့ | တိုင်း | ပြည်နယ်" value="{{ old('CityTineState') }}" required>
+							<input type="text" name="CityTineState" class="form-control" placeholder="City | Tine | State" value="{{ old('CityTineState') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-card-alt"></i></span>
 							</div>
-							<input type="text" name="PersonalNumber" class="form-control" placeholder="ကိုယ်ပိုင်အမှတ်" value="{{ old('PersonalNumber') }}" required>
+							<input type="text" name="PersonalNumber" class="form-control" placeholder="Personal Number" value="{{ old('PersonalNumber') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-id-card"></i></span>
 							</div>
-							<input type="text" name="NationalNumber" class="form-control" placeholder="မှတ်ပုံတင်အမှတ်" value="{{ old('NationalNumber') }}" required>
+							<input type="text" name="NationalNumber" class="form-control" placeholder="National Number" value="{{ old('NationalNumber') }}" required>
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-building"></i></span>
 							</div>
-							<input type="text" name="CurrentOffice" class="form-control" placeholder="လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး" value="{{ old('CurrentOffice') }}" required>
+							<input type="text" name="CurrentOffice" class="form-control" placeholder="CurrentOffice" value="{{ old('CurrentOffice') }}" required>
 						</div>
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">
@@ -88,4 +105,9 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		$("#myModal").modal('show');
+	});
+</script>
 </html>
