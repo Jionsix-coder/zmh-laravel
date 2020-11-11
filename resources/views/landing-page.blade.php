@@ -78,7 +78,7 @@
 	</div>
 </div>
 <!-- end of modal box-->
-<div class="col-sm-9 padding-right">
+<div class="col-sm-9 padding-right" style="padding-left:0;">
 	<div class="features_items"><!--features_items-->
 		<h2 class="title text-center">သင့်အတွက်</h2>
 		<div class="row">

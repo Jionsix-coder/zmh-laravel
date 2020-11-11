@@ -450,6 +450,32 @@ https://play.google.com/store/apps/details?id=com.zayminhtet.coltd.user",
             $view = "voyager::$slug.edit-add";
         }
 
+        $allCategories = Category::all();
+        $categoriesForProduct =collect([]);
+
+        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','allCategories','categoriesForProduct'));
+    }
+
+    /**
+     * POST BRE(A)D - Store data.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request)
+    {
+        $slug = $this->getSlug($request);
+
+        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
+
+        // Check permission
+        $this->authorize('add', app($dataType->model_name));
+
+        // Validate fields with ajax
+        $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
+        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
+
         //Integrating fb auto post
         if($request->fbpost == "on"){
 
@@ -493,32 +519,6 @@ https://play.google.com/store/apps/details?id=com.zayminhtet.coltd.user",
             }
             $response->getGraphNode();
         }
-
-        $allCategories = Category::all();
-        $categoriesForProduct =collect([]);
-
-        return Voyager::view($view, compact('dataType', 'dataTypeContent', 'isModelTranslatable','allCategories','categoriesForProduct'));
-    }
-
-    /**
-     * POST BRE(A)D - Store data.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store(Request $request)
-    {
-        $slug = $this->getSlug($request);
-
-        $dataType = Voyager::model('DataType')->where('slug', '=', $slug)->first();
-
-        // Check permission
-        $this->authorize('add', app($dataType->model_name));
-
-        // Validate fields with ajax
-        $val = $this->validateBread($request->all(), $dataType->addRows)->validate();
-        $data = $this->insertUpdateData($request, $slug, $dataType->addRows, new $dataType->model_name());
 
         event(new BreadDataAdded($dataType, $data));
 

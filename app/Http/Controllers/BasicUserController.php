@@ -40,35 +40,19 @@ class BasicUserController extends Controller
         $number = $request->NationalNumber;
         $user = BasicUser::where('NationalNumber',$number)->first();
         if($user){
-            if($user->Name === $request->Name){
-                if($user->PositionDepartment === $request->PositionDepartment){
-                    if($user->NationalNumber === $request->NationalNumber){
-                        if($user->PersonalNumber === $request->PersonalNumber){
-                            if($user->CityTineState === $request->CityTineState){
-                                if($user->CurrentOffice === $request->CurrentOffice){
-                                    session()->put('user',[
-                                        'NationalNumber' => $user->NationalNumber,
-                                        'MoneyLeft' => $user->MoneyLeft,
-                                    ]);
-                                    
-                                    return redirect()->route('landing.page');
-                                }else{
-                                    return back()->withInput()->withErrors('လက်ရှိတာဝန်ထမ်းဆောင်သောရုံးမှားယွင်းနေပါသည်။');
-                                }
-                            }else{
-                                return back()->withInput()->withErrors('မြို့ | တိုင်း | ပြည်နယ်မှားယွင်းနေပါသည်။');
-                            }
-                        }else{
-                            return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
-                        }
-                    }else{
-                        return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
-                    }
+            if($user->NationalNumber === $request->NationalNumber){
+                if($user->PersonalNumber === $request->PersonalNumber){
+                            session()->put('user',[
+                                'NationalNumber' => $user->NationalNumber,
+                                'MoneyLeft' => $user->MoneyLeft,
+                            ]);
+                            
+                            return redirect()->route('landing.page');
                 }else{
-                    return back()->withInput()->withErrors('ရာထူး | ဋ္ဌာန မှားယွင်းနေပါသည်။');
+                    return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
                 }
             }else{
-                return back()->withInput()->withErrors('အမည်မှားယွင်းနေပါသည်။');
+                return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
             }
         }else{
             return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
@@ -82,37 +66,22 @@ class BasicUserController extends Controller
         if($enguser){
             $personalNumber = $enguser->PersonalNumber;
             $user = BasicUser::where('PersonalNumber',$personalNumber)->first();
-            if($enguser->Name === $request->Name){
-                if($enguser->PositionDepartment === $request->PositionDepartment){
-                    if($enguser->NationalNumber === $request->NationalNumber){
-                        if($enguser->PersonalNumber === $request->PersonalNumber){
-                            if($enguser->CityTineState === $request->CityTineState){
-                                if($enguser->CurrentOffice === $request->CurrentOffice){
-                                    $personalNumber = $enguser->PersonalNumber;
-                                    $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
-                                    session()->put('user',[
-                                        'NationalNumber' => $user->NationalNumber,
-                                        'MoneyLeft' => $user->MoneyLeft,
-                                    ]);
-                                    
-                                    return redirect()->route('landing.page');
-                                }else{
-                                    return back()->withInput()->withErrors('လက်ရှိတာဝန်ထမ်းဆောင်သောရုံးမှားယွင်းနေပါသည်။');
-                                }
-                            }else{
-                                return back()->withInput()->withErrors('မြို့ | တိုင်း | ပြည်နယ်မှားယွင်းနေပါသည်။');
-                            }
-                        }else{
-                            return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
-                        }
-                    }else{
-                        return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
-                    }
+            
+            if($enguser->NationalNumber === $request->NationalNumber){
+                if($enguser->PersonalNumber === $request->PersonalNumber){
+                            $personalNumber = $enguser->PersonalNumber;
+                            $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
+                            session()->put('user',[
+                                'NationalNumber' => $user->NationalNumber,
+                                'MoneyLeft' => $user->MoneyLeft,
+                            ]);
+                            
+                            return redirect()->route('landing.page');
                 }else{
-                    return back()->withInput()->withErrors('ရာထူး | ဋ္ဌာန မှားယွင်းနေပါသည်။');
+                    return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
                 }
             }else{
-                return back()->withInput()->withErrors('အမည်မှားယွင်းနေပါသည်။');
+                return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
             }
         }else{
             return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
