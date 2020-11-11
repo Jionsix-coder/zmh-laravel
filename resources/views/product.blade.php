@@ -49,7 +49,8 @@
 				<div class="product-information"><!--/product-information-->
 					<h2>{!! $product->name !!}</h2>
 					<p>{!! nl2br($product->details) !!}</p>
-					<p>{!! nl2br(Str::limit($product->description,200,' ...')) !!}</p>
+					<p>{!! nl2br(Str::limit($product->description,200,' ...')) !!}</p>b
+					<br>
 					<span>
 						<p style="color:#FE980F;font-weight:bold;font-size:20px;">{{ $product->presentPrice() }}</p>
 						@php
