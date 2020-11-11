@@ -20,9 +20,9 @@
 @endsection
 		<div class=" {{ (request()->category || Request::url() === 'https://zayminhtet.com/shop') !=  null ? 'col-sm-12' : 'col-sm-12' }} padding-right" style="padding-left:0;">
 			<div class="promotion-image" style="margin:0 10px;">
-				@foreach ($promotionsImage as $image)
-				    <a href="{{ productImage($image->image) }}" data-lightbox="images">
-						<img src="{{ productImage($image->image) }}" alt="" width="100%" height="auto" style="border:4px solid black;border-radius:20px;">
+				@foreach ($promotion as $item)
+				    <a href="{{ productImage($item->image) }}" data-lightbox="images">
+						<img src="{{ productImage($item->image) }}" alt="" width="100%" height="auto" style="border:4px solid black;border-radius:20px;">
 					</a>
 				@endforeach
 			</div>

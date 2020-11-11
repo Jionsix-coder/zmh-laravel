@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\VideoSlider;
 use App\Models\CodeOfficer;
+use App\Models\Promotion;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -47,6 +48,7 @@ class LandingPageController extends Controller
             $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
             $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
             $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
+            $promotion = Promotion::orderBy('id','desc')->take(1)->get();
             
             return view('landing-page')->with([
                 'products' =>$products,
@@ -62,6 +64,7 @@ class LandingPageController extends Controller
                 'videos' => $videos,
                 'promotionsItemsAsc' => $promotionsItemsAsc,
                 'promotionsItemsDesc' => $promotionsItemsDesc,
+                'promotion' => $promotion,
             ]);
         }else{
            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
