@@ -28,6 +28,11 @@
 						</a>
 					</div>
 					<div class="product-section-images">
+						<div class="product-section-thumbnail selected">
+							<a href="{{ productImage($product->image) }}" data-lightbox="images" data-title="{{ $product->name }}">
+								<img src="{{ productImage($product->image) }}" alt="" width="95px" height="82px" />
+							</a>
+						</div>
 						@if ($product->images)
 							@foreach (json_decode($product->images,true) as $image)
 								<div class="product-section-thumbnail selected">

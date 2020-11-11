@@ -1,5 +1,5 @@
 
-@extends('layout')
+@extends('layout2')
 
 @section('title', 'Checkout')
 
@@ -18,7 +18,14 @@
 		</ol>
 	</div>
 @endsection
-		<div class=" {{ (request()->category || Request::url() === 'https://zayminhtet.com/shop') !=  null ? 'col-sm-12' : 'col-sm-9' }} padding-right">
+		<div class=" {{ (request()->category || Request::url() === 'https://zayminhtet.com/shop') !=  null ? 'col-sm-12' : 'col-sm-12' }} padding-right" style="padding-left:0;">
+			<div class="promotion-image" style="margin:0 10px;">
+				@foreach ($promotionsImage as $image)
+				    <a href="{{ productImage($image->image) }}" data-lightbox="images">
+						<img src="{{ productImage($image->image) }}" alt="" width="100%" height="auto" style="border:4px solid black;border-radius:20px;">
+					</a>
+				@endforeach
+			</div>
 			<div class="features_items"><!--features_items-->
 				<h2 class="title text-center">{{ $categoryName }}</h2>
 

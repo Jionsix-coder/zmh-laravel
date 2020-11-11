@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BasicUser;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\PromotionImage;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -29,6 +30,7 @@ class ShopController extends Controller
             $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
             $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
             $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
+            $promotionsImage = PromotionImage::orderBy('id','desc')->latest()->get();
 
             if(request()->category){
                 $products = Product::with('categories')->whereHas('categories',function($query){
@@ -65,6 +67,7 @@ class ShopController extends Controller
                 'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'categoryName' => $categoryName,
                 'promotionsItem' => $promotionsItem,
+                'promotionsImage' => $promotionsImage,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
