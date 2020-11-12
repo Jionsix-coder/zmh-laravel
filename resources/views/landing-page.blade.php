@@ -12,8 +12,8 @@
 		<div class="row">
 			@if ($promotion)
 				@foreach ($promotion as $item)
-					<div style="border:4px solid black;border-radius:10px;background-color:white;margin:0 15px;height:30px;">
-						<marquee behavior="scroll" direction="ltr"><div>{!! $item->text !!}</div></marquee>
+					<div style="border:4px solid black;border-radius:10px;background-color:white;margin:0 15px;height:35px;">
+						<marquee behavior="scroll" direction="ltr"><div style="font-size: 17px;font-weight:bold;">{!! $item->text !!}</div></marquee>
 					</div>
 				@endforeach
 			@endif

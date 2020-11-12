@@ -70,7 +70,7 @@
 
         <div class="row new-product-row ">
             <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12">
-                <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="1900">
+                <div id="new-product-carousel" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
                     <div class="carousel-inner">
         
@@ -113,7 +113,7 @@
             </div>
     
             <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12 new-product-2nd">
-                <div id="new-product-carousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <div id="new-product-carousel1" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <h3 class="new-product-h3">အသစ်ဝင်ပစ္စည်းများ</h3>
                     <div class="carousel-inner">
         
@@ -157,7 +157,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12">
-                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="1900">
+                <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
                     <div class="carousel-inner">
         
@@ -202,7 +202,7 @@
             </div>
 
             <div class="col-sm-12 col-xs-6 col-md-12 col-lg-12 new-product-2nd">
-                <div id="recommended-item-carousel1" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <div id="recommended-item-carousel1" class="carousel slide" data-ride="carousel" data-interval="3500">
                     <h3 class="discount-h3">ပရိုမိုးရှင်းပစ္စည်းများ</h3>
                     <div class="carousel-inner">
         
