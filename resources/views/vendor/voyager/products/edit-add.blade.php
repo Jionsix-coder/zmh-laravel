@@ -92,11 +92,35 @@
 
                             <div class="form-group">
                                 <label>Categories</label>
-                                <ul style="list-style-type:none;padding-left:0;">
+                                {{-- <ul style="list-style-type:none;padding-left:0;">
                                     @foreach ($allCategories as $category)
                                         <li><label><input value="{{ $category->id }}" type="checkbox" name="category[]" style="margin-right:5px;" {{ $categoriesForProduct->contains($category) ? 'checked' : '' }}> {{ $category->name }}</label></li>
                                     @endforeach
-                                </ul>
+                                </ul> --}}
+                                <div class="panel-group category-products" id="accordian"><!--category-products-->
+                                    @foreach (App\Models\Category::with('childs')->where('p_id',0)->get() as $item)
+                                     <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse" data-parent="#accordian" href="#{{ $item->slug }}">
+                                                    <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                                    <label><input value="{{ $item->id }}" type="checkbox" name="category[]" style="margin-right:5px;" {{ $categoriesForProduct->contains($item) ? 'checked' : '' }}> {{ $item->name }}</label>
+                                                </a>
+                                            </h4>
+                                        </div>
+                                        <div id="{{ $item->slug }}" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <ol>
+                                                    <li><label><input value="{{ $item->id }}" type="checkbox" name="category[]" style="margin-right:5px;" {{ $categoriesForProduct->contains($item) ? 'checked' : '' }}> {{ $item->name }}</label></li>
+                                                    @foreach ($item->childs as $itemChilds)
+                                                    <li><label><input value="{{ $itemChilds->id }}" type="checkbox" name="category[]" style="margin-right:5px;" {{ $categoriesForProduct->contains($itemChilds) ? 'checked' : '' }}> {{ $itemChilds->name }}</label></li>
+                                                    @endforeach
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div><!--/category-products-->
                             </div>
                         </div><!-- panel-body -->
 
