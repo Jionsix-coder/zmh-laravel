@@ -78,13 +78,13 @@ class BasicUserController extends Controller
                             
                             return redirect()->route('landing.page');
                 }else{
-                    return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
+                    return back()->withInput()->withErrors('Personal Number Wrong!!!');
                 }
             }else{
-                return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+                return back()->withInput()->withErrors('National Number Wrong!!!');
             }
         }else{
-            return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
+            return back()->withInput()->withErrors('National Number Wrong!!!');
         }
     }
 
