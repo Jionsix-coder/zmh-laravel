@@ -15217,14 +15217,14 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   position: relative;
 }
 
-.menu > li.menu-item-has-children > a:after {
+/* .menu > li.menu-item-has-children > a:after {
   content: "\e93a";
   font: normal normal normal 12px/1 linearicons;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 0;
-}
+} */
 
 .menu > li.menu-item-has-children > a:before {
   content: '';
