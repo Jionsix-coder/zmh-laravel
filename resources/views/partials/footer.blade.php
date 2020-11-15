@@ -1,162 +1,128 @@
-    <footer id="footer"><!--Footer-->
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="companyinfo">
-                            <h2><span>Zay Min Htet<br></span>Co.Ltd</h2>
-                            <p></p>
-                        </div>
+<footer class="ps-footer">
+        <div class="ps-container">
+            <div class="ps-footer__widgets">
+                <aside class="widget widget_footer widget_contact-us">
+                    <h4 class="widget-title">Contact us</h4>
+                    <div class="widget_content">
+                        <p>Call us 24/7</p>
+                        <h3>+95-9-89815551</h3>
+                        <p>အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး. <br><br><a href="mailto:zayminhtetcompanylimited@gmail.com">zayminhtetcompanylimited@gmail.com</a></p>
+                        <ul class="ps-list--social">
+                            <li><a class="facebook" href="https://www.facebook.com/Zay-Min-Htet-Company-Limited-575814903055402"><i class="fa fa-facebook"></i></a></li>
+                            <li><a class="google-plus" href="mailto:zayminhtetcompanylimited@gmail.com"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
                     </div>
-                    <div class="col-sm-7">
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <a href="{{ asset('images/overlay/overlay.jpg') }}" data-lightbox="images" data-title="MLM">
-                                            <img src="{{ asset('images/overlay/overlay.jpg') }}" alt="" />
-                                        </a>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <a href="{{ asset('images/overlay/overlay1.jpg') }}" data-lightbox="images" data-title="MLM">
-                                            <img src="{{ asset('images/overlay/overlay1.jpg') }}" alt="" />
-                                        </a>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <a href="{{ asset('images/overlay/overlay2.jpg') }}" data-lightbox="images" data-title="MLM">
-                                            <img src="{{ asset('images/overlay/overlay2.jpg') }}" alt="" />
-                                        </a>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <div class="video-gallery text-center">
-                                <a href="#">
-                                    <div class="iframe-img">
-                                        <a href="{{ asset('images/overlay/overlay3.jpg') }}" data-lightbox="images" data-title="MLM">
-                                            <img src="{{ asset('images/overlay/overlay3.jpg') }}" alt="" />
-                                        </a>
-                                    </div>
-                                </a>
-                                <p>Circle of Hands</p>
-                                <h2>24 DEC 2014</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="address">
-                            <img src="images/home/map.png" alt="" />
-                            <p>No.200/206,9<sup>th</sup> Floor,Sat Yone Street,Ma U Gone,Tarmwe TownShip,Yangon.</p>
-                        </div>
-                    </div>
-                </div>
+                </aside>
+                <aside class="widget widget_footer">
+                    <h4 class="widget-title">Quick links</h4>
+                    <ul class="ps-list--link">
+                        <li><a href="#">အာမခံ</a></li>
+                        <li><a href="#">အဖွဲ့ဝင်များသိထားရန်</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                    </ul>
+                </aside>
+                <aside class="widget widget_footer">
+                    <h4 class="widget-title">Bussiness</h4>
+                    <ul class="ps-list--link">
+                        <li><a href="#">ဈေးလှည်း</a></li>
+                        <li><a href="checkout.html">ဈေးခြင်း</a></li>
+                        <li><a href="profile.html">အကောင့်</a></li>
+                        <li><a href="shop-default.html">စျေးဝယ်ရန်</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="ps-footer__copyright" style="margin-bottom:40px;">
+                <p>© 2020 ZayMinHtet. All Rights Reserved</p>
+                <p>Payment : 4 Months Installment Payment.</p>
             </div>
         </div>
-        
-        <div class="footer-widget">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Service</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">အကောင့်</a></li>
-                                <li><a href="#">ဆက်သွယ်ရန်</a></li>
-                                <li><a href="#">စျေးခြင်</a></li>
-                                <li><a href="#">ဘာသာစကား</a></li>
-                                <li><a href="#">FAQ’s</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Quick Shop</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">ကျားဝတ်</a></li>
-                                <li><a href="#">မ ဝတ်</a></li>
-                                <li><a href="#">ကလေးအဝတ်များ</a></li>
-                                <li><a href="#">ဖုန်းနှင့်ဆက်စပ်ပစ္စည်း</a></li>
-                                <li><a href="#">ဖိနပ်</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Policies</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">ကုမ္ပဏီစည်းမျဉ်းစည်းကမ်းများ</a></li>
-                                <li><a href="#">Privacy</a></li>
-                                <li><a href="#">Policy</a></li>
-                                <li><a href="#">Bug Report</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="single-widget">
-                            <h2>Social</h2>
-                            <ul class="nav nav-pills nav-stacked">
-                                <li><a href="#">Facebook</a></li>
-                                <li><a href="#">Application</a></li>
-                                <li><a href="">Instagram</a></li>
-                                <li><a href="">Youtube</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 col-sm-offset-1">
-                        <div class="single-widget">
-                            <h2>About Shopper</h2>
-                            <form action="#" class="searchform">
-                                <input type="text" placeholder="Your email address" />
-                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
-                                <p>Get the most recent updates from <br />our site and be updated your self...</p>
-                            </form>
-                        </div>
-                    </div>
-                    
+    </footer>
+    <div class="ps-popup" id="subscribe" data-time="500">
+        <div class="ps-popup__content bg--cover" data-background="img/bg/subscribe.jpg"><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
+            <form class="ps-form--subscribe-popup" action="index.html" method="get">
+                <div class="ps-form__content">
+                    <h4 style="font-size: medium;"> Welcome to <strong style="color: #734d26;">ZayMinHtet</strong> Company Limited </h4>
+                    <b>(တာဝန်ခံကုဒ်တောင်းရမည့်သူ)</b>
+                    <hr>
+                    <p style="font-weight: bold; font-size: small; color: #000;">အမည် - <b>ဒေါ်ခင်သီတာလင်း</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">ဖုန်းနံပါတ် - <b>+959255752566</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">ရာထူး - <b>ဉီးစီးမှူး</b></p>
                 </div>
+            </form>
+        </div>
+    </div>
+    <div id="back2top"><i class="pe-7s-angle-up"></i></div>
+    <div class="ps-site-overlay"></div>
+    <div id="loader-wrapper">
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div class="ps-search" id="site-search"><a class="ps-btn--close" href="#"></a>
+        <div class="ps-search__content">
+            <form class="ps-form--primary-search" action="do_action" method="post">
+                <input class="form-control" type="text" placeholder="Search for...">
+                <button><i class="aroma-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="modal fade" id="product-quickview" tabindex="-1" role="dialog" aria-labelledby="product-quickview" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content"><span class="modal-close" data-dismiss="modal"><i class="icon-cross2"></i></span>
+                <article class="ps-product--detail ps-product--fullwidth ps-product--quickview">
+                    <div class="ps-product__header">
+                        <div class="ps-product__thumbnail" data-vertical="false">
+                            <div class="ps-product__images" data-arrow="true">
+                                <div class="item"><img src="img/products/detail/fullwidth/1.jpg" alt=""></div>
+                                <div class="item"><img src="img/products/detail/fullwidth/2.jpg" alt=""></div>
+                                <div class="item"><img src="img/products/detail/fullwidth/3.jpg" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="ps-product__info">
+                            <h1>Marshall Kilburn Portable Wireless Speaker</h1>
+                            <div class="ps-product__meta">
+                                <p>Brand:<a href="shop-default.html">Sony</a></p>
+                            </div>
+                            <h4 class="ps-product__price">$36.78 – $56.99</h4>
+                            <div class="ps-product__desc">
+                                <p>Sold By:<a href="shop-default.html"><strong> Go Pro</strong></a></p>
+                                <ul class="ps-list--dot">
+                                    <li> Unrestrained and portable active stereo speaker</li>
+                                    <li> Free from the confines of wires and chords</li>
+                                    <li> 20 hours of portable capabilities</li>
+                                    <li> Double-ended Coil Cord with 3.5mm Stereo Plugs Included</li>
+                                    <li> 3/4″ Dome Tweeters: 2X and 4″ Woofer: 1X</li>
+                                </ul>
+                            </div>
+                            <div class="ps-product__shopping"><a class="ps-btn ps-btn--black" href="#">Add to cart</a><a class="ps-btn" href="#">Buy Now</a>
+                                <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a><a href="#"><i class="icon-chart-bars"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
-        
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2020 <b>Zay Min Htet</b> Company Limited. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
-                </div>
-            </div>
-        </div>
-        
-    </footer><!--/Footer-->
-
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.scrollUp.min.js') }}"></script>
-<script src="{{ asset('js/price-range.js') }}"></script>
-<script src="{{ asset('js/jquery.prettyPhoto.js') }}"></script>
-<script src="{{ asset('js/lightbox.js') }}"></script>
-<script src="{{ asset('js/main.js') }}"></script>
-@yield('extra-js')
+    </div>
+    <script src="plugins/jquery.min.js"></script>
+    <script src="plugins/nouislider/nouislider.min.js"></script>
+    <script src="plugins/popper.min.js"></script>
+    <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/imagesloaded.pkgd.min.js"></script>
+    <script src="plugins/masonry.pkgd.min.js"></script>
+    <script src="plugins/isotope.pkgd.min.js"></script>
+    <script src="plugins/jquery.matchHeight-min.js"></script>
+    <script src="plugins/slick/slick/slick.min.js"></script>
+    <script src="plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script src="plugins/slick-animation.min.js"></script>
+    <script src="plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
+    <script src="plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script src="plugins/select2/dist/js/select2.full.min.js"></script>
+    <script src="plugins/gmap3.min.js"></script>
+    <!-- custom scripts-->
+    <script src="js/main.js"></script>
 </body>
+
 </html>

@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
     <title>Home | ZMH-OnlineShop</title>
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/prettyPhoto.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/price-range.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/main.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="{{ asset('js/html5shiv.js') }}"></script>
-    <script src="{{ asset('js/respond.min.js') }}"></script>
-    <![endif]-->       
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700&amp;amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fonts/Linearicons/Linearicons/Font/demo-files/demo.css">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="plugins/owl-carousel/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="plugins/owl-carousel/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="plugins/slick/slick/slick.css">
+    <link rel="stylesheet" href="plugins/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="plugins/lightGallery-master/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="plugins/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
     {{-- Google Analytics --}}
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -30,32 +35,18 @@
     gtag('config', 'UA-180642710-1');
     </script>
 
-    <link rel="shortcut icon" href="images/logo.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="/images/ico/apple-touch-icon-57-precomposed.png">
+    <!-- end of google analytics -->
 
-	@yield('extra-css')
-	
-     <!-- extra js -->
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head><!--/head-->
+    <!-- extra css -->
+    @yield('extra-css')
+    <!-- end of extra css -->
+</head>
 
 <body>
-	@include('partials.header')
+    @include('partials.header')
+    
+    @include('partials.sidebar-mobile')
 
-	@yield('slider')
-	<section>
-		<div class="container">
-			<div class="row">				
-					@include('partials.left-slider') 	
+    @yield('content')
 
-				@yield('content')
-			</div>
-		</div>
-	</section>
-
-	@include('partials.footer')
+    @include('partials.footer')
