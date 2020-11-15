@@ -6,6 +6,7 @@ use App\Http\Controllers\ConfirmationController;
 use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SaveCartController;
 use App\Http\Controllers\ShopController;
@@ -61,7 +62,11 @@ Route::get('/armakhan',[NavbarController::class,'armakhan'])->name('navbar.armak
 Route::get('/discipline',[NavbarController::class,'discipline'])->name('navbar.discipline');
 Route::get('/newmember',[NavbarController::class,'newmember'])->name('navbar.newmember');
 Route::get('/aboutmember',[NavbarController::class,'aboutmember'])->name('navbar.aboutmember');
-Route::get('/contact',[NavbarController::class,'contact'])->name('navbar.contact');
+
+Route::get('/contact',[PagesController::class,'contactUs'])->name('pages.contactUs');
+Route::get('/about',[PagesController::class,'aboutUs'])->name('pages.aboutUs');
+Route::get('/comming-soon',[PagesController::class,'commingSoon'])->name('pages.commingSoon');
+Route::get('/faqs',[PagesController::class,'faqs'])->name('pages.faqs');
 
 Route::get('/thankyou',[ConfirmationController::class,'index'])->name('confirmation.index');
 Route::view('/login','login');

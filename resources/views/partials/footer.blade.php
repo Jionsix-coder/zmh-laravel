@@ -1,4 +1,4 @@
-<footer class="ps-footer">
+    <footer class="ps-footer">
         <div class="ps-container">
             <div class="ps-footer__widgets">
                 <aside class="widget widget_footer widget_contact-us">
@@ -40,20 +40,6 @@
             </div>
         </div>
     </footer>
-    <div class="ps-popup" id="subscribe" data-time="500">
-        <div class="ps-popup__content bg--cover" data-background="img/bg/subscribe.jpg"><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
-            <form class="ps-form--subscribe-popup" action="index.html" method="get">
-                <div class="ps-form__content">
-                    <h4 style="font-size: medium;"> Welcome to <strong style="color: #734d26;">ZayMinHtet</strong> Company Limited </h4>
-                    <b>(တာဝန်ခံကုဒ်တောင်းရမည့်သူ)</b>
-                    <hr>
-                    <p style="font-weight: bold; font-size: small; color: #000;">အမည် - <b>ဒေါ်ခင်သီတာလင်း</b></p>
-                    <p style="font-weight: bold; font-size: small; color: #000;">ဖုန်းနံပါတ် - <b>+959255752566</b></p>
-                    <p style="font-weight: bold; font-size: small; color: #000;">ရာထူး - <b>ဉီးစီးမှူး</b></p>
-                </div>
-            </form>
-        </div>
-    </div>
     <div id="back2top"><i class="pe-7s-angle-up"></i></div>
     <div class="ps-site-overlay"></div>
     <div id="loader-wrapper">
@@ -105,24 +91,24 @@
             </div>
         </div>
     </div>
-    <script src="plugins/jquery.min.js"></script>
-    <script src="plugins/nouislider/nouislider.min.js"></script>
-    <script src="plugins/popper.min.js"></script>
-    <script src="plugins/owl-carousel/owl.carousel.min.js"></script>
-    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/imagesloaded.pkgd.min.js"></script>
-    <script src="plugins/masonry.pkgd.min.js"></script>
-    <script src="plugins/isotope.pkgd.min.js"></script>
-    <script src="plugins/jquery.matchHeight-min.js"></script>
-    <script src="plugins/slick/slick/slick.min.js"></script>
-    <script src="plugins/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
-    <script src="plugins/slick-animation.min.js"></script>
-    <script src="plugins/lightGallery-master/dist/js/lightgallery-all.min.js"></script>
-    <script src="plugins/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
-    <script src="plugins/select2/dist/js/select2.full.min.js"></script>
-    <script src="plugins/gmap3.min.js"></script>
+    <script src="{{ asset('plugins/jquery.min.js')}}"></script>
+    <script src="{{ asset('plugins/nouislider/nouislider.min.js')}}"></script>
+    <script src="{{ asset('plugins/popper.min.js')}}"></script>
+    <script src="{{ asset('plugins/owl-carousel/owl.carousel.min.js')}}"></script>
+    <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('plugins/imagesloaded.pkgd.min.js')}}"></script>
+    <script src="{{ asset('plugins/masonry.pkgd.min.js')}}"></script>
+    <script src="{{ asset('plugins/isotope.pkgd.min.js')}}"></script>
+    <script src="{{ asset('plugins/jquery.matchHeight-min.js')}}"></script>
+    <script src="{{ asset('plugins/slick/slick/slick.min.js')}}"></script>
+    <script src="{{ asset('plugins/jquery-bar-rating/dist/jquery.barrating.min.js')}}"></script>
+    <script src="{{ asset('plugins/slick-animation.min.js')}}"></script>
+    <script src="{{ asset('plugins/lightGallery-master/dist/js/lightgallery-all.min.js')}}"></script>
+    <script src="{{ asset('plugins/sticky-sidebar/dist/sticky-sidebar.min.js')}}"></script>
+    <script src="{{ asset('plugins/select2/dist/js/select2.full.min.js')}}"></script>
+    <script src="{{ asset('plugins/gmap3.min.js')}}"></script>
     <!-- custom scripts-->
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/main.js')}}"></script>
 </body>
 
 </html>

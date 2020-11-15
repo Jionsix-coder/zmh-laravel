@@ -1,4 +1,4 @@
-<div class="ps-panel--sidebar" id="cart-mobile">
+    <div class="ps-panel--sidebar" id="cart-mobile">
         <div class="ps-panel__header">
             <h3>Shopping Cart</h3>
         </div>
@@ -137,16 +137,16 @@
             <ul class="menu--mobile">
                 <li class="menu-item-has-children"><a href="index.html">ပင်မ</a></li>
                 <li class="menu-item-has-children"><a href="shop-default.html">စျေးဝယ်ရန်</a></li>
-                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">စည်းမျဉ်းစည်းကမ်း</a><span class="sub-toggle"></span>
+                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="{{ route('navbar.discipline') }}">စည်းမျဉ်းစည်းကမ်း</a><span class="sub-toggle"></span>
                     <div class="mega-menu" style="margin:0 15px;">
-                        <h4><a href="">အာမခံ</a></h4>
-                        <h4><a href="">အဖွဲ့ဝင်များသိထားရန်</a></h4>
-                        <h4><a href="">အဖွဲ့ဝင်သစ်လိုအပ်ချက်</a></h4>
+                        <h4><a href="{{ route('navbar.armakhan') }}">အာမခံ</a></h4>
+                        <h4><a href="{{ route('navbar.aboutmember') }}">အဖွဲ့ဝင်များသိထားရန်</a></h4>
+                        <h4><a href="{{ route('navbar.newmember') }}">အဖွဲ့ဝင်သစ်လိုအပ်ချက်</a></h4>
                     </div>
                 </li>
-                <li class="menu-item-has-children"><a href="#">About Us</a></li>
-                <li class="menu-item-has-children"><a href="#">Faqs</a></li>
-                <li class="menu-item-has-children"><a href="#">ဆက်သွယ်ရန်</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('pages.aboutUs') }}">About Us</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('pages.faqs') }}">Faqs</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('pages.contactUs') }}">ဆက်သွယ်ရန်</a></li>
             </ul>
         </div>
     </div>

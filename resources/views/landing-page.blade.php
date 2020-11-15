@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Home')
+
 @section('extra-css')
 
 @endsection
@@ -885,6 +887,20 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="ps-popup" id="subscribe" data-time="500">
+        <div class="ps-popup__content bg--cover" data-background="img/bg/subscribe.jpg"><a class="ps-popup__close" href="#"><i class="icon-cross"></i></a>
+            <form class="ps-form--subscribe-popup" action="index.html" method="get">
+                <div class="ps-form__content">
+                    <h4 style="font-size: medium;"> Welcome to <strong style="color: #734d26;">ZayMinHtet</strong> Company Limited </h4>
+                    <b>(တာဝန်ခံကုဒ်တောင်းရမည့်သူ)</b>
+                    <hr>
+                    <p style="font-weight: bold; font-size: small; color: #000;">အမည် - <b>ဒေါ်ခင်သီတာလင်း</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">ဖုန်းနံပါတ် - <b>+959255752566</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">ရာထူး - <b>ဉီးစီးမှူး</b></p>
+                </div>
+            </form>
         </div>
     </div>
 @endsection('content')

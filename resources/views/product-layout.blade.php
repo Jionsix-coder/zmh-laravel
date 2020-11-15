@@ -23,29 +23,11 @@
     <link rel="stylesheet" href="{{ asset('plugins/jquery-bar-rating/dist/themes/fontawesome-stars.css')}}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/dist/css/select2.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-
-    {{-- Google Analytics --}}
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-180642710-1"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-180642710-1');
-    </script>
-
-    <!-- end of google analytics -->
-
-    <!-- extra css -->
-    @yield('extra-css')
-    <!-- end of extra css -->
+    <link rel="stylesheet" href="{{ asset('css/color.css')}}">
 </head>
 
 <body>
     @include('partials.header')
-    
-    @include('partials.sidebar-mobile')
 
     @yield('content')
 

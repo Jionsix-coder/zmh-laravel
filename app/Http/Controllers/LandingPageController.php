@@ -51,20 +51,20 @@ class LandingPageController extends Controller
             $promotion = Promotion::orderBy('id','desc')->take(1)->get();
             
             return view('landing-page')->with([
-                'products' =>$products,
+                // 'products' =>$products,
                 'user' => $user,
-                'officer' => $officer,
-                'recommendedItems' => $recommendedItems,
-                'latestItems' => $latestItems,
-                'latestItemsAsc' => $latestItemsAsc,
-                'latestItemsDesc' => $latestItemsDesc,
-                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
-                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
-                'categories' => $categories,
-                'videos' => $videos,
-                'promotionsItemsAsc' => $promotionsItemsAsc,
-                'promotionsItemsDesc' => $promotionsItemsDesc,
-                'promotion' => $promotion,
+                // 'officer' => $officer,
+                // 'recommendedItems' => $recommendedItems,
+                // 'latestItems' => $latestItems,
+                // 'latestItemsAsc' => $latestItemsAsc,
+                // 'latestItemsDesc' => $latestItemsDesc,
+                // 'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
+                // 'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
+                // 'categories' => $categories,
+                // 'videos' => $videos,
+                // 'promotionsItemsAsc' => $promotionsItemsAsc,
+                // 'promotionsItemsDesc' => $promotionsItemsDesc,
+                // 'promotion' => $promotion,
             ]);
         }else{
            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');

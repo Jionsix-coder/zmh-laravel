@@ -2,73 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BasicUser;
-use App\Models\Navbar\Armakhan;
-use App\Models\Navbar\Discipline;
-use App\Models\Navbar\NewMember;
-use App\Models\Navbar\AboutMember;
 use Illuminate\Http\Request;
+use App\Models\BasicUser;
 
-class NavbarController extends Controller
+class PagesController extends Controller
 {
-    public function armakhan()
+    public function contactUs()
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
-            $texts = Armakhan::all();
 
-            return view('navbar.armakhan')->with([
+            return view('pages.contact-us')->with([
                 'user' => $user,
-                'texts' => $texts,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 
-    public function discipline()
+    public function aboutUs()
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
-            $texts = Discipline::all();
 
-            return view('navbar.discipline')->with([
+            return view('pages.about-us')->with([
                 'user' => $user,
-                'texts' => $texts,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 
-    public function newmember()
+    public function commingSoon()
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
-            $texts = NewMember::all();
 
-            return view('navbar.newmember')->with([
+            return view('pages.comming-soon')->with([
                 'user' => $user,
-                'texts' => $texts,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
 
-    public function aboutmember()
+    public function faqs()
     {
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
-            $texts = AboutMember::all();
 
-            return view('navbar.aboutmember')->with([
+            return view('pages.faqs')->with([
                 'user' => $user,
-                'texts' => $texts,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
