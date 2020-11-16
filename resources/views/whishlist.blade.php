@@ -11,8 +11,8 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop-default.html">Shop</a></li>
+                    <li><a href="{{ route('landing.page') }}">Home</a></li>
+                    <li><a href="{{ route('shop.index') }}">Shop</a></li>
                     <li>Whishlist</li>
                 </ul>
             </div>

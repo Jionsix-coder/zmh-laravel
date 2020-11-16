@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Profile')
+@section('title', 'စည်းမျဉ်းစည်းကမ်း')
 
 @section('extra-css')
 

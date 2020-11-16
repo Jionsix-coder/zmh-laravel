@@ -5,16 +5,24 @@
         <div class="navigation__content">
             <div class="ps-cart--mobile">
                 <div class="ps-cart__content">
-                    <div class="ps-product--cart-mobile">
-                        <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
-                        <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
-                            <small>1 x $59.99</small>
+                    @foreach (Cart::content() as $item)
+                        <div class="ps-product--cart-mobile">
+                            <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ productImage($item->model->image) }}" alt=""></a></div>
+                            <div class="ps-product__content">
+                                <form action="{{ route('cart.destroy',$item->rowId) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                    <button class="ps-product__remove" ><i class="icon-cross"></i></button>
+                                </form>
+                                <a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
+                                <small>(1 x {{ presentPrice($item->model->price) }})</small>
+                            </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="ps-cart__footer">
-                    <h3>Sub Total:<strong>$59.99</strong></h3>
-                    <figure><a href="#"></a><a class="ps-btn" href="checkout.html">ဈေးခြင်းသို့</a></figure>
+                    <h3>Sub Total:<strong>{{ presentPrice(Cart::subtotal()) }}</strong></h3>
+                    <figure><a href="#"></a><a class="ps-btn" href="{{ route('cart.index') }}">ဈေးခြင်းသို့</a></figure>
                 </div>
             </div>
         </div>
@@ -24,94 +32,18 @@
             <h3>Categories</h3>
         </div>
         <div class="ps-panel__content">
-            <ul class="menu--mobile">
-                <li class="current-menu-item "><a href="#">Hot Promotions</a>
-                </li>
-                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Consumer Electronic</a><span class="sub-toggle"></span>
+            <ul class="menu--mobile">        
+                @foreach (App\Models\Category::with('childs')->where('p_id',0)->get() as $item)
+                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="{{ route('shop.index',['category' => $item->slug]) }}">{{ $item->name }}</a><span class="sub-toggle" style="{{ $item->childs->count() > 0 ? 'display:initial' : 'display:none;'}}"></span>
                     <div class="mega-menu">
-                        <div class="mega-menu__column">
-                            <h4>Electronic<span class="sub-toggle"></span></h4>
-                            <ul class="mega-menu__list">
-                                <li class="current-menu-item "><a href="#">Home Audio &amp; Theathers</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">TV &amp; Videos</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Camera, Photos &amp; Videos</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Cellphones &amp; Accessories</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Headphones</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Videosgames</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Wireless Speakers</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Office Electronic</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="mega-menu__column">
-                            <h4>Accessories &amp; Parts<span class="sub-toggle"></span></h4>
-                            <ul class="mega-menu__list">
-                                <li class="current-menu-item "><a href="#">Digital Cables</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Audio &amp; Video Cables</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Batteries</a>
-                                </li>
-                            </ul>
-                        </div>
+                        <ul>
+                        @foreach ($item->childs as $itemChilds)
+                                <li><a href="{{ route('shop.index',['category' => $itemChilds->slug]) }}"><h4>{{ $itemChilds->name }}</h4></a></li>
+                            @endforeach
+                        </ul>
                     </div>
                 </li>
-                <li class="current-menu-item "><a href="#">Clothing &amp; Apparel</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Home, Garden &amp; Kitchen</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Health &amp; Beauty</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Yewelry &amp; Watches</a>
-                </li>
-                <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="#">Computer &amp; Technology</a><span class="sub-toggle"></span>
-                    <div class="mega-menu">
-                        <div class="mega-menu__column">
-                            <h4>Computer &amp; Technologies<span class="sub-toggle"></span></h4>
-                            <ul class="mega-menu__list">
-                                <li class="current-menu-item "><a href="#">Computer &amp; Tablets</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Laptop</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Monitors</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Networking</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Drive &amp; Storages</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Computer Components</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Security &amp; Protection</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Gaming Laptop</a>
-                                </li>
-                                <li class="current-menu-item "><a href="#">Accessories</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-                <li class="current-menu-item "><a href="#">Babies &amp; Moms</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Sport &amp; Outdoor</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Phones &amp; Accessories</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Books &amp; Office</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Cars &amp; Motocycles</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Home Improments</a>
-                </li>
-                <li class="current-menu-item "><a href="#">Vouchers &amp; Services</a>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -135,8 +67,8 @@
         </div>
         <div class="ps-panel__content">
             <ul class="menu--mobile">
-                <li class="menu-item-has-children"><a href="index.html">ပင်မ</a></li>
-                <li class="menu-item-has-children"><a href="shop-default.html">စျေးဝယ်ရန်</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('landing.page') }}">ပင်မ</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>
                 <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="{{ route('navbar.discipline') }}">စည်းမျဉ်းစည်းကမ်း</a><span class="sub-toggle"></span>
                     <div class="mega-menu" style="margin:0 15px;">
                         <h4><a href="{{ route('navbar.armakhan') }}">အာမခံ</a></h4>

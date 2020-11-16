@@ -17334,3 +17334,27 @@ html .bg--parallax {
   padding: 0;
   list-style: none;
 }
+
+
+/* customize css */
+
+.ps-product .ps-product__actions li button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius:0;
+    border-width:0;
+    border-style:0;
+    border-color:0;
+    border-image:0;
+}
+
+.ps-product__remove{
+    border-radius:0 !important;
+    border-width:0 !important; 
+    border-style:0 !important;
+    border-color:0 !important;
+    border-image:0 !important;
+}

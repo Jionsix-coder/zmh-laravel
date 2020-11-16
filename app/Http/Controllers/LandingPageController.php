@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BasicUser;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\VideoSlider;
 use App\Models\CodeOfficer;
 use App\Models\Promotion;
@@ -40,31 +41,39 @@ class LandingPageController extends Controller
             $products = Product::where('featured',true)->take(12)->get();
             $categories = Category::all();
             $videos = VideoSlider::orderBy('id','desc')->get();
-            $recommendedItems = Product::inRandomOrder()->take(3)->get();
-            $latestItems = Product::orderBy('id','desc')->take(3)->get();
-            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
-            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
-            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
-            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
-            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
-            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
-            $promotion = Promotion::orderBy('id','desc')->take(1)->get();
+            $recommendedItems = Product::inRandomOrder()->take(12)->get();
+            $latestItems = Product::orderBy('id','desc')->take(12)->get();
+            $promotionsItems = Product::where('promotions',true)->orderBy('id','desc')->take(12)->get();
+            $promotion = Promotion::orderBy('id','desc')->take(12)->get();
             
+            $categoryProduct1 = Product::with('categories')->whereHas('categories',function (Builder $query) {
+                $categories1 = Category::where('p_id',0)->orderBy('id','desc')->first();
+                $query->where('name',$categories1->slug);
+            })->get();
+
+            $categoryProduct2 = Product::with('categories')->whereHas('categories',function (Builder $query) {
+                $categories2 = Category::where('p_id',1)->orderBy('id','desc')->first();
+                $query->where('name',$categories2->slug);
+            })->get();
+
+            $categoryProduct3 = Product::with('categories')->whereHas('categories',function (Builder $query) {
+                $categories3 = Category::where('p_id',2)->orderBy('id','desc')->first();
+                $query->where('name',$categories3->slug);
+            })->get();
+
             return view('landing-page')->with([
-                // 'products' =>$products,
+                'products' =>$products,
                 'user' => $user,
-                // 'officer' => $officer,
-                // 'recommendedItems' => $recommendedItems,
-                // 'latestItems' => $latestItems,
-                // 'latestItemsAsc' => $latestItemsAsc,
-                // 'latestItemsDesc' => $latestItemsDesc,
-                // 'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
-                // 'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
-                // 'categories' => $categories,
-                // 'videos' => $videos,
-                // 'promotionsItemsAsc' => $promotionsItemsAsc,
-                // 'promotionsItemsDesc' => $promotionsItemsDesc,
-                // 'promotion' => $promotion,
+                'officer' => $officer,
+                'recommendedItems' => $recommendedItems,
+                'latestItems' => $latestItems,
+                'categories' => $categories,
+                'videos' => $videos,
+                'promotionsItems' => $promotionsItems,
+                'promotion' => $promotion,
+                'categoryProduct1' => $categoryProduct1,
+                'categoryProduct2' => $categoryProduct2,
+                'categoryProduct3' => $categoryProduct3,
             ]);
         }else{
            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
@@ -76,6 +85,9 @@ class LandingPageController extends Controller
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
+            $personalNumber = session()->get('user')['PersonalNumber'];
+
+            $orders = Order::where('personal_number',$personalNumber)->get();
             if($user == null){
                 $number = session()->get('user')['PersonalNumber'];
                 $user = BasicUser::where('PersonalNumber',$number)->first();
@@ -87,6 +99,7 @@ class LandingPageController extends Controller
 
             return view('profile')->with([
                 'user' => $user,
+                'orders' => $orders,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');

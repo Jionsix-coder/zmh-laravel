@@ -43,6 +43,7 @@ class BasicUserController extends Controller
             if($user->NationalNumber === $request->NationalNumber){
                 if($user->PersonalNumber === $request->PersonalNumber){
                             session()->put('user',[
+                                'PersonalNumber' => $user->PersonalNumber,
                                 'NationalNumber' => $user->NationalNumber,
                                 'MoneyLeft' => $user->MoneyLeft,
                             ]);
@@ -72,6 +73,7 @@ class BasicUserController extends Controller
                             $personalNumber = $enguser->PersonalNumber;
                             $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
                             session()->put('user',[
+                                'PersonalNumber' => $user->PersonalNumber,
                                 'NationalNumber' => $user->NationalNumber,
                                 'MoneyLeft' => $user->MoneyLeft,
                             ]);
@@ -131,16 +133,18 @@ class BasicUserController extends Controller
     public function update(Request $request)
     {
         $number = session()->get('user')['NationalNumber'];
+        $personalNumber =session()->get('user')['PersonalNumber'];
         $user = BasicUser::where('NationalNumber',$number)->first();
+        $usereng = BasicUserEng::where('PersonalNumber',$personalNumber)->first();
 
         $this->validate($request,[
             'PhNumber' => 'required|numeric|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'AddressLine1' => 'required',
-            'AddressLine2' => 'required',
             'City' => 'required',
             'State' => 'required',
         ]);
         $user = BasicUser::find($user->id);
+        $usereng = BasicUserEng::find($usereng->id);
 
         $user->PhNumber = $request->PhNumber;
         $user->AddressLine1 = $request->AddressLine1;
@@ -148,6 +152,13 @@ class BasicUserController extends Controller
         $user->City = $request->City;
         $user->State = $request->State;
         $user->save();
+
+        $usereng->PhNumber = $request->PhNumber;
+        $usereng->AddressLine1 = $request->AddressLine1;
+        $usereng->AddressLine2 = $request->AddressLine2;
+        $usereng->City = $request->City;
+        $usereng->State = $request->State;
+        $usereng->save();
 
         return redirect()->route('profile.index')->with('success_message','Your account has been successfully updated');
     }

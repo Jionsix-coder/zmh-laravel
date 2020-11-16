@@ -11,8 +11,8 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li>User Information</li>
+                    <li><a href="{{ route('landing.page') }}">Home</a></li>
+                    <li>Profile</li>
                 </ul>
             </div>
         </div>
@@ -24,8 +24,8 @@
                             <aside class="ps-widget--account-dashboard">
                                 <div class="ps-widget__header"><img src="img/users/3.jpg" alt="">
                                     <figure>
-                                        <figcaption>Naing Min Thwin</figcaption>
-                                        <p><a href="#">naingminthwin@gmail.com</a></p>
+                                        <figcaption>{{ $user->Name }}</figcaption>
+                                        <p><a href="#">{{ $user->PersonalNumber }}</a></p>
                                     </figure>
                                 </div>
                                 <div class="ps-widget__content">
@@ -41,7 +41,8 @@
                     </div>
                     <div class="ps-tabs col-lg-8">
                         <div class="ps-section__right ps-tab active" id="profile">
-                            <form class="ps-form--account-setting" action="index.html" method="get">
+                            <form class="ps-form--account-setting" action="{{ route('basicuser.update') }}" method="POST">
+                            @csrf
                                 <div class="ps-form__header">
                                     <br>
                                     <p style="font-size:medium;background-color:black;color:red;font-weight:bold;text-align:center;border-radius: 20px;padding:15px 15px;">အော်ဒါတင်ရရန်အတွက်ဤနေရာတွင်သင့်အချက်အလက်များအားဖြည့်သွင်းပါ(တစ်ကြိမ်သာဖြည့်ညွင်းရန်လိုအပ်ပါသည်။)</p>
@@ -51,39 +52,65 @@
                                 <div class="ps-form__content">
                                     <div class="form-group">
                                         <label>Phone Number</label>
-                                        <input class="form-control" type="text" placeholder="Please enter your phone number...">
+                                        <input class="form-control" name="PhNumber" type="text" placeholder="Please enter your phone number...">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Address Line 1</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your address...">
+                                                <input class="form-control" name="AddressLine1" type="text" placeholder="Please enter your address...">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Address Line 2</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your address...">
+                                                <input class="form-control" name="AddressLine2" type="text" placeholder="Please enter your address...">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your city...">
+                                                <input class="form-control" name="City" type="text" placeholder="Please enter your city...">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>State</label>
-                                                <input class="form-control" type="text" placeholder="Please enter your state...">
+                                                <input class="form-control" name="State" type="text" placeholder="Please enter your state...">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group submit">
-                                    <button class="ps-btn">Update</button>
+                                    <button class="ps-btn" type="submit" {{ $user->PhNumber != null ? 'disabled' : ''  }}>Submit</button>
                                 </div>
                             </form>
+                            <div class="ps-section__content">
+                                <div class="table-responsive">
+                                    <table class="table ps-table">
+                                        <thead>
+                                            <tr>
+                                                <th>အမည်</th>
+                                                <th>ရာထူး | ဋ္ဌာန</th>
+                                                <th>မြို့ | တိုင်း | ပြည်နယ်</th>
+                                                <th>ကိုယ်ပိုင်အမှတ်</th>
+                                                <th>မှတ်ပုံတင်အမှတ်</th>
+                                                <th>လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ $user->Name }}</td>
+                                                <td>{{ $user->PositionDepartment }}</td>
+                                                <td>{{ $user->CityTineState }}</td>
+                                                <td>{{ $user->PersonalNumber }}</td>
+                                                <td>{{ $user->NationalNumber }}</td>
+                                                <td>{{ $user->CurrentOffice }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="ps-section__right ps-tab" id="invoices">
                             <br>
@@ -96,42 +123,27 @@
                                         <table class="table ps-table ps-table--invoices">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
-                                                    <th>Title</th>
-                                                    <th>Date</th>
-                                                    <th>Amount</th>
+                                                    <th>အော်ဒါအမှတ်</th>
+                                                    <th>ပစ္စည်းအမည်</th>
+                                                    <th>ရက်စွဲ</th>
+                                                    <th>စုစုပေါင်း</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td><a href="invoice-detail.html">500884010</a></td>
-                                                    <td><a href="product-default.html">Marshall Kilburn Portable Wireless Speaker</a></td>
-                                                    <td>20-1-2020</td>
-                                                    <td>42.99</td>
-                                                    <td>Successful delivery</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="invoice-detail.html">593347935</a></td>
-                                                    <td><a href="product-default.html">Herschel Leather Duffle Bag In Brown Color</a></td>
-                                                    <td>20-1-2020</td>
-                                                    <td>199.99</td>
-                                                    <td>Cancel</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="invoice-detail.html">593347935</a></td>
-                                                    <td><a href="product-default.html">Xbox One Wireless Controller Black Color</a></td>
-                                                    <td>20-1-2020</td>
-                                                    <td>199.99</td>
-                                                    <td>Cancel</td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="invoice-detail.html">615397400</a></td>
-                                                    <td><a href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a></td>
-                                                    <td>20-1-2020</td>
-                                                    <td>41.00</td>
-                                                    <td>Cancel</td>
-                                                </tr>
+                                                @foreach ($orders as $order)
+                                                    <tr>
+                                                        <td><a href="invoice-detail.html">{{ $order->id }}</a></td>
+                                                        <td>
+                                                            @foreach ($order->products as $item)
+                                                            <a href="{{ route('shop.show', $item->slug) }}">{{ $item->name }}(x{{ $item->pivot->quantity }}) <br></a>
+                                                            @endforeach
+                                                        </td>
+                                                        <td>{{ $order->created_at->toDateString() }}</td>
+                                                        <td>{{ $order->total }}</td>
+                                                        <td style="background-color: {{ $order->delivered == 1 ? 'green' : 'red' }};font-weight:bold;color:black;text-align:center;">{{ $order->delivered == 1 ? 'Delivered' : 'Not Delivered' }}</td>
+                                                    </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>

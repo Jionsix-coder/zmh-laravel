@@ -1,6 +1,6 @@
 @extends('product-layout')
 
-@section('title', 'Product Details')
+@section('title', 'Commming Soon')
 
 @section('extra-css')
 

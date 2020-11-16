@@ -11,8 +11,8 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="shop-default.html">Shop</a></li>
+                    <li><a href="{{ route('landing.page') }}">Home</a></li>
+                    <li><a href="{{ route('shop.index') }}">Shop</a></li>
                     <li>Shopping Cart</li>
                 </ul>
             </div>
@@ -20,101 +20,144 @@
         <div class="ps-section--shopping ps-shopping-cart">
             <div class="container">
                 <div class="ps-section__header">
-                    <h1>Shopping Cart</h1>
+                    <h1>Shopping Cart({{ Cart::count() }})</h1>
+                    @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                    @endif
+
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
+                @if(Cart::count() > 0)
                 <div class="ps-section__content">
                     <div class="table-responsive">
                         <table class="table ps-table--shopping-cart">
                             <thead>
                                 <tr>
-                                    <th>Product name</th>
-                                    <th>PRICE</th>
-                                    <th>QUANTITY</th>
-                                    <th>TOTAL</th>
-                                    <th></th>
+                                    <th>ဓာတ်ပုံပစ္စည်းအမည်</th>
+                                    <th>စျေးနှုန်း</th>
+                                    <th>အရေအတွက်</th>
+                                    <th>အရောင်</th>
+                                    <th>စုစုပေါင်း</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="ps-product--cart">
-                                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/electronic/1.jpg" alt=""></a></div>
-                                            <div class="ps-product__content"><a href="product-default.html">Marshall Kilburn Wireless Bluetooth Speaker, Black (A4819189)</a>
+                                @foreach (Cart::content() as $item)
+                                @php
+                                    $colour = $item->model->colour;
+                                    $product_colour = explode(',',$colour);
+                                @endphp
+                                    <tr>
+                                        <td>
+                                            <div class="ps-product--cart">
+                                                <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ productImage($item->model->image)}}" alt=""></a></div>
+                                                <div class="ps-product__content"><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="price">$205.00</td>
-                                    <td>
-                                        <div class="form-group--number">
-                                            <button class="up">+</button>
-                                            <button class="down">-</button>
-                                            <input class="form-control" type="text" placeholder="1" value="1">
-                                        </div>
-                                    </td>
-                                    <td>$205.00</td>
-                                    <td><a href="#"><i class="icon-cross"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="ps-product--cart">
-                                            <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/clothing/2.jpg" alt=""></a></div>
-                                            <div class="ps-product__content"><a href="product-default.html">Unero Military Classical Backpack</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="price">$205.00</td>
-                                    <td>
-                                        <div class="form-group--number">
-                                            <button class="up">+</button>
-                                            <button class="down">-</button>
-                                            <input class="form-control" type="text" placeholder="1" value="1">
-                                        </div>
-                                    </td>
-                                    <td>$205.00</td>
-                                    <td><a href="#"><i class="icon-cross"></i></a></td>
-                                </tr>
+                                        </td>
+                                        <td class="price" style="text-align: center;">{{ $item->model->presentPrice() }}</td>
+                                        <td style="text-align: center;" class="cart_quantity">
+                                            <select class="cart_quantity_select" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+                                                @for($i = 1; $i < 5 + 1 ; $i++)
+                                                <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <select name="colour" id="">
+                                                @foreach ($product_colour as $colour)
+                                                    <option value="{{ $colour }}">{{ $colour }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td style="text-align: center;">{{ presentPrice($item->subtotal()) }} ( -{{ $item->model->discountPercent > 0 ? $item->model->discountPercent : '0'  }}%)</td>
+                                        <td>
+                                            <form action="{{ route('cart.destroy',$item->rowId) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE') 
+                                                <button type="submit" class="cart_quantity_delete"><i class="icon-cross"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                @else
+					
+                                    <h3 class="no-item-h3">ဈေးခြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
+                                    <a href="{{ route('shop.index') }}" class="btn btn-primary btn-cs">Contine Shopping</a>
+
+                                @endif
                             </tbody>
                         </table>
                     </div>
-                    <div class="ps-section__cart-actions"><a class="ps-btn" href="shop-default.html"><i class="icon-arrow-left"></i> Back to Shop</a></div>
+                    <div class="ps-section__cart-actions"><a class="ps-btn" href="{{ route('shop.index') }}"><i class="icon-arrow-left"></i> Back to Shop</a></div>
                 </div>
                 <div class="ps-section__footer">
                     <div class="row">
+                        @if (! session()->has('coupon'))
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-                            <figure>
-                                <figcaption>Coupon Discount</figcaption>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="ကူပွန်ကုဒ်ရိုက်ထည့်ရန်နေရာ">
-                                </div>
-                                <div class="form-group">
-                                    <button class="ps-btn ps-btn--outline">Apply</button>
-                                </div>
-                            </figure>
+                            <form action="{{ route('coupon.store') }}" method="POST">
+                            @csrf
+                                <figure>
+                                    <figcaption>Coupon Discount</figcaption>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="ကူပွန်ကုဒ်ရိုက်ထည့်ရန်နေရာ" name="coupon_code">
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="ps-btn ps-btn--outline">Apply</button>
+                                    </div>
+                                </figure>
+                            </form>
                         </div>
+                        @endif
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
                             <div class="ps-block--shopping-total">
+                                @if (session()->has('coupon'))
                                 <div class="ps-block__header">
-                                    <p>အရေအတွက်စုစုပေါင်း <span> $683.49</span></p>
+                                    <p style="display: inline;font-size:12px;">Discount ({{ session()->get('coupon')['name'] }}) :
+                                        <span>
+                                            <form action="{{ route('coupon.destroy') }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button type="submit" class="btn">Remove</button> 
+                                            </form>
+                                            - {{ presentPrice($discount) }}
+                                       </span>
+                                    </p>
+                                </div>
+                                @endif
+                                <div class="ps-block__header">
+                                    <p>အရေအတွက်စုစုပေါင်း <span>{{ Cart::count() > 0 ? Cart::count() : 0 }}</span></p>
                                 </div>
                                 <div class="ps-block__header">
-                                    <p style="color: red;">လက်ကျန်ငွေ <span> $683.49</span></p>
+                                    <p style="color: red;">လက်ကျန်ငွေ <span>{{ $user->MoneyLeft }}</span></p>
                                 </div>
                                 <div class="ps-block__header">
-                                    <p>တစ်လချင်းပေးရမည့်ငွေ <span> $683.49</span></p>
+                                    <p>တစ်လချင်းပေးရမည့်ငွေ <span>{{ presentPrice($newTotal / 4) }}</span></p>
                                 </div>
                                 <div class="ps-block__content">
-                                    <h3>စုစုပေါင်း  <span>$683.49</span></h3>
+                                    <h3>စုစုပေါင်း  <span>{{ presentPrice($newTotal) }}</span></h3>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
-                            <figure>
-                                <figcaption>တာဝန်ခံကုဒ်</figcaption>
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="တာဝန်ခံကုဒ်ရိုက်ထည့်ရန်နေရာ">
-                                </div>
-                            </figure>
-                            <a class="ps-btn ps-btn--fullwidth" href="checkout.html">အော်ဒါတင်ရန်</a>
+                            <form action="{{ route('order.store') }}" method="POST">
+                            @csrf
+                                <figure>
+                                    <figcaption>တာဝန်ခံကုဒ်</figcaption>
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" name="ordercode" placeholder="တာဝန်ခံကုဒ်ရိုက်ထည့်ရန်နေရာ" required>
+                                    </div>
+                                </figure>
+                                <button class="ps-btn ps-btn--fullwidth" type="submit" >အော်ဒါတင်ရန်</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -124,5 +167,29 @@
 @endsection
 
 @section('extra-js')
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+	(function(){
+		const classname = document.querySelectorAll('.cart_quantity_select')
 
+		Array.from(classname).forEach(function(element){
+			element.addEventListener('change',function(){
+				const id = element.getAttribute('data-id')
+				const productQuantity = element.getAttribute('data-productQuantity')
+				axios.patch(`/cart/${id}`, {
+					quantity : this.value,
+					productQuantity : productQuantity
+				})
+				.then(function (response) {
+					// console.log(response);
+					window.location.href = '{{ route('cart.index') }}'
+				})
+				.catch(function (error) {
+					//console.log(error);
+					window.location.href = '{{ route('cart.index') }}'
+				});
+			})
+		})
+	})();
+</script>
 @endsection

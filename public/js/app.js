@@ -19330,7 +19330,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap? }\n    at validate (D:\\Laravel\\zmh-laravel-\\node_modules\\postcss-loader\\node_modules\\schema-utils\\dist\\validate.js:104:11)\n    at Object.loader (D:\\Laravel\\zmh-laravel-\\node_modules\\postcss-loader\\dist\\index.js:43:29)\n    at D:\\Laravel\\zmh-laravel-\\node_modules\\webpack\\lib\\NormalModule.js:316:20\n    at D:\\Laravel\\zmh-laravel-\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at D:\\Laravel\\zmh-laravel-\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at processTicksAndRejections (internal/process/task_queues.js:97:5)");
+throw new Error("Module build failed (from ./node_modules/css-loader/dist/cjs.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nValidationError: Invalid options object. PostCSS Loader has been initialized using an options object that does not match the API schema.\n - options has an unknown property 'plugins'. These properties are valid:\n   object { postcssOptions?, execute?, sourceMap? }\n    at validate (/home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/node_modules/postcss-loader/node_modules/schema-utils/dist/validate.js:104:11)\n    at Object.loader (/home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/node_modules/postcss-loader/dist/index.js:43:29)\n    at runLoaders (/home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/node_modules/webpack/lib/NormalModule.js:316:20)\n    at /home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at process._tickCallback (internal/process/next_tick.js:68:7)");
 
 /***/ }),
 
@@ -19397,8 +19397,8 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Laravel\zmh-laravel-\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Laravel\zmh-laravel-\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! /home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/jionsix/Laravel/ZMH-Laravel/zmh-laravel-joinfrontend/resources/css/app.css */"./resources/css/app.css");
 
 
 /***/ })

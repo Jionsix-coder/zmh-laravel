@@ -17,20 +17,20 @@
                 <aside class="widget widget_footer">
                     <h4 class="widget-title">Quick links</h4>
                     <ul class="ps-list--link">
-                        <li><a href="#">အာမခံ</a></li>
-                        <li><a href="#">အဖွဲ့ဝင်များသိထားရန်</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="contact-us.html">Contact</a></li>
-                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="{{ route('navbar.armakhan') }}">အာမခံ</a></li>
+                        <li><a href="{{ route('navbar.aboutmember') }}">အဖွဲ့ဝင်များသိထားရန်</a></li>
+                        <li><a href="{{ route('pages.aboutUs') }}">About Us</a></li>
+                        <li><a href="{{ route('pages.contactUs') }}">Contact</a></li>
+                        <li><a href="{{ route('pages.faqs') }}">FAQs</a></li>
                     </ul>
                 </aside>
                 <aside class="widget widget_footer">
                     <h4 class="widget-title">Bussiness</h4>
                     <ul class="ps-list--link">
-                        <li><a href="#">ဈေးလှည်း</a></li>
-                        <li><a href="checkout.html">ဈေးခြင်း</a></li>
-                        <li><a href="profile.html">အကောင့်</a></li>
-                        <li><a href="shop-default.html">စျေးဝယ်ရန်</a></li>
+                        <li><a href="{{ route('cart.save') }}">ဈေးလှည်း</a></li>
+                        <li><a href="{{ route('cart.index') }}">ဈေးခြင်း</a></li>
+                        <li><a href="{{ route('profile.index') }}">အကောင့်</a></li>
+                        <li><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>
                     </ul>
                 </aside>
             </div>

@@ -1,4 +1,4 @@
-<header class="header header--1" data-sticky="true">
+    <header class="header header--1" data-sticky="true">
         <div class="header__top">
             <div class="ps-container">
                 <div class="header__left">
@@ -452,7 +452,7 @@
     <header class="header header--mobile" data-sticky="true">
         <div class="header__top">
             <div class="header__left">
-                <p>Welcome to Martfury Online Shopping Store !</p>
+                <p>Welcome to ZMH-OnlineShop!</p>
             </div>
             <div class="header__right">
                 <ul class="navigation__extra">
@@ -478,34 +478,37 @@
             </div>
         </div>
         <div class="navigation--mobile">
-            <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/bg/logo.png" width="30px" height="30px" alt="" style="margin-right: 5px;"><img src="img/logo.png" alt="logo.png" width="35px" height="35px" style="width:70%;"></a></div>
+            <div class="navigation__left"><a class="ps-logo" href="{{ route('landing.page') }}"><img src="img/bg/logo.png" width="30px" height="30px" alt="" style="margin-right: 5px;"><img src="img/logo.png" alt="logo.png" width="35px" height="35px" style="width:70%;"></a></div>
             <div class="navigation__right">
                 <div class="header__actions">
-                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
+                    <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>{{ Cart::count() }}</i></span></a>
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
-                                <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
-                                        <small>1 x $59.99</small>
+                                @foreach (Cart::content() as $item)
+                                    <div class="ps-product--cart-mobile">
+                                        <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ productImage($item->model->image) }}" alt="{{ $item->model->name }}"></a></div>
+                                        <div class="ps-product__content">
+                                            <form action="{{ route('cart.destroy',$item->rowId) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <button class="ps-product__remove" ><i class="icon-cross"></i></button>
+                                            </form>
+                                            <a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a>
+                                            
+                                            <small>1 x {{ presentPrice($item->model->price) }} (-{{ $item->model->discountPercent > 0 ? $item->model->discountPercent : '0'  }}%)</small>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>
-                                    <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
-                                        <small>1 x $59.99</small>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                             <div class="ps-cart__footer">
-                                <h3>Sub Total:<strong>$59.99</strong></h3>
-                                <figure><a href="#"></a><a class="ps-btn" href="checkout.html">ဈေးခြင်းသို့</a></figure>
+                                <h3>Sub Total:<strong>{{ Cart::subtotal() }}</strong></h3>
+                                <figure><a href="#"></a><a class="ps-btn" href="{{ route('cart.index') }}">ဈေးခြင်းသို့</a></figure>
                             </div>
                         </div>
                     </div>
                     <div class="ps-block--user-header">
-                        <div class="ps-block__left"><a href="profile.html"><i class="icon-user"></i></a></div>
-                        <div class="ps-block__right"><a href="my-account.html">Login</a><a href="my-account.html">Register</a></div>
+                        <div class="ps-block__left"><a href="{{ route('profile.index') }}"><i class="icon-user"></i></a></div>
+                        <div class="ps-block__right"><a href="{{ route('profile.index') }}" style="text-align: center;">My</a><a href="{{ route('profile.index') }}">Account</a></div>
                     </div>
                 </div>
             </div>

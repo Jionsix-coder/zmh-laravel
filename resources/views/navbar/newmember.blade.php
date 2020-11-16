@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Profile')
+@section('title', 'အဖွဲ့ဝင်သစ်လိုအပ်ချက်')
 
 @section('extra-css')
 

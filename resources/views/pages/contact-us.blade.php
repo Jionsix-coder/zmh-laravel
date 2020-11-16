@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', 'Cart')
+@section('title', 'Contact')
 
 @section('extra-css')
 

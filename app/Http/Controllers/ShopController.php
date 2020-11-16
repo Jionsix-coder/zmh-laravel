@@ -23,13 +23,8 @@ class ShopController extends Controller
             $pagination = 16;
             $categories = Category::all();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
+            $bestsaleproducts = Product::where('quantity','<=','4')->take(12)->get();
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
-            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
-            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
-            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
-            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
-            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
-            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
             $promotion = Promotion::orderBy('id','desc')->take(1)->get();
 
             if(request()->category){
@@ -59,12 +54,7 @@ class ShopController extends Controller
                 'user'=>$user,
                 'categories' => $categories,
                 'latestItems' => $latestItems,
-                'latestItemsAsc' => $latestItemsAsc,
-                'latestItemsDesc' => $latestItemsDesc,
-                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
-                'promotionsItemsAsc' => $promotionsItemsAsc,
-                'promotionsItemsDesc' => $promotionsItemsDesc,
-                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
+                'bestsaleproducts' => $bestsaleproducts,
                 'categoryName' => $categoryName,
                 'promotionsItem' => $promotionsItem,
                 'promotion' => $promotion,
@@ -84,6 +74,7 @@ class ShopController extends Controller
     public function show($slug)
     {
         if(session()->has('user')){
+            global $product;
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
             $product = Product::where('slug',$slug)->firstOrFail();
@@ -94,15 +85,13 @@ class ShopController extends Controller
                 $Name[$key] = $category->name;
             endforeach;
             $CategoryName = implode(' , ',$Name);
-            $recommendedItems = Product::inRandomOrder()->take(3)->get();
+            $recommendedItems = Product::inRandomOrder()->take(12)->get();
             $latestItems = Product::orderBy('id','desc')->take(3)->get();
-            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
-            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
-            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
-            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
-            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
-            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
+            $categoryProduct = Product::with('categories')->whereHas('categories',function ($query) use($product) {
+                $categoriesForProduct1 = $product->categories()->first();
+                $query->where('slug',$categoriesForProduct1->slug);
+            })->take(12)->get();
 
 
             $stockLevel = getStockLevel($product->quantity);
@@ -112,14 +101,9 @@ class ShopController extends Controller
                 'user' => $user,
                 'recommendedItems' => $recommendedItems,
                 'latestItems' => $latestItems,
-                'latestItemsAsc' => $latestItemsAsc,
-                'latestItemsDesc' => $latestItemsDesc,
-                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
-                'promotionsItemsAsc' => $promotionsItemsAsc,
-                'promotionsItemsDesc' => $promotionsItemsDesc,
-                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
                 'CategoryName' => $CategoryName,
                 'categories' => $categories,
+                'categoryProduct' => $categoryProduct,
                 'stockLevel' => $stockLevel,
                 'promotionsItem' => $promotionsItem,
             ]);
