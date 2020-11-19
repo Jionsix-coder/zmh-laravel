@@ -42,6 +42,7 @@ class BasicUserController extends Controller
         if($user){
             if($user->NationalNumber === $request->NationalNumber){
                 if($user->PersonalNumber === $request->PersonalNumber){
+                    if($enguser->Name === $request->Name){
                             session()->put('user',[
                                 'PersonalNumber' => $user->PersonalNumber,
                                 'NationalNumber' => $user->NationalNumber,
@@ -49,16 +50,20 @@ class BasicUserController extends Controller
                             ]);
                             
                             return redirect()->route('landing.page');
-                }else{
+                        }else{
+                            return back()->withInput()->withErrors('အမည်မှားယွင်းနေပါသည်။');
+                        }
+                    }else{
                     return back()->withInput()->withErrors('ကိုယ်ပိုင်အမှတ်မှားယွင်းနေပါသည်။');
-                }
+                    }
             }else{
                 return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
             }
         }else{
             return back()->withInput()->withErrors('မှတ်ပုံတင်အမှတ်မှားယွင်းနေပါသည်။');
         }
-    }
+        
+}
 
     public function checkenglish(Request $request)
     {
@@ -70,6 +75,7 @@ class BasicUserController extends Controller
             
             if($enguser->NationalNumber === $request->NationalNumber){
                 if($enguser->PersonalNumber === $request->PersonalNumber){
+                    if($enguser->Name === $request->Name){
                             $personalNumber = $enguser->PersonalNumber;
                             $user = BasicUser::where('PersonalNumber',$personalNumber)->firstOrFail();
                             session()->put('user',[
@@ -79,15 +85,18 @@ class BasicUserController extends Controller
                             ]);
                             
                             return redirect()->route('landing.page');
+                        }else{
+                            return back()->withInput()->withErrors('Name Wrong!!!');
+                        }
+                    }else{
+                        return back()->withInput()->withErrors('Personal Number Wrong!!!');
+                    }
                 }else{
-                    return back()->withInput()->withErrors('Personal Number Wrong!!!');
+                    return back()->withInput()->withErrors('National Number Wrong!!!');
                 }
             }else{
                 return back()->withInput()->withErrors('National Number Wrong!!!');
             }
-        }else{
-            return back()->withInput()->withErrors('National Number Wrong!!!');
-        }
     }
 
     /**

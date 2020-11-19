@@ -41,6 +41,13 @@
             <div class="ps-container">
                 <div class="ps-block--site-features">
                     <div class="ps-block__item">
+                        <div class="ps-block__left"><i class="icon-cash-dollar"></i></div>
+                        <div class="ps-block__right">
+                            <h4>သင့်လက်ကျန်ငွေ</h4>
+                            <p><b style="color: red">{{ $user->MoneyLeft }}</b></p>
+                        </div>
+                    </div>
+                    <div class="ps-block__item">
                         <div class="ps-block__left"><i class="icon-rocket"></i></div>
                         <div class="ps-block__right">
                             <h4>Free Delivery</h4>
@@ -51,7 +58,7 @@
                         <div class="ps-block__left"><i class="icon-credit-card"></i></div>
                         <div class="ps-block__right">
                             <h4>Installment Payment</h4>
-                            <p>4 Months Payment</p>
+                            <p><b>လေးလအရစ်ကျ</b></p>
                         </div>
                     </div>
                     <div class="ps-block__item">

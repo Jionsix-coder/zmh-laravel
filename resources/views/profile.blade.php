@@ -102,6 +102,7 @@
                                                 <th>ကိုယ်ပိုင်အမှတ်</th>
                                                 <th>မှတ်ပုံတင်အမှတ်</th>
                                                 <th>လက်ရှိတာဝန်ထမ်းဆောင်သောရုံး</th>
+                                                <th>လက်ကျန်ငွေ</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -112,6 +113,7 @@
                                                 <td>{{ $user->PersonalNumber }}</td>
                                                 <td>{{ $user->NationalNumber }}</td>
                                                 <td>{{ $user->CurrentOffice }}</td>
+                                                <td>{{ $user->MoneyLeft }}</td>
                                             </tr>
                                         </tbody>
                                     </table>
