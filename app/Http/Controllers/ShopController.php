@@ -121,17 +121,11 @@ class ShopController extends Controller
     
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
-
             $query = $request->input('query');
             $categories = Category::all();
-            $latestItemsAsc = Product::orderBy('id','asc')->take(3)->get();
-            $latestItemsDesc = Product::orderBy('id','desc')->take(3)->get();
-            $ExpensiveItemsAsc = Product::where('price','>=',200000)->orderBy('price','asc')->take(3)->get();
-            $ExpensiveItemsDesc = Product::where('price','>=',200000)->orderBy('price','desc')->take(3)->get();
-            $promotionsItemsAsc = Product::where('promotions',true)->orderBy('id','asc')->take(6)->get();
-            $promotionsItemsDesc = Product::where('promotions',true)->orderBy('id','desc')->take(6)->get();
+            $bestsaleproducts = Product::where('quantity','<=','4')->take(12)->get();
             $promotionsItem = Product::where('promotions',true)->take(6)->get();
-            $ExpensiveItems = Product::where('price','>=',200000)->take(3)->get();
+            $promotion = Promotion::orderBy('id','desc')->take(1)->get();
             $products = Product::where('name', 'like' , "%$query%")
                                  ->orWhere('details' ,'like' ,"%$query%")
                                  ->orWhere('description' ,'like' ,"%$query%")
@@ -140,20 +134,44 @@ class ShopController extends Controller
             return view('search-results')->with([
                 'products' => $products,
                 'user' => $user,
-                'ExpensiveItems' => $ExpensiveItems,
-                'latestItemsAsc' => $latestItemsAsc,
-                'latestItemsDesc' => $latestItemsDesc,
-                'ExpensiveItemsAsc' => $ExpensiveItemsAsc,
-                'ExpensiveItemsDesc' => $ExpensiveItemsDesc,
-                'promotionsItemsAsc' => $promotionsItemsAsc,
-                'promotionsItemsDesc' => $promotionsItemsDesc,
                 'categories' => $categories,
+                'bestsaleproducts' => $bestsaleproducts,
                 'promotionsItem' => $promotionsItem,
+                'promotion' => $promotion,
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
         }
     }
+
+    public function promotion(Request $request)
+    {
+        if(session()->has('user')){
+            $number = session()->get('user')['NationalNumber'];
+            $user = BasicUser::where('NationalNumber',$number)->first();
+            $pagination = 16;
+            $categories = Category::all();
+            $promotionsItem = Product::where('promotions',true)->take(6)->get();
+            $bestsaleproducts = Product::where('quantity','<=','4')->take(12)->get();
+            $latestItems = Product::orderBy('id','desc')->take(3)->get();
+            $promotion = Promotion::orderBy('id','desc')->take(1)->get();
+            $products = Product::where('promotions',true)->paginate($pagination);
+
+            
+
+            return view('promotion-result')->with([
+                'products' => $products,
+                'user'=>$user,
+                'categories' => $categories,
+                'latestItems' => $latestItems,
+                'bestsaleproducts' => $bestsaleproducts,
+                'promotionsItem' => $promotionsItem,
+                'promotion' => $promotion,
+            ]);
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
+    } 
 
     
 }

@@ -50,3 +50,5 @@
     @yield('content')
 
     @include('partials.footer')
+
+    @yield('extra-js')

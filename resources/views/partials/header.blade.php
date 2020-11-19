@@ -501,9 +501,13 @@
                                 @endforeach
                             </div>
                             <div class="ps-cart__footer">
-                                <h3>Sub Total:<strong>{{ Cart::subtotal() }}</strong></h3>
+                                @if(Cart::count() > 0)
+                                <h3>Sub Total:<strong>{{ presentPrice(Cart::subtotal()) }}</strong></h3>
                                 <figure><a href="#"></a><a class="ps-btn" href="{{ route('cart.index') }}">ဈေးခြင်းသို့</a></figure>
-                            </div>
+                                @else
+                                    <h3 style="text-align:center;color:red;font-weight:bold;">ဈေးခြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
+                                @endif
+                            </div>         
                         </div>
                     </div>
                     <div class="ps-block--user-header">
@@ -514,10 +518,10 @@
             </div>
         </div>
         <div class="ps-search--mobile">
-            <form class="ps-form--search-mobile" action="index.html" method="get">
+            <form class="ps-form--search-mobile" action="{{ route('shop.search') }}" method="GET">
                 <div class="form-group--nest">
-                    <input class="form-control" type="text" placeholder="ပစ္စည်းများရှာရန်">
-                    <button><i class="icon-magnifier"></i></button>
+                    <input class="form-control" type="text" placeholder="ပစ္စည်းများရှာရန်" name="query" value="{{ request()->input('query') }}" id="query">
+                    <button type="submit"><i class="icon-magnifier"></i></button>
                 </div>
             </form>
         </div>

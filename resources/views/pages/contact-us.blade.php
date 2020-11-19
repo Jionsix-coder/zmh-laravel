@@ -11,7 +11,7 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="{{ route('landing.page') }}">ပင်မ</a></li>
                     <li>Contact Us</li>
                 </ul>
             </div>
@@ -40,14 +40,8 @@
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 ">
                             <div class="ps-block--contact-info">
-                                <h4>Work With Us</h4>
-                                <p><span>Send your CV to our email:</span><a href="#">career@martfury.com</a></p>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 ">
-                            <div class="ps-block--contact-info">
                                 <h4>Customer Service</h4>
-                                <p><a href="#">customercare@martfury.com</a><span>(800) 843-2446</span></p>
+                                <p><a href="mailto:zayminhtetcompanylimited@gmail.com">zayminhtetcompanylimited</a><span>+95-9-898155551</span></p>
                             </div>
                         </div>
                     </div>

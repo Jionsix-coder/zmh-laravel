@@ -11,9 +11,9 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="{{ route('landing.page') }}">Home</a></li>
-                    <li><a href="{{ route('shop.index') }}">Shop</a></li>
-                    <li>Shopping Cart</li>
+                    <li><a href="{{ route('landing.page') }}">ပင်မ</a></li>
+                    <li><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>
+                    <li>ဈေးခြင်း</li>
                 </ul>
             </div>
         </div>
@@ -46,6 +46,7 @@
                                     <th>ဓာတ်ပုံပစ္စည်းအမည်</th>
                                     <th>စျေးနှုန်း</th>
                                     <th>အရေအတွက်</th>
+                                    <th>လှည်းသို့ထှည့်ရန်</th>
                                     <th>အရောင်</th>
                                     <th>စုစုပေါင်း</th>
                                 </tr>
@@ -64,12 +65,19 @@
                                             </div>
                                         </td>
                                         <td class="price" style="text-align: center;">{{ $item->model->presentPrice() }}</td>
-                                        <td style="text-align: center;" class="cart_quantity">
+                                        <td style="text-align: center;">
                                             <select class="cart_quantity_select" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
-                                                @for($i = 1; $i < 5 + 1 ; $i++)
+                                                @for($i = 1; $i < $item->model->quantity + 1 ; $i++)
                                                 <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
                                                 @endfor
                                             </select>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('cart.switchToSaveCart', $item->rowId) }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->rowId }}">
+                                                <button class="savecart-btn" style="width:100%;height:50%">လှည်းသို့ထှည့်ရန်</button>
+                                            </form>
                                         </td>
                                         <td style="text-align: center;">
                                             <select name="colour" id="">
@@ -83,16 +91,13 @@
                                             <form action="{{ route('cart.destroy',$item->rowId) }}" method="POST">
                                             @csrf
                                             @method('DELETE') 
-                                                <button type="submit" class="cart_quantity_delete"><i class="icon-cross"></i></button>
+                                                <button type="submit" class="cross-button"><i class="icon-cross"></i></button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
-                                @else
-					
-                                    <h3 class="no-item-h3">ဈေးခြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
-                                    <a href="{{ route('shop.index') }}" class="btn btn-primary btn-cs">Contine Shopping</a>
-
+                                @else				
+                                    <h3 style="text-align:center;color:red;font-weight:bold;border:4px double black;padding:20px;">ဈေးခြင်းတွင်ပစ္စည်းမရှိပါ။</h3>
                                 @endif
                             </tbody>
                         </table>
@@ -176,6 +181,7 @@
 			element.addEventListener('change',function(){
 				const id = element.getAttribute('data-id')
 				const productQuantity = element.getAttribute('data-productQuantity')
+
 				axios.patch(`/cart/${id}`, {
 					quantity : this.value,
 					productQuantity : productQuantity

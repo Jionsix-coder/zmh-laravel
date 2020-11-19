@@ -11,15 +11,32 @@
         <div class="ps-home-banner ps-home-banner--1">
             <div class="ps-container">
                 <div class="ps-section__left">
-                    <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
-                        <div class="ps-banner"><a href="#"><img src="img/slider/home-1/slide-1.jpg" alt=""></a></div>
-                        <div class="ps-banner"><a href="#"><img src="img/slider/home-1/slide-2.jpg" alt=""></a></div>
-                        <div class="ps-banner"><a href="#"><img src="img/slider/home-1/slide-3.jpg" alt=""></a></div>
+                    <div class="owl-carousel owl-theme">
+                        @foreach ($videos as $key => $video)
+                            <div class="item-video" data-merge="{{ $key }}"><iframe src="https://player.vimeo.com/video/{{ $video->video_id }}?autoplay=1" frameborder="0" webkitallowfullscreen allow=autoplay	 mozallowfullscreen allowfullscreen></iframe></div>                            
+                        @endforeach                   
                     </div>
+                <div class="ps-section__right">
+                    @if ($promotion)
+                        @foreach ($promotion as $item)
+                            <a class="ps-collection" href="{{ productImage($item->image) }}" data-lightbox="images">
+                                <img src="{{ productImage($item->image) }}" alt="" width="100%" height="auto" style="border:1px solid black;">
+                            </a>
+                        @endforeach
+                    @endif
                 </div>
-                <div class="ps-section__right"><a class="ps-collection" href="#"><img src="img/slider/home-1/promotion-1.jpg" alt=""></a><a class="ps-collection" href="#"><img src="img/slider/home-1/promotion-2.jpg" alt=""></a></div>
             </div>
         </div>
+        @if ($promotion)
+        @php
+            $promotionText =$promotion->take(1);
+        @endphp
+            @foreach ($promotionText as $item)
+                <div class="marquee-text">
+                    <marquee behavior="scroll" direction="ltr"><div style="font-size: 17px;font-weight:bold;">{!! $item->text !!}</div></marquee>
+                </div>
+            @endforeach
+        @endif
         <div class="ps-site-features">
             <div class="ps-container">
                 <div class="ps-block--site-features">
@@ -48,7 +65,7 @@
                         <div class="ps-block__left"><i class="icon-phone"></i></div>
                         <div class="ps-block__right">
                             <h4>Hot Line</h4>
-                            <p>+95-9-89815551</p>
+                            <p>+95-9-898155551</p>
                         </div>
                     </div>
                 </div>
@@ -61,7 +78,7 @@
                         <div class="ps-block__left">
                             <h3>Promotions</h3>
                         </div>
-                    </div><a href="#">View all</a>
+                    </div><a href="{{ route('promotion.index') }}">View all</a>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -73,6 +90,9 @@
                                 @endif
                                 @if ($product->discountPercent != null)
                                     <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
+                                @endif
+                                @if ($product->quantity <= 2)
+                                <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
                                 @endif
                                 <ul class="ps-product__actions">
                                     <li><a href="{{ route('shop.show', $product->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
@@ -104,22 +124,27 @@
         <div class="ps-home-ads">
             <div class="ps-container">
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/1.jpg" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/ads/ad1.jpg" alt=""></a>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/2.jpg" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/ads/ad2.jpg" alt=""></a>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/3.jpg" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/ads/ad3.jpg" alt=""></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="ps-top-categories">
             <div class="ps-container">
-                <h3>Top categories of the month</h3>
+                <h3>ယခုလရောင်းအားအကောင်းဆုံးပစ္စည်းများ</h3>
                 <div class="row">
                     @foreach($categories as $category)
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 ">
-                        <div class="ps-block--category"><a class="ps-block__overlay" href="shop-default.html"></a><img src="{{ productImage($category->image) }}" alt="">
+                        <div class="ps-block--category">
+                            <a class="ps-block__overlay" href="{{ route('shop.index',['category' => $category->slug]) }}">
+                            </a>
+                            <div style="height: 121px;">
+                                <img src="{{ productImage($category->image) }}" alt="{{ $category->name }}" height="121px;">
+                            </div>
                             <p>{{ $category->name }}</p>
                         </div>
                     </div>
@@ -130,12 +155,9 @@
         <div class="ps-product-list ps-clothings">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Consumer Electronics</h3>
+                    <h3>{{ $categories1->name }}</h3>
                     <ul class="ps-section__links">
-                        <li><a href="#new">New Arrivals</a></li>
-                        <li><a href="#best">Best seller</a></li>
-                        <li><a href="#popular">Must Popular</a></li>
-                        <li><a href="#">View All</a></li>
+                        <li><a href="{{ route('shop.index',['category' => $categories1->slug]) }}">View All</a></li>
                     </ul>
                 </div>
                 <div class="ps-section__content">
@@ -144,11 +166,14 @@
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item1->slug) }}"><img src="{{ productImage($item1->image) }}" alt="{{ $item1->name }}"></a>
                                     @if ($item1->quantity == 0)
-                                    <div class="ps-product__badge out-stock" style="{{ $item1->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
-                                @endif
-                                @if ($item1->discountPercent != null)
-                                    <div class="ps-product__badge" style="{{ $item1->discountPercent != null & $item1->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $item1->discountPercent }}%</div>
-                                @endif
+                                        <div class="ps-product__badge out-stock" style="{{ $item1->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
+                                    @endif
+                                    @if ($item1->discountPercent != null)
+                                        <div class="ps-product__badge" style="{{ $item1->discountPercent != null & $item1->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $item1->discountPercent }}%</div>
+                                    @endif
+                                    @if ($item1->quantity <= 2)
+                                    <div class="ps-product__badge hot" style="{{ $item1->quantity <= 2 & $item1->discountPercent == null & $item1->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
+                                    @endif
                                     <ul class="ps-product__actions">
                                         <li><a href="{{ route('shop.show', $item1->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
                                         <li><a href="{{ route('shop.show', $item1->slug) }}" data-placement="top" title="အမြန်ကြည့်ရန်" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
@@ -178,12 +203,9 @@
         <div class="ps-product-list ps-clothings">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Apparels & Clothings</h3>
+                    <h3>{{ $categories2->name }}</h3>
                     <ul class="ps-section__links">
-                        <li><a href="shop-grid.html">New Arrivals</a></li>
-                        <li><a href="shop-grid.html">Best seller</a></li>
-                        <li><a href="shop-grid.html">Must Popular</a></li>
-                        <li><a href="shop-grid.html">View All</a></li>
+                        <li><a href="{{ route('shop.index',['category' => $categories2->slug]) }}">View All</a></li>
                     </ul>
                 </div>
                 <div class="ps-section__content">
@@ -192,11 +214,14 @@
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item2->slug) }}"><img src="{{ productImage($item2->image) }}" alt="{{ $item2->name }}"></a>
                                     @if ($item2->quantity == 0)
-                                    <div class="ps-product__badge out-stock" style="{{ $item2->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
-                                @endif
-                                @if ($item2->discountPercent != null)
-                                    <div class="ps-product__badge" style="{{ $item2->discountPercent != null & $item2->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $item2->discountPercent }}%</div>
-                                @endif
+                                        <div class="ps-product__badge out-stock" style="{{ $item2->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
+                                    @endif
+                                    @if ($item2->discountPercent != null)
+                                        <div class="ps-product__badge" style="{{ $item2->discountPercent != null & $item2->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $item2->discountPercent }}%</div>
+                                    @endif
+                                    @if ($item2->quantity <= 2)
+                                    <div class="ps-product__badge hot" style="{{ $item2->quantity <= 2 & $item2->discountPercent == null & $item2->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
+                                    @endif
                                     <ul class="ps-product__actions">
                                         <li><a href="{{ route('shop.show', $item2->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
                                         <li><a href="{{ route('shop.show', $item2->slug) }}" data-placement="top" title="အမြန်ကြည့်ရန်" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
@@ -226,12 +251,9 @@
         <div class="ps-product-list ps-garden-kitchen">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Home, Garden & Kitchen</h3>
+                    <h3>{{ $categories3->name }}</h3>
                     <ul class="ps-section__links">
-                        <li><a href="shop-grid.html">New Arrivals</a></li>
-                        <li><a href="shop-grid.html">Best seller</a></li>
-                        <li><a href="shop-grid.html">Must Popular</a></li>
-                        <li><a href="shop-grid.html">View All</a></li>
+                        <li><a href="{{ route('shop.index',['category' => $categories3->slug]) }}">View All</a></li>
                     </ul>
                 </div>
                 <div class="ps-section__content">
@@ -240,11 +262,14 @@
                             <div class="ps-product">
                                 <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item3->slug) }}"><img src="{{ productImage($item3->image) }}" alt="{{ $item3->name }}"></a>
                                     @if ($item3->quantity == 0)
-                                    <div class="ps-product__badge out-stock" style="{{ $item3->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
-                                @endif
-                                @if ($item3->discountPercent != null)
-                                    <div class="ps-product__badge" style="{{ $item3->discountPercent != null & $item3->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $item3->discountPercent }}%</div>
-                                @endif
+                                        <div class="ps-product__badge out-stock" style="{{ $item3->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
+                                    @endif
+                                    @if ($item3->discountPercent != null)
+                                        <div class="ps-product__badge" style="{{ $item3->discountPercent != null & $item3->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $item3->discountPercent }}%</div>
+                                    @endif
+                                    @if ($item3->quantity <= 2)
+                                    <div class="ps-product__badge hot" style="{{ $item3->quantity <= 2 & $item3->discountPercent == null & $item3->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
+                                    @endif
                                     <ul class="ps-product__actions">
                                         <li><a href="{{ route('shop.show', $item3->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
                                         <li><a href="{{ route('shop.show', $item3->slug) }}" data-placement="top" title="အမြန်ကြည့်ရန်" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
@@ -274,9 +299,9 @@
         <div class="ps-home-ads">
             <div class="ps-container">
                 <div class="row">
-                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/ad-1.jpg" alt=""></a>
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/ads/ad4.jpg" alt=""></a>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/collection/home-1/ad-2.jpg" alt=""></a>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 "><a class="ps-collection" href="#"><img src="img/ads/ad5.jpg" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -287,7 +312,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
-                                <div class="ps-block__thumbnail"><img src="img/app.png" alt=""></div>
+                                <div class="ps-block__thumbnail"><img src="{{ asset('img/app.png') }}" alt="app.png"></div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
                                 <div class="ps-block__content">
@@ -304,7 +329,7 @@
         <div class="ps-product-list ps-new-arrivals">
             <div class="ps-container">
                 <div class="ps-section__header">
-                    <h3>Hot New Arrivals</h3>
+                    <h3>အသစ်ဝင်ပစ္စည်းများ</h3>
                     <ul class="ps-section__links">
                         <li><a href="{{ route('shop.index') }}">View All</a></li>
                     </ul>
@@ -314,7 +339,9 @@
                         @foreach ($latestItems as $latestItem)
                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
                                 <div class="ps-product--horizontal">
-                                    <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $latestItem->slug) }}"><img src="{{ productImage($latestItem->image) }}" alt=""></a></div>
+                                    <div class="ps-product__thumbnail" style="height: 75px">
+                                        <a href="{{ route('shop.show', $latestItem->slug) }}"><img src="{{ productImage($latestItem->image) }}" alt="{{ $latestItem->name }}" height="75px"></a>
+                                    </div>
                                     <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $latestItem->slug) }}">{{ $latestItem->name }}</a>
                                         <p class="ps-product__price">{{ presentPrice($latestItem->price) }}</p>
                                     </div>
@@ -333,9 +360,9 @@
                     <h4 style="font-size: medium;"> Welcome to <strong style="color: #734d26;">ZayMinHtet</strong> Company Limited </h4>
                     <b>(တာဝန်ခံကုဒ်တောင်းရမည့်သူ)</b>
                     <hr>
-                    <p style="font-weight: bold; font-size: small; color: #000;">အမည် - <b>ဒေါ်ခင်သီတာလင်း</b></p>
-                    <p style="font-weight: bold; font-size: small; color: #000;">ဖုန်းနံပါတ် - <b>+959255752566</b></p>
-                    <p style="font-weight: bold; font-size: small; color: #000;">ရာထူး - <b>ဉီးစီးမှူး</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">အမည် - <b>{{ $officer->name }}</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">ဖုန်းနံပါတ် - <b>+95{{ $officer->phnumber }}</b></p>
+                    <p style="font-weight: bold; font-size: small; color: #000;">ရာထူး - <b>{{ $officer->currentposition }}</b></p>
                 </div>
             </form>
         </div>
@@ -344,6 +371,23 @@
 
 @section('extra-js')
 <script>
+$('.owl-carousel').owlCarousel({
+    items:1,
+    merge:true,
+    loop:true,
+    margin:10,
+    video:true,
+    lazyLoad:true,
+    center:true,
+    responsive:{
+        480:{
+            items:2
+        },
+        600:{
+            items:4
+        }
+    }
+});
 $('#video').on('ended', function () {
     $('.carousel').carousel('next');
 });

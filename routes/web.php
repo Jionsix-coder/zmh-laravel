@@ -37,6 +37,7 @@ Route::get('/profile',[LandingPageController::class,'profile'])->name('profile.i
 Route::get('/home',[LandingPageController::class,'index'])->name('landing.page');
 
 Route::get('/shop',[ShopController::class,'index'])->name('shop.index');
+Route::get('/promotion',[ShopController::class,'promotion'])->name('promotion.index');
 
 Route::get('/shop/{product}',[ShopController::class,'show'])->name('shop.show');
 

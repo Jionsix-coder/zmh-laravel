@@ -5,7 +5,7 @@
                     <h4 class="widget-title">Contact us</h4>
                     <div class="widget_content">
                         <p>Call us 24/7</p>
-                        <h3>+95-9-89815551</h3>
+                        <h3>+95-9-898155551</h3>
                         <p>အမှတ်(၂၀၀/၂၀၆),(၉)လွှာ,၁၃၄လမ်းနှင့်၁၃၅လမ်းကြား,စက်ရုံလမ်း,မအူကုန်းရပ်ကွက်,တာမွေမြို့နယ်,ရန်ကုန်တိုင်းဒေသကြီး. <br><br><a href="mailto:zayminhtetcompanylimited@gmail.com">zayminhtetcompanylimited@gmail.com</a></p>
                         <ul class="ps-list--social">
                             <li><a class="facebook" href="https://www.facebook.com/Zay-Min-Htet-Company-Limited-575814903055402"><i class="fa fa-facebook"></i></a></li>
@@ -27,7 +27,7 @@
                 <aside class="widget widget_footer">
                     <h4 class="widget-title">Bussiness</h4>
                     <ul class="ps-list--link">
-                        <li><a href="{{ route('cart.save') }}">ဈေးလှည်း</a></li>
+                        <li><a href="{{ route('cart.save') }}">ရွှေးချယ်ပစ္စည်း</a></li>
                         <li><a href="{{ route('cart.index') }}">ဈေးခြင်း</a></li>
                         <li><a href="{{ route('profile.index') }}">အကောင့်</a></li>
                         <li><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>

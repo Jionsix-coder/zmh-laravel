@@ -43,20 +43,19 @@
         </div>
     </header>
     <nav class="navigation--mobile-product">
-        <a class="ps-btn ps-btn--black" href="shopping-cart.html" style="font-size: small;">လှည်းထဲထည့်ရန်</a>
         <form action="{{ route('cart.store') }}" method="POST">
         @csrf
             <input type="hidden" name="id" value="{{ $product->id }}">
             <input type="hidden" name="name" value="{{ $product->name }}">
             <input type="hidden" name="price" value="{{ $product->price * (1 - $product->discountPercent / 100) }}">
-            <button class="ps-btn" style="font-size: small;">ခြင်းထဲထည့်ရန်</buttton>
+            <button class="ps-btn-cart" style="font-size: small;">ခြင်းထဲထည့်ရန်</buttton>
         </form>
     </nav>
     <div class="ps-breadcrumb">
         <div class="ps-container">
             <ul class="breadcrumb">
-                <li><a href="{{ route('landing.page') }}">Home</a></li>
-                <li><a href="{{ route('shop.index') }}">Shop</a></li>
+                <li><a href="{{ route('landing.page') }}">ပင်မ</a></li>
+                <li><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>
                 <li>{{ $product->name }}</li>
             </ul>
         </div>
@@ -71,7 +70,7 @@
                                 <figure>
                                     <div class="ps-wrapper">
                                         <div class="ps-product__gallery" data-arrow="true">
-                                            <div class="item"><a href="{{ productImage($product->image) }}"><img src="{{ productImage($product->image) }}" alt=""></a></div>
+                                            <div class="item"><a href="{{ productImage($product->image) }}"><img src="{{ productImage($product->image) }}" alt="{{ $product->name }}"></a></div>
                                             @if ($product->images)
                                                 @foreach (json_decode($product->images,true) as $image)
                                                     <div class="item"><a href="{{ productImage($image) }}"><img src="{{ productImage($image) }}" alt="{{ $product->name }}"></a></div>
@@ -81,10 +80,10 @@
                                     </div>
                                 </figure>
                                 <div class="ps-product__variants" data-item="4" data-md="4" data-sm="4" data-arrow="false">
-                                    <div class="item"><img src="{{ productImage($product->image) }}" alt="{{ $product->name }}"></div>
+                                    <div class="item"><img src="{{ productImage($product->image) }}" alt="{{ $product->name }}" width="69px" height="69px"></div>
                                     @if ($product->images)
                                         @foreach (json_decode($product->images,true) as $image)
-                                            <div class="item"><img src="{{ productImage($image) }}" alt="{{ $product->name }}"></div>
+                                            <div class="item"><img src="{{ productImage($image) }}" alt="{{ $product->name }}"  width="69px" height="69px"></div>
                                         @endforeach
                                     @endif
                                 </div>
@@ -113,8 +112,6 @@
                                 </div>
                                 <div class="ps-product__shopping">
                                     <div style="margin:15px 0;"></div>
-                                    <a class="ps-btn ps-btn--black" href="#">လှည်းထဲထည့်ရန်</a>
-                                    <div style="margin:15px 0;"></div>
                                     <form action="{{ route('cart.store') }}" method="POST">
                                     @csrf
                                         <input type="hidden" name="id" value="{{ $product->id }}">
@@ -132,7 +129,7 @@
                                             <a href="#">{{ $category }}</a>,
                                         @endforeach
                                     </p>
-                                    <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p>
+                                    {{-- <p class="tags"><strong> Tags</strong><a href="#">sofa</a>,<a href="#">technologies</a>,<a href="#">wireless</a></p> --}}
                                 </div>                
                                 <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                 <div class="addthis_inline_share_toolbox"></div>
@@ -155,7 +152,7 @@
             </div>
             <div class="ps-section--default ps-customer-bought">
                 <div class="ps-section__header">
-                    <h3>Customers who bought this item also bought</h3>
+                    <h3>ဝယ်ယူသူများဝယ်ယူမူများသောပစ္စည်းများ</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="row">
@@ -168,6 +165,9 @@
                                         @endif
                                         @if ($product->discountPercent != null)
                                             <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
+                                        @endif
+                                        @if ($product->quantity <= 2)
+                                        <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
                                         @endif
                                         <ul class="ps-product__actions">
                                             <li><a href="{{ route('shop.show', $product->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
@@ -197,7 +197,7 @@
             </div>
             <div class="ps-section--default">
                 <div class="ps-section__header">
-                    <h3>Related products</h3>
+                    <h3>အမျိုးအစားတူပစ္စည်းများ</h3>
                 </div>
                 <div class="ps-section__content">
                     <div class="ps-carousel--nav owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
@@ -209,6 +209,9 @@
                                     @endif
                                     @if ($product->discountPercent != null)
                                         <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
+                                    @endif
+                                    @if ($product->quantity <= 2)
+                                    <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
                                     @endif
                                     <ul class="ps-product__actions">
                                         <li><a href="{{ route('shop.show', $categoryproduct->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>

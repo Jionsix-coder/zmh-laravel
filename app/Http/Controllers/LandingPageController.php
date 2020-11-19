@@ -39,27 +39,50 @@ class LandingPageController extends Controller
             $code =Str::before($PersonalNumber,'-');
             $officer= CodeOfficer::where('officecode',$code)->firstOrFail();
             $products = Product::where('featured',true)->take(12)->get();
-            $categories = Category::all();
+            $categories = Category::orderBy('id','desc')->take(8)->get();
             $videos = VideoSlider::orderBy('id','desc')->get();
             $recommendedItems = Product::inRandomOrder()->take(12)->get();
             $latestItems = Product::orderBy('id','desc')->take(12)->get();
+            $categories1 = Category::where('p_id',0)->orderBy('id','desc')->first();
+            $categories2 = Category::where('p_id',1)->orderBy('id','desc')->first();
+            $categories3 = Category::where('p_id',2)->orderBy('id','desc')->first();
             $promotionsItems = Product::where('promotions',true)->orderBy('id','desc')->take(12)->get();
-            $promotion = Promotion::orderBy('id','desc')->take(12)->get();
+            $promotion = Promotion::orderBy('id','desc')->take(2)->get();
             
             $categoryProduct1 = Product::with('categories')->whereHas('categories',function (Builder $query) {
                 $categories1 = Category::where('p_id',0)->orderBy('id','desc')->first();
-                $query->where('name',$categories1->slug);
-            })->get();
+                $query->where('slug',$categories1->slug);
+            })->take(8)->get();
 
             $categoryProduct2 = Product::with('categories')->whereHas('categories',function (Builder $query) {
                 $categories2 = Category::where('p_id',1)->orderBy('id','desc')->first();
-                $query->where('name',$categories2->slug);
-            })->get();
+                $query->where('slug',$categories2->slug);
+            })->take(8)->get();
 
             $categoryProduct3 = Product::with('categories')->whereHas('categories',function (Builder $query) {
                 $categories3 = Category::where('p_id',2)->orderBy('id','desc')->first();
-                $query->where('name',$categories3->slug);
-            })->get();
+                $query->where('slug',$categories3->slug);
+            })->take(8)->get();
+            // $categories1 = Category::where('id',15)->orderBy('id','desc')->first();
+            // $categories2 = Category::where('id',91)->orderBy('id','desc')->first();
+            // $categories3 = Category::where('id',58)->orderBy('id','desc')->first();
+            // $promotionsItems = Product::where('promotions',true)->orderBy('id','desc')->take(12)->get();
+            // $promotion = Promotion::orderBy('id','desc')->take(2)->get();
+            
+            // $categoryProduct1 = Product::with('categories')->whereHas('categories',function (Builder $query) {
+            //     $categories1 = Category::where('id',15)->orderBy('id','desc')->first();
+            //     $query->where('slug',$categories1->slug);
+            // })->take(8)->get();
+
+            // $categoryProduct2 = Product::with('categories')->whereHas('categories',function (Builder $query) {
+            //     $categories2 = Category::where('id',91)->orderBy('id','desc')->first();
+            //     $query->where('slug',$categories2->slug);
+            // })->take(8)->get();
+
+            // $categoryProduct3 = Product::with('categories')->whereHas('categories',function (Builder $query) {
+            //     $categories3 = Category::where('id',58)->orderBy('id','desc')->first();
+            //     $query->where('slug',$categories3->slug);
+            // })->take(8)->get();
 
             return view('landing-page')->with([
                 'products' =>$products,
@@ -71,6 +94,9 @@ class LandingPageController extends Controller
                 'videos' => $videos,
                 'promotionsItems' => $promotionsItems,
                 'promotion' => $promotion,
+                'categories1' => $categories1,
+                'categories2' => $categories2,
+                'categories3' => $categories3,
                 'categoryProduct1' => $categoryProduct1,
                 'categoryProduct2' => $categoryProduct2,
                 'categoryProduct3' => $categoryProduct3,

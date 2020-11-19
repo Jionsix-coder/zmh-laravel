@@ -11,7 +11,8 @@
         <div class="ps-container">
             <ul class="breadcrumb">
                 <li><a href="{{ route('landing.page') }}">ပင်မ</a></li>
-                <li>{{ request()->category != null ? $categoryName : 'စျေးဝယ်ရန်' }}</li>
+                <li>စျေးဝယ်ရန်</li>
+                <li>{{ request()->input('query') }}</li>
             </ul>
         </div>
     </div>
@@ -48,13 +49,13 @@
                 </div>
                 <div class="ps-layout__right">
                     <div class="ps-page__header">
-                        <h1>{{ request()->category != null ? $categoryName : 'စျေးဝယ်ရန်' }}</h1>
+                        <h1>{{ request()->input('query') }}</h1>
                         <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
-                        @if ($promotion)
-                            @foreach ($promotion as $item)
-                                 <a href="shop-default.html"><img src="{{ productImage($item->image) }}" alt=""></a>
-                            @endforeach
-                        @endif
+                            @if ($promotion)
+                                @foreach ($promotion as $item)
+                                    <a href="shop-default.html"><img src="{{ productImage($item->image) }}" alt=""></a>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="ps-block--shop-features">
@@ -72,9 +73,6 @@
                                         @endif
                                         @if ($product->discountPercent != null)
                                             <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
-                                        @endif
-                                        @if ($product->quantity <= 2)
-                                        <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
                                         @endif
                                         <ul class="ps-product__actions">
                                             <li><a href="{{ route('shop.show', $product->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
@@ -136,7 +134,7 @@
                                                                 <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
                                                             @endif
                                                             @if ($product->quantity <= 2)
-                                                               <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
+                                                            <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
                                                             @endif
                                                             <ul class="ps-product__actions">
                                                                 <li><a href="{{ route('shop.show', $product->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
@@ -173,20 +171,20 @@
                                     @forelse ($products as $product)
                                     <div class="ps-product ps-product--wide">
                                         <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $product->slug) }}"><img src="{{ productImage($product->image) }}" alt=""></a>
-                                        @if ($product->quantity == 0)
-                                            <div class="ps-product__badge out-stock" style="{{ $product->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
-                                        @endif
-                                        @if ($product->discountPercent != null)
-                                            <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
-                                        @endif
-                                        @if ($product->quantity <= 2)
-                                        <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
-                                        @endif
+                                            @if ($product->quantity == 0)
+                                                <div class="ps-product__badge out-stock" style="{{ $product->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
+                                            @endif
+                                            @if ($product->discountPercent != null)
+                                                <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
+                                            @endif
+                                            @if ($product->quantity <= 2)
+                                            <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
+                                            @endif
                                         </div>
                                         <div class="ps-product__container">
-                                            <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
+                                            <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $product->slug) }}">Apple iPhone Retina 6s Plus 64GB</a>
                                                 <ul class="ps-product__desc">
-                                                    <li> {!! nl2br($product->description) !!}</li>
+                                                    <li> {!! nl2br(Str::limit($product->description,300,' ...')) !!}</li>
                                                 </ul>
                                             </div>
                                             <div class="ps-product__shopping">
@@ -224,7 +222,7 @@
 	$(function() {
 		$('.infinite-scroll').jscroll({
 			autoTrigger: true,
-			loadingHtml: '<img class="center-block" style="width:100px;height:100px;margin:36%;" src="/images/loading.gif" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
+			loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
 			padding: 0,
 			nextSelector: '.pagination li.active + li a',
 			contentSelector: 'div.infinite-scroll',

@@ -11,8 +11,8 @@
         <div class="ps-breadcrumb">
             <div class="container">
                 <ul class="breadcrumb">
-                    <li><a href="{{ route('landing.page') }}">Home</a></li>
-                    <li>Profile</li>
+                    <li><a href="{{ route('landing.page') }}">ပင်မ</a></li>
+                    <li>အကောင့်</li>
                 </ul>
             </div>
         </div>
@@ -30,10 +30,16 @@
                                 </div>
                                 <div class="ps-widget__content">
                                     <ul class="ps-tab-list">
-                                        <li class="active"><a href="#profile"><i class="icon-user"></i>Profile</a></li>
-                                        <li><a href="#invoices"><i class="icon-papers"></i> Orders</a></li>
-                                        <li><a href="#whishlist"><i class="icon-heart"></i> Wishlist</a></li>
-                                        <li><a href="#logout"><i class="icon-power-switch"></i>Logout</a></li>
+                                        <li class="active"><a href="#profile"><i class="icon-user"></i> အကောင့်</a></li>
+                                        <li><a href="#invoices"><i class="icon-papers"></i> အော်ဒါများ</a></li>
+                                        <li><a href="#whishlist"><i class="icon-heart"></i> ရွှေးချယ်ပစ္စည်း</a></li>
+                                        <li>
+                                            <form action="{{ route('user.logout') }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                                <a type="submit"><button class="cross-button" style="font-weight:bold;margin-right:10px;"><i class="icon-power-switch"></i> ထွက်ရန်</button></a>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </div>
                             </aside>
@@ -116,7 +122,7 @@
                             <br>
                             <div class="ps-section--account-setting">
                                 <div class="ps-section__header">
-                                    <h3>Orders</h3>
+                                    <h3>အော်ဒါများ</h3>
                                 </div>
                                 <div class="ps-section__content">
                                     <div class="table-responsive">
@@ -152,62 +158,56 @@
                         </div>
                         <div class="ps-section__right ps-tab" id="whishlist">
                             <br>
+                            @if(Cart::instance('saveCart')->count() > 0)
                             <div class="ps-section__content">
                                 <div class="table-responsive">
-                                    <table class="table ps-table--shopping-cart">
+                                    <table class="table ps-table--whishlist">
                                         <thead>
                                             <tr>
-                                                <th>Product name</th>
-                                                <th>PRICE</th>
-                                                <th>QUANTITY</th>
-                                                <th>TOTAL</th>
                                                 <th></th>
+                                                <th>ဓာတ်ပုံပစ္စည်းအမည်</th>
+                                                <th>စျေးနှုန်း</th>
+                                                <th>Stock Status</th>
+                                                <th>switchToBasket</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach (Cart::instance('saveCart')->content() as $item)
                                             <tr>
                                                 <td>
-                                                    <div class="ps-product--cart">
-                                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/electronic/1.jpg" alt=""></a></div>
-                                                        <div class="ps-product__content"><a href="product-default.html">Marshall Kilburn Wireless Bluetooth Speaker, Black (A4819189)</a>
-                                                        </div>
-                                                    </div>
+                                                    <form action="{{ route('saveCart.destroy',$item->rowId) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE') 
+                                                        <button type="submit" class="cross-button"><i class="icon-cross"></i></button>
+                                                    </form>
                                                 </td>
-                                                <td class="price">$205.00</td>
-                                                <td>
-                                                    <div class="form-group--number">
-                                                        <button class="up">+</button>
-                                                        <button class="down">-</button>
-                                                        <input class="form-control" type="text" placeholder="1" value="1">
-                                                    </div>
-                                                </td>
-                                                <td>$205.00</td>
-                                                <td><a href="#"><i class="icon-cross"></i></a></td>
-                                            </tr>
-                                            <tr>
                                                 <td>
                                                     <div class="ps-product--cart">
-                                                        <div class="ps-product__thumbnail"><a href="product-default.html"><img src="img/products/clothing/2.jpg" alt=""></a></div>
-                                                        <div class="ps-product__content"><a href="product-default.html">Unero Military Classical Backpack</a>
-                                                        </div>
+                                                        <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ productImage($item->model->image)}}" alt="{{ $item->model->name }}"></a></div>
+                                                        <div class="ps-product__content"><a href="{{ route('shop.show', $item->model->slug) }}">{{ $item->model->name }}</a></div>
                                                     </div>
                                                 </td>
-                                                <td class="price">$205.00</td>
-                                                <td>
-                                                    <div class="form-group--number">
-                                                        <button class="up">+</button>
-                                                        <button class="down">-</button>
-                                                        <input class="form-control" type="text" placeholder="1" value="1">
-                                                    </div>
-                                                </td>
-                                                <td>$205.00</td>
-                                                <td><a href="#"><i class="icon-cross"></i></a></td>
+                                                <td class="price" style="text-align: center">{{ $item->model->presentPrice() }}</td>
+                                                <td style="text-align: center"><span class="ps-tag {{ $item->model->quantity > 0 ? 'ps-tag--in-stock' : 'ps-tag--out-stock' }}">{{ $item->model->quantity > 0 ? 'In Stock' : 'Out Of Stock' }}</span></td>
+                                                @if($item->model->quantity > 0)
+                                                    <td style="text-align: center">
+                                                    <form action="{{ route('cart.store') }}" method="POST">
+                                                    @csrf
+                                                            <input type="hidden" name="id" value="{{ $item->model->id }}">
+                                                            <input type="hidden" name="name" value="{{ $item->model->name }}">
+                                                            <input type="hidden" name="price" value="{{ $item->model->price * (1 - $item->model->discountPercent / 100) }}">
+                                                            <button class="ps-btn">ခြင်းထဲထည့်ရန်</button>	
+                                                    </form>
+                                                    </td>
+                                                @endif
                                             </tr>
+                                            @endforeach
+                                            @else				
+                                                <h3 style="text-align:center;color:red;font-weight:bold;border:4px double black;padding:20px;">ဈေးလှည်းတွင်ပစ္စည်းမရှိပါ။</h3>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
-                                <br>
-                                <div class="ps-section__cart-actions"><a class="ps-btn" href="shop-default.html"><i class="icon-arrow-left"></i> Back to Shop</a></div>
                             </div>
                         </div>
                     </div>
