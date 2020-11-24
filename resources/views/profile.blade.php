@@ -169,8 +169,8 @@
                                                 <th></th>
                                                 <th>ဓာတ်ပုံပစ္စည်းအမည်</th>
                                                 <th>စျေးနှုန်း</th>
-                                                <th>Stock Status</th>
-                                                <th>switchToBasket</th>
+                                                <th>အခြေအနေ</th>
+                                                <th>ဈေးခြင်းသို့</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -205,7 +205,7 @@
                                             </tr>
                                             @endforeach
                                             @else				
-                                                <h3 style="text-align:center;color:red;font-weight:bold;border:4px double black;padding:20px;">ဈေးလှည်းတွင်ပစ္စည်းမရှိပါ။</h3>
+                                                <h3 style="text-align:center;color:red;font-weight:bold;border:4px double black;padding:20px;">ရွှေးချယ်ထားသောပစ္စည်းမရှိပါ။</h3>
                                             @endif
                                         </tbody>
                                     </table>

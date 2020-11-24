@@ -46,7 +46,7 @@
                                     <th>ဓာတ်ပုံပစ္စည်းအမည်</th>
                                     <th>စျေးနှုန်း</th>
                                     <th>အရေအတွက်</th>
-                                    <th>လှည်းသို့ထှည့်ရန်</th>
+                                    <th>ရွှေးချယ်ထားရန်</th>
                                     <th>အရောင်</th>
                                     <th>စုစုပေါင်း</th>
                                 </tr>
@@ -76,7 +76,7 @@
                                             <form action="{{ route('cart.switchToSaveCart', $item->rowId) }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->rowId }}">
-                                                <button class="savecart-btn" style="width:100%;height:50%">လှည်းသို့ထှည့်ရန်</button>
+                                                <button class="savecart-btn" style="width:100%;height:50%">ရွှေးချယ်ထားရန်</button>
                                             </form>
                                         </td>
                                         <td style="text-align: center;">

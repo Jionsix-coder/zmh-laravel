@@ -78,56 +78,58 @@
                 </div>
             </div>
         </div>
-        <div class="ps-deal-of-day">
-            <div class="ps-container">
-                <div class="ps-section__header">
-                    <div class="ps-block--countdown-deal">
-                        <div class="ps-block__left">
-                            <h3>Promotions</h3>
-                        </div>
-                    </div><a href="{{ route('promotion.index') }}">View all</a>
-                </div>
-                <div class="ps-section__content">
-                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
-                        @foreach ($promotionsItems as $product)
-                        <div class="ps-product ps-product--inner">
-                            <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $product->slug) }}"><img src="{{ productImage($product->image) }}" alt="{{ $product->name }}"></a>
-                                @if ($product->quantity == 0)
-                                    <div class="ps-product__badge out-stock" style="{{ $product->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
-                                @endif
-                                @if ($product->discountPercent != null)
-                                    <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
-                                @endif
-                                @if ($product->quantity <= 2)
-                                <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
-                                @endif
-                                <ul class="ps-product__actions">
-                                    <li><a href="{{ route('shop.show', $product->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
-                                    <li><a href="{{ route('shop.show', $product->slug) }}" data-placement="top" title="အမြန်ကြည့်ရန်" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
-                                    <form action="{{ route('cart.store') }}" method="POST">
-                                    @csrf
-                                        <input type="hidden" name="id" value="{{ $product->id }}">
-                                        <input type="hidden" name="name" value="{{ $product->name }}">
-                                        <input type="hidden" name="price" value="{{ $product->price * (1 - $product->discountPercent / 100) }}">
-                                        <li><button href="" data-toggle="tooltip" data-placement="top" title="ခြင်းထဲထည့်ရန်"><i class="icon-heart"></i></button></li>	
-                                    </form>
-                                </ul>
+        @if ($promotionsItems->first() != null)
+            <div class="ps-deal-of-day">
+                <div class="ps-container">
+                    <div class="ps-section__header">
+                        <div class="ps-block--countdown-deal">
+                            <div class="ps-block__left">
+                                <h3>Promotions</h3>
                             </div>
-                            <div class="ps-product__container">
-                                <p class="ps-product__price sale" style="font-size:13px;">{{ presentPrice($product->price * (1 - $product->discountPercent / 100)) }} <del>{{ presentPrice($product->price) }} </del><small style="{{ $product->discountPercent != null ? 'display:initial;': 'display:none;' }} font-size:14px;">{{ $product->discountPercent }}% off</small></p>
-                                <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                                    <div class="ps-product__progress-bar ps-progress" data-value="{{ $product->quantity }}">
-                                        <div class="ps-progress__value"><span></span></div>
-                                        <p>Sold:{{ 10-$product->quantity}}</p>
+                        </div><a href="{{ route('promotion.index') }}">View all</a>
+                    </div>
+                    <div class="ps-section__content">
+                        <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                            @foreach ($promotionsItems as $product)
+                            <div class="ps-product ps-product--inner">
+                                <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $product->slug) }}"><img src="{{ productImage($product->image) }}" alt="{{ $product->name }}"></a>
+                                    @if ($product->quantity == 0)
+                                        <div class="ps-product__badge out-stock" style="{{ $product->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
+                                    @endif
+                                    @if ($product->discountPercent != null)
+                                        <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
+                                    @endif
+                                    @if ($product->quantity <= 2)
+                                    <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
+                                    @endif
+                                    <ul class="ps-product__actions">
+                                        <li><a href="{{ route('shop.show', $product->slug) }}" data-toggle="tooltip" data-placement="top" title="ကြည့်ရန်"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="{{ route('shop.show', $product->slug) }}" data-placement="top" title="အမြန်ကြည့်ရန်" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <form action="{{ route('cart.store') }}" method="POST">
+                                        @csrf
+                                            <input type="hidden" name="id" value="{{ $product->id }}">
+                                            <input type="hidden" name="name" value="{{ $product->name }}">
+                                            <input type="hidden" name="price" value="{{ $product->price * (1 - $product->discountPercent / 100) }}">
+                                            <li><button href="" data-toggle="tooltip" data-placement="top" title="ခြင်းထဲထည့်ရန်"><i class="icon-heart"></i></button></li>	
+                                        </form>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container">
+                                    <p class="ps-product__price sale" style="font-size:13px;">{{ presentPrice($product->price * (1 - $product->discountPercent / 100)) }} <del>{{ presentPrice($product->price) }} </del><small style="{{ $product->discountPercent != null ? 'display:initial;': 'display:none;' }} font-size:14px;">{{ $product->discountPercent }}% off</small></p>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
+                                        <div class="ps-product__progress-bar ps-progress" data-value="{{ $product->quantity }}">
+                                            <div class="ps-progress__value"><span></span></div>
+                                            <p>Sold:{{ 10-$product->quantity}}</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
-                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="ps-home-ads">
             <div class="ps-container">
                 <div class="row">
@@ -142,7 +144,7 @@
         </div>
         <div class="ps-top-categories">
             <div class="ps-container">
-                <h3>ယခုလရောင်းအားအကောင်းဆုံးပစ္စည်းများ</h3>
+                <h3>ယခုလရောင်းအားအကောင်းဆုံးအမျိုးအစားများ</h3>
                 <div class="row">
                     @foreach($categories as $category)
                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-6 ">
@@ -195,10 +197,10 @@
                                 </div>
                                 <div class="ps-product__container">
                                     <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $item1->slug) }}">{{ $item1->name }}</a>
-                                        <p class="ps-product__price sale">{{ presentPrice($item1->price * (1 - $item1->discountPercent / 100)) }} <del>{{ presentPrice($item1->price) }} </del></p>
+                                        <p class="ps-product__price sale">{{ presentPrice($item1->price * (1 - $item1->discountPercent / 100)) }} <del style="{{ $item1->discountPercent > 0 ? 'display:initial' : 'display:none' }}">{{ presentPrice($item1->price) }} </del></p>
                                     </div>
                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{ route('shop.show', $item1->slug) }}">{{ $item1->name }}</a>
-                                        <p class="ps-product__price sale">{{ presentPrice($item1->price * (1 - $item1->discountPercent / 100)) }} <del>{{ presentPrice($item1->price) }} </del></p>
+                                        <p class="ps-product__price sale">{{ presentPrice($item1->price * (1 - $item1->discountPercent / 100)) }} <del style="{{ $item1->discountPercent > 0 ? 'display:initial' : 'display:none' }}">{{ presentPrice($item1->price) }} </del></p>
                                     </div>
                                 </div>
                             </div>
@@ -243,10 +245,10 @@
                                 </div>
                                 <div class="ps-product__container">
                                     <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $item2->slug) }}">{{ $item2->name }}</a>
-                                        <p class="ps-product__price sale">{{ presentPrice($item2->price * (1 - $item2->discountPercent / 100)) }} <del>{{ presentPrice($item2->price) }} </del></p>
+                                        <p class="ps-product__price sale">{{ presentPrice($item2->price * (1 - $item2->discountPercent / 100)) }} <del style="{{ $item2->discountPercent > 0 ? 'display:initial' : 'display:none' }}">{{ presentPrice($item2->price) }} </del></p>
                                     </div>
                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{ route('shop.show', $item2->slug) }}">{{ $item2->name }}</a>
-                                        <p class="ps-product__price sale">{{ presentPrice($item2->price * (1 - $item2->discountPercent / 100)) }} <del>{{ presentPrice($item2->price) }} </del></p>
+                                        <p class="ps-product__price sale">{{ presentPrice($item2->price * (1 - $item2->discountPercent / 100)) }} <del style="{{ $item2->discountPercent > 0 ? 'display:initial' : 'display:none' }}">{{ presentPrice($item2->price) }} </del></p>
                                     </div>
                                 </div>
                             </div>
@@ -291,10 +293,10 @@
                                 </div>
                                 <div class="ps-product__container">
                                     <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $item3->slug) }}">{{ $item3->name }}</a>
-                                        <p class="ps-product__price sale">{{ presentPrice($item3->price * (1 - $item3->discountPercent / 100)) }} <del>{{ presentPrice($item3->price) }} </del></p>
+                                        <p class="ps-product__price sale">{{ presentPrice($item3->price * (1 - $item3->discountPercent / 100)) }} <del style="{{ $item3->discountPercent > 0 ? 'display:initial' : 'display:none' }}">{{ presentPrice($item3->price) }} </del></p>
                                     </div>
                                     <div class="ps-product__content hover"><a class="ps-product__title" href="{{ route('shop.show', $item3->slug) }}">{{ $item3->name }}</a>
-                                        <p class="ps-product__price sale">{{ presentPrice($item3->price * (1 - $item3->discountPercent / 100)) }} <del>{{ presentPrice($item3->price) }} </del></p>
+                                        <p class="ps-product__price sale">{{ presentPrice($item3->price * (1 - $item3->discountPercent / 100)) }} <del style="{{ $item3->discountPercent > 0 ? 'display:initial' : 'display:none' }}">{{ presentPrice($item3->price) }} </del></p>
                                     </div>
                                 </div>
                             </div>

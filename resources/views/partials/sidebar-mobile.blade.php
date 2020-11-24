@@ -8,7 +8,7 @@
                 <div class="ps-cart__content">
                     @foreach (Cart::content() as $item)
                         <div class="ps-product--cart-mobile">
-                            <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ productImage($item->model->image) }}" alt=""></a></div>
+                            <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $item->model->slug) }}"><img src="{{ productImage($item->model->image) }}" alt="{{ $item->model->name }}"></a></div>
                             <div class="ps-product__content">
                                 <form action="{{ route('cart.destroy',$item->rowId) }}" method="POST">
                                 @csrf
@@ -73,6 +73,7 @@
             <ul class="menu--mobile">
                 <li class="menu-item-has-children"><a href="{{ route('landing.page') }}">ပင်မ</a></li>
                 <li class="menu-item-has-children"><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>
+                <li class="menu-item-has-children"><a href="{{ route('cart.save') }}">ရွှေးချယ်ပစ္စည်း</a></li>
                 <li class="current-menu-item menu-item-has-children has-mega-menu"><a href="{{ route('navbar.discipline') }}">စည်းမျဉ်းစည်းကမ်း</a><span class="sub-toggle"></span>
                     <div class="mega-menu" style="margin:0 15px;">
                         <h4><a href="{{ route('navbar.armakhan') }}">အာမခံ</a></h4>

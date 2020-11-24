@@ -14,11 +14,15 @@ class ConfirmationController extends Controller
      */
     public function index()
     {
+        if(session()->has('user')){
         $number = session()->get('user')['NationalNumber'];
         $user = BasicUser::where('NationalNumber',$number)->first();
         return view('thankyou')->with([
             'user' => $user,
         ]);
+        }else{
+            return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');
+        }
     }
 
     /**

@@ -478,7 +478,7 @@
             </div>
         </div>
         <div class="navigation--mobile">
-            <div class="navigation__left"><a class="ps-logo" href="{{ route('landing.page') }}"><img src="img/bg/logo.png" width="30px" height="30px" alt="" style="margin-right: 5px;"><img src="img/logo.png" alt="logo.png" width="35px" height="35px" style="width:70%;"></a></div>
+            <div class="navigation__left"><a class="ps-logo" href="{{ route('landing.page') }}"><img src="{{ asset('img/bg/logo.png') }}" width="30px" height="30px" alt="" style="margin-right: 5px;"><img src="{{ asset('img/logo.png') }}" alt="logo.png" width="35px" height="35px" style="width:70%;"></a></div>
             <div class="navigation__right">
                 <div class="header__actions">
                     <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>{{ Cart::count() }}</i></span></a>

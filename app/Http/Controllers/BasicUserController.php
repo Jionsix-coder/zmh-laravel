@@ -42,7 +42,7 @@ class BasicUserController extends Controller
         if($user){
             if($user->NationalNumber === $request->NationalNumber){
                 if($user->PersonalNumber === $request->PersonalNumber){
-                    if($enguser->Name === $request->Name){
+                    if($user->Name === $request->Name){
                             session()->put('user',[
                                 'PersonalNumber' => $user->PersonalNumber,
                                 'NationalNumber' => $user->NationalNumber,
