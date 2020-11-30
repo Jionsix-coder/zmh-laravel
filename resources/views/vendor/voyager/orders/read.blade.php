@@ -216,7 +216,7 @@
                                 @php
                                    $discount = $order->discount;
                                    $balance = $user->MoneyLeft;
-                                   $oneMonthBalance = $order->total + $balance;
+                                   $oneMonthBalance = $balance;
                                 @endphp
                                 <br>
                                 <div class="details" style="border:4px solid black;border-radius:10px; padding:15px; text-align:right;">
@@ -227,7 +227,7 @@
                                     <p style="font-weight:bold; font-size:18px;">စုစုပေါင်းဈေးနူန်း : {{ presentPrice($order->total) }}</p>
                                     <p style="font-weight:bold; font-size:18px;">လက်ကျန်ငွေ : {{ presentPrice($balance) }}</p>
                                     <div style="border-top: 1px solid black; margin:10px 0px;"></div>
-                                    <p style="font-weight:bold; font-size:18px;">စုစုပေါင်းပေးရန်လက်ကျန်ငွေ : {{ presentPrice(($order->total + $balance)) }}</p>
+                                    <p style="font-weight:bold; font-size:18px;">စုစုပေါင်းပေးရန်လက်ကျန်ငွေ : {{ presentPrice(($balance)) }}</p>
                                     <div style="border-top: 1px solid black; margin:10px 0px;"></div>
                                     <h3 style="text-align: center; font-weight:bolder;">(1)လချင်းပေးရန်ငွေ : ({{ presentPrice($oneMonthBalance / 4) }})</h3>
                                 </div>

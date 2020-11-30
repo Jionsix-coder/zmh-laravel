@@ -19,8 +19,8 @@
                     <ul class="ps-list--link">
                         <li><a href="{{ route('navbar.armakhan') }}">အာမခံ</a></li>
                         <li><a href="{{ route('navbar.aboutmember') }}">အဖွဲ့ဝင်များသိထားရန်</a></li>
+                        <li><a href="{{ route('navbar.newmember') }}">အဖွဲ့ဝင်သစ်လိုအပ်ချက်</a></li>
                         <li><a href="{{ route('pages.aboutUs') }}">About Us</a></li>
-                        <li><a href="{{ route('pages.contactUs') }}">Contact</a></li>
                         <li><a href="{{ route('pages.faqs') }}">FAQs</a></li>
                     </ul>
                 </aside>
@@ -31,12 +31,14 @@
                         <li><a href="{{ route('cart.index') }}">ဈေးခြင်း</a></li>
                         <li><a href="{{ route('profile.index') }}">အကောင့်</a></li>
                         <li><a href="{{ route('shop.index') }}">စျေးဝယ်ရန်</a></li>
+                        <li><a href="{{ route('pages.contactUs') }}">ဆက်သွယ်ရန်</a></li>
                     </ul>
                 </aside>
             </div>
             <div class="ps-footer__copyright" style="margin-bottom:40px;">
                 <p>© 2020 ZayMinHtet. All Rights Reserved</p>
                 <p>Payment : 4 Months Installment Payment.</p>
+                <p><a href="https://m.facebook.com/jionsix.hacknh/">Web Design By Night Hunter</a></p>
             </div>
         </div>
     </footer>

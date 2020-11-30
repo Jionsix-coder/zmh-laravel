@@ -13,7 +13,7 @@
             <input type="hidden" name="id" value="{{ $product->id }}">
             <input type="hidden" name="name" value="{{ $product->name }}">
             <input type="hidden" name="price" value="{{ $product->price * (1 - $product->discountPercent / 100) }}">
-            <button class="ps-btn-cart" style="font-size: small;">ခြင်းထဲထည့်ရန်</buttton>
+            <button class="ps-btn-cart" style="font-size: small;" {{ $product->quantity == 0 ? 'disabled' : ''  }}>{{ $product->quantity == 0 ? 'ပစ္စည်းမရှိပါ။' : 'ခြင်းထဲထည့်ရန်'  }}</buttton>
         </form>
     </nav>
     <div class="ps-breadcrumb">
@@ -56,7 +56,7 @@
                             <div class="ps-product__info">
                                 <h1>{{ $product->name }}</h1>
                                 <div class="ps-product__meta"></div>
-                                <h4 class="ps-product__price">{{ presentPrice($product->price) }}</h4>
+                                <h4 class="ps-product__price">{{ presentPrice($product->price * (1 - $product->discountPercent / 100)) }} <del style="{{ $product->discountPercent != null ? 'display:initial;': 'display:none;' }}">{{ presentPrice($product->price) }} </del> <small style="{{ $product->discountPercent != null ? 'display:initial;': 'display:none;' }} font-size:14px;"> {{ $product->discountPercent }}% off</small></h4>
                                 <div class="ps-product__desc">
                                     <ul class="ps-list--dot">
                                         <li> {{ $product->details }}</li>
@@ -81,7 +81,7 @@
                                         <input type="hidden" name="id" value="{{ $product->id }}">
                                         <input type="hidden" name="name" value="{{ $product->name }}">
                                         <input type="hidden" name="price" value="{{ $product->price * (1 - $product->discountPercent / 100) }}">
-                                        <button class="ps-btn">ခြင်းထဲထည့်ရန်</buttton>
+                                        <button class="ps-btn" {{ $product->quantity == 0 ? 'disabled' : ''  }}>{{ $product->quantity == 0 ? 'ပစ္စည်းမရှိပါ။' : 'ခြင်းထဲထည့်ရန်'  }}</buttton>
                                     </form>
                                 </div>
                                 <div class="ps-product__specification"><a class="report" href="#">Report Abuse</a>

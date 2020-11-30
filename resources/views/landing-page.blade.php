@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('extra-css')
-
+<link rel="stylesheet" href="{{ asset('css/owl-carousel.min.css') }}">
 @endsection
 
 @section('content')
@@ -12,10 +12,16 @@
             <div class="ps-container">
                 <div class="ps-section__left">
                     <div class="owl-carousel owl-theme">
-                        @foreach ($videos as $key => $video)
-                            <div class="item-video" data-merge="{{ $key }}"><iframe src="https://player.vimeo.com/video/{{ $video->video_id }}?autoplay=1" frameborder="0" webkitallowfullscreen allow=autoplay	 mozallowfullscreen allowfullscreen></iframe></div>                            
-                        @endforeach                   
+                        <div class="item-video" data-merge="3"><a class="owl-video" href="https://vimeo.com/23924346"></a></div>
+                        <div class="item-video" data-merge="1"><a class="owl-video" href="https://www.youtube.com/watch?v=JpxsRwnRwCQ"></a></div>
+                        <div class="item-video" data-merge="2"><a class="owl-video" href="https://www.youtube.com/watch?v=FBu_jxT1PkA"></a></div>
+                        <div class="item-video" data-merge="1"><a class="owl-video" href="https://www.youtube.com/watch?v=oy18DJwy5lI"></a></div>
+                        <div class="item-video" data-merge="2"><a class="owl-video" href="https://www.youtube.com/watch?v=H3jLkJrhHKQ"></a></div>
+                        <div class="item-video" data-merge="3"><a class="owl-video" href="https://www.youtube.com/watch?v=g3J4VxWIM6s"></a></div>
+                        <div class="item-video" data-merge="1"><a class="owl-video" href="https://www.youtube.com/watch?v=0fhoIate4qI"></a></div>
+                        <div class="item-video" data-merge="2"><a class="owl-video" href="https://www.youtube.com/watch?v=EF_kj2ojZaE"></a></div>
                     </div>
+                </div>
                 <div class="ps-section__right">
                     @if ($promotion)
                         @foreach ($promotion as $item)
@@ -379,6 +385,7 @@
 @endsection('content')
 
 @section('extra-js')
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script>
 $('.owl-carousel').owlCarousel({
     items:1,

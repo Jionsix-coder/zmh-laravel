@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BasicUser;
+use App\Models\Product;
 
 class PagesController extends Controller
 {
@@ -26,9 +27,13 @@ class PagesController extends Controller
         if(session()->has('user')){
             $number = session()->get('user')['NationalNumber'];
             $user = BasicUser::where('NationalNumber',$number)->first();
+            $users = BasicUser::all();
+            $products = Product::all();
 
             return view('pages.about-us')->with([
                 'user' => $user,
+                'users' => $users,
+                'products' => $products
             ]);
         }else{
             return redirect()->route('user.login')->withErrors('အကောင့်ဝင်ရန်လိုအပ်ပါသည်။');

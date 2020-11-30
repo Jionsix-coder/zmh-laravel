@@ -14,7 +14,7 @@ class AddColourToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('colour')->after('description')->nullable();
+            $table->string('colour')->after('description');
         });
     }
 

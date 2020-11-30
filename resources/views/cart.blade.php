@@ -20,7 +20,7 @@
         <div class="ps-section--shopping ps-shopping-cart">
             <div class="container">
                 <div class="ps-section__header">
-                    <h1>Shopping Cart({{ Cart::count() }})</h1>
+                    <h1>ဈေးခြင်း({{ Cart::count() }})</h1>
                     @if (session()->has('success_message'))
                         <div class="alert alert-success">
                             {{ session()->get('success_message') }}
@@ -49,6 +49,7 @@
                                     <th>ရွှေးချယ်ထားရန်</th>
                                     <th>အရောင်</th>
                                     <th>စုစုပေါင်း</th>
+                                    <th><i class="icon-cross"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -82,7 +83,7 @@
                                         <td style="text-align: center;">
                                             <select name="colour" id="">
                                                 @foreach ($product_colour as $colour)
-                                                    <option value="{{ $colour }}">{{ $colour }}</option>
+                                                    <option value="{{ $colour }}" style="background-color:{{ $colour }}">{{ $colour }}</option>
                                                 @endforeach
                                             </select>
                                         </td>

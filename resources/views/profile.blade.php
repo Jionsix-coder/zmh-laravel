@@ -47,7 +47,98 @@
                     </div>
                     <div class="ps-tabs col-lg-8">
                         <div class="ps-section__right ps-tab active" id="profile">
-                            <form class="ps-form--account-setting" action="{{ route('basicuser.update') }}" method="POST">
+                            
+                            @if ($user->Username == null)
+                            <form class="ps-form--account-setting" action="{{ route('basicuser.logincreate') }}" method="POST">
+                            @csrf
+                                <div class="ps-form__header">
+                                    <br>
+                                    <p style="font-size:medium;background-color:black;color:red;font-weight:bold;text-align:center;border-radius: 20px;padding:15px 15px;">Create New Account!!!</p>
+                                    <br>
+                                    <h3>Login Creditionals</h3>
+                                    @if(count($errors) > 0)
+                                    <div class="alert alert-danger" style="height:50px;">
+                                        <ul style="list-style-type: none;">
+                                        @foreach ($errors->all() as $error)
+                                            <li style="text-align: center">{{ $error }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="ps-form__content">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input class="form-control" name="Username" type="text" value="{{ old('Username') }}" placeholder="Please enter your Username...">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input class="form-control" name="Password" type="password" placeholder="Please enter your password...">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Confirm Password</label>
+                                                <input class="form-control" name="ConfirmPassword" type="password" placeholder="Please enter your password again...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group submit">
+                                    <button class="ps-btn" type="submit">Create</button>
+                                </div>
+                            </form>
+                            <div style="border-top:2px solid black"></div>
+                            @endif
+
+                            @if ($user->Username != null)
+                            <form class="ps-form--account-setting" action="{{ route('basicuser.loginupdate') }}" method="POST">
+                            @csrf
+                                <div class="ps-form__header">
+                                    <br>
+                                    <p style="font-size:medium;background-color:black;color:red;font-weight:bold;text-align:center;border-radius: 20px;padding:15px 15px;">Update Your Account!!!</p>
+                                    <br>
+                                    <h3>Update Login Creditionals</h3>
+                                    @if(count($errors) > 0)
+                                    <div class="alert alert-danger" style="height:50px;">
+                                        <ul style="list-style-type: none;">
+                                        @foreach ($errors->all() as $error)
+                                            <li style="text-align: center">{{ $error }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+                                </div>
+                                <div class="ps-form__content">
+                                    <div class="form-group">
+                                        <label>Username</label>
+                                        <input class="form-control" name="Username" type="text" value="{{ old('Username') }}" placeholder="{{ $user->Username }}">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Password</label>
+                                                <input class="form-control" name="Password" type="password" placeholder="Please enter your password...">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Confirm Password</label>
+                                                <input class="form-control" name="ConfirmPassword" type="password" placeholder="Please enter your password again...">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group submit">
+                                    <button class="ps-btn" type="submit">Update</button>
+                                </div>
+                            </form>
+                            <div style="border-top:2px solid black"></div>
+                            @endif
+
+                            <form class="ps-form--account-setting" action="{{ route('basicuser.store') }}" method="POST">
                             @csrf
                                 <div class="ps-form__header">
                                     <br>
@@ -58,31 +149,31 @@
                                 <div class="ps-form__content">
                                     <div class="form-group">
                                         <label>Phone Number</label>
-                                        <input class="form-control" name="PhNumber" type="text" placeholder="Please enter your phone number...">
+                                        <input class="form-control" name="PhNumber" type="text" placeholder="{{ $user->PhNumber != null ? '+95-'.$user->PhNumber : 'Please enter your phone number...' }}">
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Address Line 1</label>
-                                                <input class="form-control" name="AddressLine1" type="text" placeholder="Please enter your address...">
+                                                <input class="form-control" name="AddressLine1" type="text" placeholder="{{ $user->AddressLine1 != null ? $user->AddressLine1 : 'Please enter your address...' }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Address Line 2</label>
-                                                <input class="form-control" name="AddressLine2" type="text" placeholder="Please enter your address...">
+                                                <input class="form-control" name="AddressLine2" type="text" placeholder="{{ $user->AddressLine2 != null ? $user->AddressLine2 : 'Please enter your address...' }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input class="form-control" name="City" type="text" placeholder="Please enter your city...">
+                                                <input class="form-control" name="City" type="text" placeholder="{{ $user->City != null ? $user->City : 'Please enter your city...' }}">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>State</label>
-                                                <input class="form-control" name="State" type="text" placeholder="Please enter your state...">
+                                                <input class="form-control" name="State" type="text" placeholder="{{ $user->State != null ? $user->State : 'Please enter your state...' }}">
                                             </div>
                                         </div>
                                     </div>
@@ -91,6 +182,7 @@
                                     <button class="ps-btn" type="submit" {{ $user->PhNumber != null ? 'disabled' : ''  }}>Submit</button>
                                 </div>
                             </form>
+                
                             <div class="ps-section__content">
                                 <div class="table-responsive">
                                     <table class="table ps-table">

@@ -35,16 +35,16 @@
                         </ul>
                     </aside>
                     <aside class="widget widget_shop">
-                        <h4 class="widget-title">BY BRANDS</h4>
-                        <form class="ps-form--widget-search" action="do_action" method="get">
-                            <input class="form-control" type="text" placeholder="">
+                        <h4 class="widget-title">ပစ္စည်းများရှာရန်</h4>
+                        <form class="ps-form--widget-search" action="{{ route('shop.search') }}" method="GET">
+                            <input class="form-control" type="text" placeholder="ပစ္စည်းများရှာရန်" name="query" value="{{ request()->input('query') }}" id="query">
                             <button><i class="icon-magnifier"></i></button>
                         </form>
-                        <figure>
+                        {{-- <figure>
                             <h4 class="widget-title">By Price</h4>
                             <div id="nonlinear"></div>
                             <p class="ps-slider__meta">Price:<span class="ps-slider__value">$<span class="ps-slider__min"></span></span>-<span class="ps-slider__value">$<span class="ps-slider__max"></span></span></p>
-                        </figure>
+                        </figure> --}}
                     </aside>
                 </div>
                 <div class="ps-layout__right">
@@ -113,7 +113,6 @@
                                     <p>View</p>
                                     <ul class="ps-tab-list">
                                         <li class="active"><a href="#tab-1"><i class="icon-grid"></i></a></li>
-                                        <li><a href="#tab-2"><i class="icon-list4"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -166,44 +165,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="ps-tab" id="tab-2">
-                                <div class="ps-shopping-product">
-                                    @forelse ($products as $product)
-                                    <div class="ps-product ps-product--wide">
-                                        <div class="ps-product__thumbnail"><a href="{{ route('shop.show', $product->slug) }}"><img src="{{ productImage($product->image) }}" alt=""></a>
-                                            @if ($product->quantity == 0)
-                                                <div class="ps-product__badge out-stock" style="{{ $product->quantity == 0 ? 'display:initial': 'display:none' }}">Out Of Stock</div>
-                                            @endif
-                                            @if ($product->discountPercent != null)
-                                                <div class="ps-product__badge" style="{{ $product->discountPercent != null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">-{{ $product->discountPercent }}%</div>
-                                            @endif
-                                            @if ($product->quantity <= 2)
-                                            <div class="ps-product__badge hot" style="{{ $product->quantity <= 2 & $product->discountPercent == null & $product->quantity != 0 ? 'display:initial': 'display:none' }}">hot</div>
-                                            @endif
-                                        </div>
-                                        <div class="ps-product__container">
-                                            <div class="ps-product__content"><a class="ps-product__title" href="{{ route('shop.show', $product->slug) }}">{{ $product->name }}</a>
-                                                <ul class="ps-product__desc">
-                                                    <li> {!! nl2br(Str::limit($product->description,300,' ...')) !!}</li>
-                                                </ul>
-                                            </div>
-                                            <div class="ps-product__shopping">
-                                                <form action="{{ route('cart.store') }}" method="POST">
-                                                @csrf
-                                                    <input type="hidden" name="id" value="{{ $product->id }}">
-                                                    <input type="hidden" name="name" value="{{ $product->name }}">
-                                                    <input type="hidden" name="price" value="{{ $product->price * (1 - $product->discountPercent / 100) }}">
-                                                    <p class="ps-product__price">{{ presentPrice($product->price) }}</p><button type="submit" class="ps-btn">ခြင်းထဲထည့်ရန်</button>	
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @empty
-                                        <div><h2>No items found</h2></div>
-                                    @endforelse
-                                    {{ $products->appends(request()->input())->links('partials.pagination.default') }}
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -218,18 +179,18 @@
 <script src="/js/jquery.jscroll.min.js"></script>
 
 <script type="text/javascript">
-	$('ul.pagination').hide();
-	$(function() {
-		$('.infinite-scroll').jscroll({
-			autoTrigger: true,
-			loadingHtml: '<img class="center-block" src="/images/loading.gif" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
-			padding: 0,
-			nextSelector: '.pagination li.active + li a',
-			contentSelector: 'div.infinite-scroll',
-			callback: function() {
-				$('ul.pagination').remove();
-			}
-		});
-	});
+    $('ul.pagination').hide();
+    var options = {
+        autoTrigger: true,
+        loadingHtml: '<img class="center-block" style="width:100px;height:100px;margin:36%;" src="/images/loading.gif" alt="Loading..." />', // MAKE SURE THAT YOU PUT THE CORRECT IMG PATH
+        padding: 0,
+        nextSelector: '.pagination li.active + li a',
+        contentSelector: 'div.infinite-scroll',
+        callback: function() {
+            $('ul.pagination').remove();
+        }
+    };
+
+    $('.infinite-scroll').jscroll(options);
 </script>
 @endsection

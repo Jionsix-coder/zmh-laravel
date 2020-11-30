@@ -18,16 +18,12 @@
         "postcss": "^8.1.1",
         "postcss-loader": "^4.0.4",
         "resolve-url-loader": "^3.1.2",
-        "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.12",
-        "webpack": "^5.6.0"
+        "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "@vimeo/player": "^2.14.1",
-        "autoprefixer": "^9.8.0",
         "lightbox2": "^2.11.3",
-        "node-sass": "^5.0.0",
         "sass": "^1.27.0",
-        "vue-infinite-loading": "^2.4.5"
+        "sass-loader": "^10.0.3"
     }
 }

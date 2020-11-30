@@ -54,7 +54,7 @@ class OrderController extends Controller
 
         $number = session()->get('user')['NationalNumber'];
         $user = BasicUser::where('NationalNumber',$number)->first();
-        if($user->AddressLine1 !== null){
+        if($user->PhNumber !== null){
             $order_code = $request->ordercode;
             $dbordercode = OrderCode::where('ordercode',$order_code)->first();
             

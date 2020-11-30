@@ -25,10 +25,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[BasicUserController::class,'index'])->name('user.login');
-Route::get('/english',[BasicUserController::class,'indexenglish'])->name('user.loginenglish');
 
 Route::post('/check',[BasicUserController::class,'check'])->name('user.check');
 Route::post('/check/english',[BasicUserController::class,'checkenglish'])->name('user.checkenglish');
+Route::post('/check/login',[BasicUserController::class,'checklogin'])->name('user.checklogin');
 
 Route::delete('/delete',[BasicUserController::class,'destroy'])->name('user.logout');
 
@@ -57,7 +57,9 @@ Route::delete('/coupon',[CouponsController::class,'destroy'])->name('coupon.dest
 Route::post('/order',[OrderController::class,'store'])->name('order.store');
 Route::get('/search',[ShopController::class,'search'])->name('shop.search');
 
-Route::post('/basicuser',[BasicUserController::class,'update'])->name('basicuser.update');
+Route::post('/basicuser',[BasicUserController::class,'store'])->name('basicuser.store');
+Route::post('/basicuser/update',[BasicUserController::class,'loginupdate'])->name('basicuser.loginupdate');
+Route::post('/basicuser/create',[BasicUserController::class,'logincreate'])->name('basicuser.logincreate');
 
 Route::get('/armakhan',[NavbarController::class,'armakhan'])->name('navbar.armakhan');
 Route::get('/discipline',[NavbarController::class,'discipline'])->name('navbar.discipline');
@@ -73,7 +75,7 @@ Route::get('/thankyou',[ConfirmationController::class,'index'])->name('confirmat
 Route::view('/login','login');
 
 route::get('/empty',function (){
-    Cart::instance('default')->destroy();
+    Cart::instance('saveCart')->destroy();
 });
 
 Route::group(['prefix' => 'admin'], function () {

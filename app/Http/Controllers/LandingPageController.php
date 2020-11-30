@@ -63,26 +63,6 @@ class LandingPageController extends Controller
                 $categories3 = Category::where('p_id',2)->orderBy('id','desc')->first();
                 $query->where('slug',$categories3->slug);
             })->take(8)->get();
-            // $categories1 = Category::where('id',15)->orderBy('id','desc')->first();
-            // $categories2 = Category::where('id',91)->orderBy('id','desc')->first();
-            // $categories3 = Category::where('id',58)->orderBy('id','desc')->first();
-            // $promotionsItems = Product::where('promotions',true)->orderBy('id','desc')->take(12)->get();
-            // $promotion = Promotion::orderBy('id','desc')->take(2)->get();
-            
-            // $categoryProduct1 = Product::with('categories')->whereHas('categories',function (Builder $query) {
-            //     $categories1 = Category::where('id',15)->orderBy('id','desc')->first();
-            //     $query->where('slug',$categories1->slug);
-            // })->take(8)->get();
-
-            // $categoryProduct2 = Product::with('categories')->whereHas('categories',function (Builder $query) {
-            //     $categories2 = Category::where('id',91)->orderBy('id','desc')->first();
-            //     $query->where('slug',$categories2->slug);
-            // })->take(8)->get();
-
-            // $categoryProduct3 = Product::with('categories')->whereHas('categories',function (Builder $query) {
-            //     $categories3 = Category::where('id',58)->orderBy('id','desc')->first();
-            //     $query->where('slug',$categories3->slug);
-            // })->take(8)->get();
 
             return view('landing-page')->with([
                 'products' =>$products,
