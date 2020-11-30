@@ -261,7 +261,7 @@ class BasicUserController extends Controller
             $usereng->Password = Hash::make($request->Password);
             $usereng->save();
 
-            return redirect()->route('profile.index')->with('success_message','Login Cresitional has been successfully created');
+            return redirect()->route('profile.index')->with('success_message_login','Login Cresitional has been successfully created');
         }else{
             return back()->withInput()->withErrors('Password Wrong!!!');
         }
@@ -294,7 +294,7 @@ class BasicUserController extends Controller
             $usereng->Password = Hash::make($request->Password);
             $usereng->save();
 
-            return redirect()->route('profile.index')->with('success_message','Login Cresitional has been successfully updated');
+            return redirect()->route('profile.index')->with('success_message_login','Login Cresitional has been successfully updated');
         }else{
             return back()->withInput()->withErrors('Password Wrong!!!');
         }

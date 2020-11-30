@@ -56,6 +56,11 @@
                                     <p style="font-size:medium;background-color:black;color:red;font-weight:bold;text-align:center;border-radius: 20px;padding:15px 15px;">Create New Account!!!</p>
                                     <br>
                                     <h3>Login Creditionals</h3>
+                                    @if (session()->has('success_message_login'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('success_message_login') }}
+                                        </div>
+                                    @endif
                                     @if(count($errors) > 0)
                                     <div class="alert alert-danger" style="height:50px;">
                                         <ul style="list-style-type: none;">
@@ -101,6 +106,11 @@
                                     <p style="font-size:medium;background-color:black;color:red;font-weight:bold;text-align:center;border-radius: 20px;padding:15px 15px;">Update Your Account!!!</p>
                                     <br>
                                     <h3>Update Login Creditionals</h3>
+                                    @if (session()->has('success_message_login'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('success_message_login') }}
+                                        </div>
+                                    @endif
                                     @if(count($errors) > 0)
                                     <div class="alert alert-danger" style="height:50px;">
                                         <ul style="list-style-type: none;">
@@ -120,13 +130,13 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Password</label>
-                                                <input class="form-control" name="Password" type="password" placeholder="Please enter your password...">
+                                                <input class="form-control" name="Password" type="password" placeholder="Please enter your new password...">
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label>Confirm Password</label>
-                                                <input class="form-control" name="ConfirmPassword" type="password" placeholder="Please enter your password again...">
+                                                <input class="form-control" name="ConfirmPassword" type="password" placeholder="Please enter your new password again...">
                                             </div>
                                         </div>
                                     </div>
@@ -145,6 +155,20 @@
                                     <p style="font-size:medium;background-color:black;color:red;font-weight:bold;text-align:center;border-radius: 20px;padding:15px 15px;">အော်ဒါတင်ရရန်အတွက်ဤနေရာတွင်သင့်အချက်အလက်များအားဖြည့်သွင်းပါ(တစ်ကြိမ်သာဖြည့်ညွင်းရန်လိုအပ်ပါသည်။)</p>
                                     <br>
                                     <h3>User Information</h3>
+                                    @if (session()->has('success_message'))
+                                        <div class="alert alert-success">
+                                            {{ session()->get('success_message') }}
+                                        </div>
+                                    @endif
+                                    @if(count($errors) > 0)
+                                    <div class="alert alert-danger" style="height:50px;">
+                                        <ul style="list-style-type: none;">
+                                        @foreach ($errors->all() as $error)
+                                            <li style="text-align: center">{{ $error }}</li>
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
                                 </div>
                                 <div class="ps-form__content">
                                     <div class="form-group">

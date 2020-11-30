@@ -144,6 +144,11 @@
                     <div class="ps-form__content">
                       <h3 style="text-align: center;border:4px double red;padding:20px;">Login Your Account</h3>
                       <br>
+                      @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                      @endif
                       @if(count($errors) > 0)
                         <div class="alert alert-danger" style="height:50px;">
                           <ul>
@@ -157,7 +162,7 @@
                         <input class="form-control" name="Username" type="text" placeholder="Username" value="{{ old('Username') }}" required>
                       </div>
                       <div class="form-group">
-                        <input class="form-control" name="Password" type="password" placeholder="Password" value="{{ old('Password') }}" required>
+                        <input class="form-control" name="Password" type="password" placeholder="Password" required>
                       </div>
                       <div class="form-group">
                         <input type="hidden" name="tabname" class="form-control" placeholder="CurrentOffice" value="account">
@@ -174,6 +179,11 @@
                     <div class="ps-form__content">
                       <h3 style="text-align: center;border:4px double red;padding:20px;">Login with Unicode</h3>
                       <br>
+                      @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                      @endif
                       @if(count($errors) > 0)
                         <div class="alert alert-danger" style="height:50px;">
                           <ul>
@@ -216,6 +226,11 @@
                     <div class="ps-form__content">
                       <h3 style="text-align: center;border:4px double red;padding:20px;">Login with English</h3>
                       <br>
+                      @if (session()->has('success_message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('success_message') }}
+                        </div>
+                      @endif
                       @if(count($errors) > 0)
                         <div class="alert alert-danger" style="height:50px;">
                           <ul>
